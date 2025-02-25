@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="keywords"
+      content="Adriano, Astorino, Stefano, Borello, Wine, Piemonte, Collegno, Torino, Vino, Champagne, Francia, Borgogna"
+      , />
+    <meta
+      name="description"
+      content="Commercializziamo bottiglie di pregio ed etichette ricercate." />
+    <meta name="title" property="og:title" content="Sito AB Winetrader" />
+    <meta
+      name="image"
+      property="og:image"
+      content="https://wvwall.github.io/AB_site/assets/img/anteprima.webp" />
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display+SC:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Lato:wght@100&display=swap"
+      rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="./assets/css/build.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+      integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer" />
+
+    <title>AB Winetrader</title>
+  </head>
+
+  <body class="dark:bg-slate-600">
+    <nav></nav>
+
+    <main class="dark:bg-slate-600"></main>
+
+    <footer
+      id="contatti"
+     
+      <div class="text-center p-2 rounded-b-lg">
+        <small class="text-white">
+          © <span id="year"></span> AB Winetrader - Tutti i diritti riservati.
+        </small>
+      </div>
+    </footer>
+
+    <script>
+      const checkbox = document.querySelector("#toggle");
+      const html = document.querySelector("html");
+      const hour = new Date().getHours();
+      const currentYear = new Date().getFullYear();
+      document.querySelector("#year").textContent = currentYear;
+
+      const toggleDark = () => {
+        checkbox.checked
+          ? html.classList.add("dark")
+          : html.classList.remove("dark");
+      };
+      const autoTheme = () => {
+        if (hour >= 23 || hour <= 7) {
+          checkbox.checked = true;
+          html.classList.add("dark");
+        } else {
+          checkbox.checked = false;
+          html.classList.remove("dark");
+        }
+      };
+
+      const observer1 = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("animate__fadeInLeft");
+          }
+        });
+      });
+      observer1.observe(document.querySelector(".destra"));
+
+      const observer2 = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("animate__fadeInRight");
+          }
+        });
+      });
+
+      observer2.observe(document.querySelector(".sinistra"));
+
+      const observer3 = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("animate__pulse");
+          }
+        });
+      });
+      autoTheme();
+      checkbox.addEventListener("click", toggleDark);
+    </script>
+  </body>
+</html>
