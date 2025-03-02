@@ -25,11 +25,12 @@
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
-    <link rel="stylesheet" href="./assets/css/master.css" />
+    <link rel="stylesheet" href="./assets/css/build.css" />
+
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
-      integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
       crossorigin="anonymous"
       referrerpolicy="no-referrer" />
 
@@ -39,7 +40,7 @@
   <body>
     <!-- Header -->
     <header class="bg-black">
-      <nav class="flex justify-between items-center py-4 px-8">
+      <nav class="flex justify-between items-center py-4 px-4">
         <div class="flex items-center">
           <img
             src="./assets/img/logo.jpg"
@@ -63,20 +64,21 @@
       <img
         src="./assets/img/logo-no-testo.png"
         alt="logo"
-        class="absolute left-[16%] h-[550px] top-[30px]" />
-      <div class="mt-[100px]">
+        class="absolute left-[5%] xxl:left-[16%] h-[500px] top-[30px] hidden xl:block" />
+      <div class="mt-[100px] px-4">
         <h1
-          class="playfair-display-sc-bold text-white text-[90px] leading-[0.8] text-center">
+          class="playfair-display-sc-bold text-white text-[45px] sm:text-[60px] lg:text-[90px] leading-[0.8] text-center">
           AB <br />
           winetrader
         </h1>
         <p
-          class="w-[600px] text-white text-center text-lg mt-4 text-pretty font-light">
+          class="md:w-[600px] text-white text-center text-sm sm:text-lg mt-4 text-pretty font-light">
           Commercializziamo bottiglie di pregio ed etichette ricercate. Mettiamo
           a disposizione del cliente grande esperienza nel settore unita alla
           forte passione nel mondo del vino.
         </p>
-        <div class="flex justify-center mt-8 gap-6">
+        <div
+          class="flex flex-col md:flex-row items-center justify-center mt-8 gap-6">
           <button
             class="w-[200px] bg-[#570E27] h-[43px] transition delay-100 duration-300 ease-in-out hover:-translate-y-1 hover:scale-105 text-white cursor-pointer border-white border-[0.5px] hover:bg-white hover:text-[#570E27] hover:border-[#570E27]">
             Listino prezzi
@@ -95,14 +97,41 @@
       </div>
     </main>
 
-    <footer
-      id="contatti"
-      class="bg-blackFooter h-[300px] flex flex-col items-center">
-      <h2 class="playfair-display-sc-bold text-white my-8 text-2xl">
-        Contatti
-      </h2>
-      <hr class="h-px mb-8 bg-gray-200 border-0 dark:bg-white w-[90%]" />
-      <div class="text-center p-2 rounded-b-lg">
+    <footer id="contatti" class="">
+      <div class="bg-blackFooter flex flex-col items-center">
+        <h2
+          class="playfair-display-sc-bold text-white my-5 md:my-10 text-2xl dark:text-gray-300">
+          Contatti
+        </h2>
+        <hr class="h-px bg-gray-200 border-0 dark:bg-gray-500 w-[90%]" />
+        <div
+          class="flex flex-col md:flex-row my-5 md:my-10 md:mr-[20px] justify-center items-center gap-6 md:gap-12 text-sm">
+          <a href="mailto:info@abwinetrader.com" class="text-gray-300"
+            >info@abwinetrader.com</a
+          >
+
+          <div class="flex gap-4">
+            <!-- Instagram Icon -->
+            <a href="#" class="text-white">
+              <i class="fa-brands fa-instagram text-2xl"></i>
+            </a>
+
+            <!-- TikTok Icon -->
+            <a href="#" class="text-white">
+              <i class="fa-brands fa-tiktok text-2xl"></i>
+            </a>
+
+            <!-- Threads Icon -->
+            <a href="#" class="text-white">
+              <i class="fa-brands fa-threads text-2xl"></i>
+            </a>
+          </div>
+
+          <span class="text-white">+39 335 534 3628</span>
+        </div>
+      </div>
+
+      <div class="p-2 bg-black text-center">
         <small class="text-white">
           © <span id="year"></span> AB Winetrader - Tutti i diritti riservati.
         </small>

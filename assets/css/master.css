@@ -459,6 +459,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .left-\[16\%\] {
   left: 16%;
 }
+.left-\[5\%\] {
+  left: 5%;
+}
 .my-10 {
   margin-top: 2.5rem;
   margin-bottom: 2.5rem;
@@ -466,6 +469,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 .my-8 {
   margin-top: 2rem;
   margin-bottom: 2rem;
+}
+.my-5 {
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
 }
 .mr-2 {
   margin-right: 0.5rem;
@@ -488,8 +495,20 @@ Ensure the default browser behavior of the `hidden` attribute.
 .mb-8 {
   margin-bottom: 2rem;
 }
+.ml-4 {
+  margin-left: 1rem;
+}
+.ml-\[20px\] {
+  margin-left: 20px;
+}
+.mr-\[20px\] {
+  margin-right: 20px;
+}
 .flex {
   display: flex;
+}
+.hidden {
+  display: none;
 }
 .h-\[40px\] {
   height: 40px;
@@ -521,6 +540,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .h-\[550px\] {
   height: 550px;
 }
+.h-6 {
+  height: 1.5rem;
+}
 .w-\[300px\] {
   width: 300px;
 }
@@ -535,6 +557,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .w-\[90\%\] {
   width: 90%;
+}
+.w-6 {
+  width: 1.5rem;
 }
 .cursor-pointer {
   cursor: pointer;
@@ -559,6 +584,12 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .gap-6 {
   gap: 1.5rem;
+}
+.gap-8 {
+  gap: 2rem;
+}
+.gap-12 {
+  gap: 3rem;
 }
 .rounded-lg {
   border-radius: 0.5rem;
@@ -653,6 +684,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
 }
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
 .text-center {
   text-align: center;
 }
@@ -682,6 +717,18 @@ Ensure the default browser behavior of the `hidden` attribute.
   font-size: 1rem;
   line-height: 1.5rem;
 }
+.text-\[40px\] {
+  font-size: 40px;
+}
+.text-\[60px\] {
+  font-size: 60px;
+}
+.text-\[50px\] {
+  font-size: 50px;
+}
+.text-\[45px\] {
+  font-size: 45px;
+}
 .font-light {
   font-weight: 300;
 }
@@ -703,6 +750,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+.text-gray-300 {
+  --tw-text-opacity: 1;
+  color: rgb(209 213 219 / var(--tw-text-opacity));
 }
 .underline {
   -webkit-text-decoration-line: underline;
@@ -798,6 +849,18 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
+.dark .dark\:bg-gray-400 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(156 163 175 / var(--tw-bg-opacity));
+}
+.dark .dark\:bg-gray-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(107 114 128 / var(--tw-bg-opacity));
+}
+.dark .dark\:text-gray-300 {
+  --tw-text-opacity: 1;
+  color: rgb(209 213 219 / var(--tw-text-opacity));
+}
 .dark .dark\:shadow-3xl {
   --tw-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   --tw-shadow-colored: 0 3px 6px var(--tw-shadow-color), 0 3px 6px var(--tw-shadow-color);
@@ -807,7 +870,54 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-bg-opacity: 1;
   background-color: rgb(146 197 182 / var(--tw-bg-opacity));
 }
+@media (min-width: 320px) {
+
+  .xs\:text-\[60px\] {
+    font-size: 60px;
+  }
+
+  .xs\:text-lg {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
+}
+@media (min-width: 480px) {
+
+  .sm\:text-\[60px\] {
+    font-size: 60px;
+  }
+
+  .sm\:text-lg {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
+}
 @media (min-width: 768px) {
+
+  .md\:my-10 {
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .md\:mr-\[20px\] {
+    margin-right: 20px;
+  }
+
+  .md\:block {
+    display: block;
+  }
+
+  .md\:w-\[600px\] {
+    width: 600px;
+  }
+
+  .md\:flex-row {
+    flex-direction: row;
+  }
+
+  .md\:gap-12 {
+    gap: 3rem;
+  }
 
   .md\:py-4 {
     padding-top: 1rem;
@@ -822,5 +932,23 @@ Ensure the default browser behavior of the `hidden` attribute.
   .md\:text-lg {
     font-size: 1.125rem;
     line-height: 1.75rem;
+  }
+}
+@media (min-width: 976px) {
+
+  .lg\:text-\[90px\] {
+    font-size: 90px;
+  }
+}
+@media (min-width: 1023px) {
+
+  .xl\:block {
+    display: block;
+  }
+}
+@media (min-width: 1440px) {
+
+  .xxl\:left-\[16\%\] {
+    left: 16%;
   }
 }
