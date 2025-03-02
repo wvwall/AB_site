@@ -941,6 +941,37 @@ Ensure the default browser behavior of the `hidden` attribute.
     font-size: 1.25rem;
     line-height: 1.75rem;
   }
+
+  .md\:transition {
+    transition-property: color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter;
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+  }
+
+  .md\:delay-100 {
+    transition-delay: 100ms;
+  }
+
+  .md\:duration-300 {
+    transition-duration: 300ms;
+  }
+
+  .md\:ease-in-out {
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .md\:hover\:-translate-y-1:hover {
+    --tw-translate-y: -0.25rem;
+    transform: var(--tw-transform);
+  }
+
+  .md\:hover\:scale-105:hover {
+    --tw-scale-x: 1.05;
+    --tw-scale-y: 1.05;
+    transform: var(--tw-transform);
+  }
 }
 @media (min-width: 976px) {
 
