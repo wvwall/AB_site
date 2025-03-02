@@ -20,12 +20,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display+SC:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Lato:wght@100&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Playfair+Display+SC:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Poppins:wght@100&display=swap"
       rel="stylesheet" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
-    <link rel="stylesheet" href="./assets/css/build.css" />
+    <link rel="stylesheet" href="./assets/css/master.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
@@ -36,14 +36,55 @@
     <title>AB Winetrader</title>
   </head>
 
-  <body class="dark:bg-slate-600">
-    <nav></nav>
+  <body>
+    <!-- Header -->
+    <header class="bg-black">
+      <nav class="flex justify-between items-center py-4 px-8">
+        <div class="flex items-center">
+          <img
+            src="/assets/img/logo.jpg"
+            alt="logo aziendale"
+            class="h-[50px] mr-2" />
+          <span class="text-xl text-white playfair-display-sc-bold"
+            >AB winetrader</span
+          >
+        </div>
+        <a
+          href="https://g.co/kgs/V7LW5z2"
+          target="_blank"
+          class="flex items-center text-sm text-white gap-2">
+          <i class="fa-solid fa-up-right-from-square text-lg"></i>
+          <span class="underline underline-offset-4">AB Wine House</span>
+        </a>
+      </nav>
+    </header>
 
-    <main class="dark:bg-slate-600"></main>
+    <main class="bg-blackMain h-[600px] flex flex-col items-center">
+      <div class="mt-[100px]">
+        <h1
+          class="playfair-display-sc-bold text-white text-[90px] leading-[0.8] text-center">
+          AB <br />
+          winetrader
+        </h1>
+        <p class="w-[600px] text-white text-center text-lg mt-4 text-pretty">
+          Commercializziamo bottiglie di pregio ed etichette ricercate. Mettiamo
+          a disposizione del cliente grande esperienza nel settore unita alla
+          forte passione nel mondo del vino.
+        </p>
+        <div class="flex justify-center mt-8 gap-6">
+          <button
+            class="w-[200px] bg-[#570E27] h-[43px] transition delay-100 duration-300 ease-in-out hover:-translate-y-1 hover:scale-105 text-white cursor-pointer border-white border-[0.5px] hover:bg-white hover:text-[#570E27] hover:border-[#570E27]">
+            Listino prezzi
+          </button>
+          <button
+            class="w-[200px] bg-black h-[43px] transition delay-100 duration-300 ease-in-out hover:-translate-y-1 hover:scale-105 text-white cursor-pointer border-white border-[0.5px] hover:bg-white hover:text-black hover:border-black">
+            Whatsapp
+          </button>
+        </div>
+      </div>
+    </main>
 
-    <footer
-      id="contatti"
-     
+    <footer id="contatti" class="bg-blackFooter h-[300px]">
       <div class="text-center p-2 rounded-b-lg">
         <small class="text-white">
           © <span id="year"></span> AB Winetrader - Tutti i diritti riservati.
