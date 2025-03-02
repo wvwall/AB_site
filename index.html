@@ -59,14 +59,19 @@
       </nav>
     </header>
 
-    <main class="bg-blackMain h-[600px] flex flex-col items-center">
+    <main class="bg-blackMain h-[600px] flex flex-col items-center relative">
+      <img
+        src="/assets/img/logo-no-testo.png"
+        alt="logo"
+        class="absolute left-[16%] h-[550px] top-[30px]" />
       <div class="mt-[100px]">
         <h1
           class="playfair-display-sc-bold text-white text-[90px] leading-[0.8] text-center">
           AB <br />
           winetrader
         </h1>
-        <p class="w-[600px] text-white text-center text-lg mt-4 text-pretty">
+        <p
+          class="w-[600px] text-white text-center text-lg mt-4 text-pretty font-light">
           Commercializziamo bottiglie di pregio ed etichette ricercate. Mettiamo
           a disposizione del cliente grande esperienza nel settore unita alla
           forte passione nel mondo del vino.
@@ -78,13 +83,25 @@
           </button>
           <button
             class="w-[200px] bg-black h-[43px] transition delay-100 duration-300 ease-in-out hover:-translate-y-1 hover:scale-105 text-white cursor-pointer border-white border-[0.5px] hover:bg-white hover:text-black hover:border-black">
-            Whatsapp
+            <a
+              title="Whatsapp"
+              target="_blank"
+              itemprop="url"
+              href="https://wa.me/393355343628">
+              Whatsapp
+            </a>
           </button>
         </div>
       </div>
     </main>
 
-    <footer id="contatti" class="bg-blackFooter h-[300px]">
+    <footer
+      id="contatti"
+      class="bg-blackFooter h-[300px] flex flex-col items-center">
+      <h2 class="playfair-display-sc-bold text-white my-8 text-2xl">
+        Contatti
+      </h2>
+      <hr class="h-px mb-8 bg-gray-200 border-0 dark:bg-white w-[90%]" />
       <div class="text-center p-2 rounded-b-lg">
         <small class="text-white">
           © <span id="year"></span> AB Winetrader - Tutti i diritti riservati.
