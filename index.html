@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -40,53 +40,54 @@
   <body>
     <!-- Header -->
     <header class="bg-black">
-      <nav class="flex justify-between items-center py-4 px-4">
+      <nav class="flex items-center justify-between px-4 py-4 md:px-8">
         <div class="flex items-center">
           <img
             src="./assets/img/logo.jpg"
             alt="logo aziendale"
             class="h-[50px] mr-2" />
-          <span class="md:text-xl text-white playfair-display-sc-bold"
+          <span class="text-lg text-white playfair-display-sc-bold"
             >AB winetrader</span
           >
         </div>
         <a
           href="https://g.co/kgs/V7LW5z2"
           target="_blank"
-          class="flex items-center text-sm text-white gap-2">
-          <i class="fa-solid fa-up-right-from-square text-lg"></i>
-          <span class="underline underline-offset-4 hidden md:block"
+          class="flex items-center gap-2 text-sm text-white">
+          <i class="text-lg fa-solid fa-up-right-from-square"></i>
+          <span class="hidden underline underline-offset-4 md:block"
             >AB Wine House</span
           >
         </a>
       </nav>
     </header>
 
-    <main class="bg-blackMain h-[600px] flex flex-col items-center relative">
+    <main
+      class="bg-blackMain h-[500px] md:h-[600px] flex flex-col items-center relative">
       <img
         src="./assets/img/logo-no-testo.png"
         alt="logo"
-        class="absolute left-[5%] xxl:left-[16%] h-[500px] top-[30px] hidden xl:block" />
-      <div class="mt-[100px] px-4">
+        class="absolute left-[5%] xxl:left-[16%] h-[500px] top-[40px] hidden xl:block animate__animated animate__fadeInLeft" />
+      <div class="mt-[100px] px-4 md:px-8">
         <h1
-          class="playfair-display-sc-bold text-white text-[45px] sm:text-[60px] lg:text-[90px] leading-[0.8] text-center">
+          class="animate__animated animate__fadeInDown playfair-display-sc-bold text-white text-[45px] sm:text-[60px] lg:text-[90px] leading-[0.8] text-center">
           AB <br />
           winetrader
         </h1>
         <p
-          class="md:w-[600px] text-white text-center text-sm sm:text-lg mt-4 text-pretty font-light">
+          class="animate__animated animate__fadeInRight md:w-[600px] text-white text-center text-sm sm:text-lg mt-4 text-pretty font-light">
           Commercializziamo bottiglie di pregio ed etichette ricercate. Mettiamo
           a disposizione del cliente grande esperienza nel settore unita alla
           forte passione nel mondo del vino.
         </p>
         <div
-          class="flex flex-col md:flex-row items-center justify-center mt-8 gap-6">
+          class="flex flex-col items-center justify-center gap-6 mt-8 md:flex-row animate__animated animate__fadeInUp">
           <button
-            class="w-[200px] bg-[#570E27] h-[43px] md:transition md:delay-100 md:duration-300 md:ease-in-out md:hover:-translate-y-1 md:hover:scale-105 text-white cursor-pointer border-white border-[1px] hover:bg-white hover:text-[#570E27] hover:border-[#570E27]">
+            class="w-[200px] bg-[#570E27] h-[43px] text-white cursor-pointer border-white border-[1px] hover:bg-white hover:text-[#570E27] hover:border-[#570E27]">
             Listino prezzi
           </button>
           <button
-            class="w-[200px] bg-black h-[43px] md:transition md:delay-100 md:duration-300 md:ease-in-out md.hover:-translate-y-1 md:hover:scale-105 text-white cursor-pointer border-white border-[1px] hover:bg-white hover:text-black hover:border-black">
+            class="w-[200px] bg-black h-[43px] text-white cursor-pointer border-white border-[1px] hover:bg-white hover:text-black hover:border-black">
             <a
               title="Whatsapp"
               target="_blank"
@@ -100,12 +101,11 @@
     </main>
 
     <footer id="contatti" class="">
-      <div class="bg-blackFooter flex flex-col items-center">
-        <h2
-          class="playfair-display-sc-bold text-white my-5 md:my-10 text-2xl dark:text-gray-300">
+      <div class="flex flex-col items-center bg-blackFooter">
+        <h2 class="my-5 text-2xl text-white playfair-display-sc-bold md:my-10">
           Contatti
         </h2>
-        <hr class="h-px bg-gray-200 border-0 dark:bg-gray-500 w-[90%]" />
+        <hr class="h-px bg-gray-500 border-0 w-[80%]" />
         <div
           class="flex flex-col md:flex-row my-5 md:my-10 md:mr-[20px] justify-center items-center gap-6 md:gap-12 text-sm">
           <a href="mailto:info@abwinetrader.com" class="text-white"
@@ -114,18 +114,27 @@
 
           <div class="flex gap-4">
             <!-- Instagram Icon -->
-            <a href="#" class="text-white">
-              <i class="fa-brands fa-instagram text-2xl"></i>
+            <a
+              href="https://www.instagram.com/ab_luxury_wine/"
+              target="_blank"
+              class="text-white">
+              <i class="text-2xl fa-brands fa-instagram"></i>
             </a>
 
             <!-- TikTok Icon -->
-            <a href="#" class="text-white">
-              <i class="fa-brands fa-tiktok text-2xl"></i>
+            <a
+              href="https://www.tiktok.com/@ab_luxury_wine?_t=ZN-8uNMCOOkPAs&_r=1"
+              target="_blank"
+              class="text-white">
+              <i class="text-2xl fa-brands fa-tiktok"></i>
             </a>
 
             <!-- Threads Icon -->
-            <a href="#" class="text-white">
-              <i class="fa-brands fa-threads text-2xl"></i>
+            <a
+              href="https://www.threads.net/@ab_luxury_wine?igshid=NTc4MTIwNjQ2YQ=="
+              target="_blank"
+              class="text-white">
+              <i class="text-2xl fa-brands fa-threads"></i>
             </a>
           </div>
 
@@ -133,8 +142,8 @@
         </div>
       </div>
 
-      <div class="p-2 bg-black text-center">
-        <small class="text-white">
+      <div class="p-2 text-center bg-blackFooter">
+        <small class="text-xs text-white">
           © <span id="year"></span> AB Winetrader - Tutti i diritti riservati.
         </small>
       </div>
@@ -147,49 +156,14 @@
       const currentYear = new Date().getFullYear();
       document.querySelector("#year").textContent = currentYear;
 
-      const toggleDark = () => {
+      const toggleLang = () => {
         checkbox.checked
-          ? html.classList.add("dark")
-          : html.classList.remove("dark");
-      };
-      const autoTheme = () => {
-        if (hour >= 23 || hour <= 7) {
-          checkbox.checked = true;
-          html.classList.add("dark");
-        } else {
-          checkbox.checked = false;
-          html.classList.remove("dark");
-        }
+          ? html.classList.add("it")
+          : html.classList.remove("en");
       };
 
-      const observer1 = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("animate__fadeInLeft");
-          }
-        });
-      });
-      observer1.observe(document.querySelector(".destra"));
-
-      const observer2 = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("animate__fadeInRight");
-          }
-        });
-      });
-
-      observer2.observe(document.querySelector(".sinistra"));
-
-      const observer3 = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("animate__pulse");
-          }
-        });
-      });
       autoTheme();
-      checkbox.addEventListener("click", toggleDark);
+      checkbox.addEventListener("click", toggleLang);
     </script>
   </body>
 </html>
