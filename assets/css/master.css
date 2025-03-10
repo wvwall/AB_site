@@ -421,6 +421,12 @@ Ensure the default browser behavior of the `hidden` attribute.
 .top-\[40px\] {
   top: 40px;
 }
+.top-\[60px\] {
+  top: 60px;
+}
+.top-\[50px\] {
+  top: 50px;
+}
 .my-5 {
   margin-top: 1.25rem;
   margin-bottom: 1.25rem;
@@ -436,6 +442,12 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .mt-8 {
   margin-top: 2rem;
+}
+.mt-\[120px\] {
+  margin-top: 120px;
+}
+.mt-\[115px\] {
+  margin-top: 115px;
 }
 .flex {
   display: flex;
