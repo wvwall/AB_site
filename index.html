@@ -50,15 +50,29 @@
             >AB winetrader</span
           >
         </div>
-        <a
-          href="https://g.co/kgs/V7LW5z2"
-          target="_blank"
-          class="flex items-center gap-2 text-xs text-white">
-          <i class="text-lg fa-solid fa-up-right-from-square"></i>
-          <span class="hidden underline underline-offset-4 md:block"
-            >AB Wine House</span
-          >
-        </a>
+        <div class="flex items-center gap-4">
+          <a
+            href="https://g.co/kgs/V7LW5z2"
+            target="_blank"
+            class="flex items-center gap-2 text-xs text-white">
+            <i class="text-lg fa-solid fa-up-right-from-square"></i>
+            <span class="hidden underline underline-offset-4 md:block"
+              >AB Wine House</span
+            >
+          </a>
+          <div class="flex items-center justify-end ml-2 space-x-2">
+            <div>
+              <input type="checkbox" name="toggle" id="toggle" class="hidden" />
+              <label for="toggle">
+                <div
+                  class="flex items-center w-10 h-6 p-1 bg-gray-700 rounded-full cursor-pointer">
+                  <div
+                    class="w-5 h-5 duration-300 ease-in-out transform bg-white rounded-full shadow-xl toggle-dot"></div>
+                </div>
+              </label>
+            </div>
+          </div>
+        </div>
       </nav>
     </header>
 
@@ -75,16 +89,26 @@
           winetrader
         </h1>
         <p
-          class="animate__animated animate__pulse md:w-[600px] text-white text-center text-sm sm:text-lg mt-4 text-pretty">
+          class="it-text animate__animated animate__pulse md:w-[600px] text-white text-center text-sm sm:text-lg mt-4 text-pretty">
           Commercializziamo bottiglie di pregio ed etichette ricercate. Mettiamo
           a disposizione del cliente grande esperienza nel settore unita alla
           forte passione nel mondo del vino.
         </p>
+        <p
+          class="en-text hidden md:w-[600px] text-white text-center text-sm sm:text-lg mt-4 text-pretty">
+          We market fine bottles and sophisticated labels. We provide to the
+          customer great experience in the sector combined with a strong passion
+          in the world of wine.
+        </p>
         <div
           class="flex flex-col items-center justify-center gap-6 mt-8 md:flex-row">
           <button
-            class="animate__animated animate__fadeInLeft shadow-4xl w-[200px] bg-[#570E27] h-[43px] text-white cursor-pointer border-white border-[1px] hover:bg-white hover:text-[#570E27] hover:border-[#570E27]">
+            class="it-text animate__animated animate__fadeInLeft shadow-4xl w-[200px] bg-[#570E27] h-[43px] text-white cursor-pointer border-white border-[1px] hover:bg-white hover:text-[#570E27] hover:border-[#570E27]">
             Listino prezzi
+          </button>
+          <button
+            class="en-text hidden shadow-4xl w-[200px] bg-[#570E27] h-[43px] text-white cursor-pointer border-white border-[1px] hover:bg-white hover:text-[#570E27] hover:border-[#570E27]">
+            Price List
           </button>
           <button
             class="animate__animated animate__fadeInRight shadow-4xl w-[200px] bg-black h-[43px] text-white cursor-pointer border-white border-[1px] hover:bg-white hover:text-black hover:border-black">
@@ -102,8 +126,13 @@
 
     <footer id="contatti">
       <div class="flex flex-col items-center bg-blackFooter">
-        <h2 class="my-5 text-xl text-white playfair-display-sc-bold md:my-8">
+        <h2
+          class="my-5 text-xl text-white it-text playfair-display-sc-bold md:my-8">
           Contatti
+        </h2>
+        <h2
+          class="hidden my-5 text-xl text-white en-text playfair-display-sc-bold md:my-8">
+          Contacts
         </h2>
         <hr class="h-px bg-zinc-700 border-0 w-[80%]" />
         <div
@@ -143,8 +172,11 @@
       </div>
 
       <div class="p-2 text-center bg-blackFooter">
-        <small class="text-xs text-white">
+        <small class="text-xs text-white it-text">
           © <span id="year"></span> AB Winetrader - Tutti i diritti riservati.
+        </small>
+        <small class="text-xs text-white en-text">
+          © <span id="year"></span> AB Winetrader - All rights reserved.
         </small>
       </div>
     </footer>
@@ -157,12 +189,21 @@
       document.querySelector("#year").textContent = currentYear;
 
       const toggleLang = () => {
-        checkbox.checked
-          ? html.classList.add("it")
-          : html.classList.remove("en");
+        const itText = document.querySelectorAll(".it-text");
+        const enText = document.querySelectorAll(".en-text");
+
+        if (checkbox.checked) {
+          html.classList.add("en");
+          enText.forEach((el) => el.classList.remove("hidden"));
+          itText.forEach((el) => el.classList.add("hidden"));
+          itText.forEach((el) => el.classList.remove("animate__animated"));
+        } else {
+          html.classList.remove("en");
+          enText.forEach((el) => el.classList.add("hidden"));
+          itText.forEach((el) => el.classList.remove("hidden"));
+        }
       };
 
-      autoTheme();
       checkbox.addEventListener("click", toggleLang);
     </script>
   </body>
