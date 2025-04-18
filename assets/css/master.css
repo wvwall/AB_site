@@ -401,10 +401,6 @@ Ensure the default browser behavior of the `hidden` attribute.
     font-weight: 700;
     font-style: normal;
   }
-
-  body {
-    cursor: url("../img/it.png"), auto !important;
-  }
 *, ::before, ::after {
   --tw-translate-x: 0;
   --tw-translate-y: 0;
