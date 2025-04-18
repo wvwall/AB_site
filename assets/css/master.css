@@ -653,14 +653,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 #toggle ~ label span.toggle-dot {
-  background-image: url("../img/it.png");
+  background-image: url("../img/it.webp");
   background-size: contain;
 }
 
 #toggle:checked ~ label span.toggle-dot {
   --tw-translate-x: 0.75rem;
   transform: var(--tw-transform);
-  background-image: url("../img/en.png");
+  background-image: url("../img/en.webp");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
