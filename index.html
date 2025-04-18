@@ -183,38 +183,14 @@
 
       <div class="p-4 text-center bg-blackFooter">
         <small class="text-[10px] text-white it-text">
-          © <span id="year"></span> AB Winetrader - Tutti i diritti riservati.
+          © <span id="yearIT"></span> AB Winetrader - Tutti i diritti riservati.
         </small>
         <small class="hidden text-[10px] text-white en-text">
-          © <span id="year"></span> AB Winetrader - All rights reserved.
+          © <span id="yearEN"></span> AB Winetrader - All rights reserved.
         </small>
       </div>
     </footer>
 
-    <script>
-      const checkbox = document.querySelector("#toggle");
-      const html = document.querySelector("html");
-      const hour = new Date().getHours();
-      const currentYear = new Date().getFullYear();
-      document.querySelector("#year").textContent = currentYear;
-
-      const toggleLang = () => {
-        const itText = document.querySelectorAll(".it-text");
-        const enText = document.querySelectorAll(".en-text");
-
-        if (checkbox.checked) {
-          html.classList.add("en");
-          enText.forEach((el) => el.classList.remove("hidden"));
-          itText.forEach((el) => el.classList.add("hidden"));
-          itText.forEach((el) => el.classList.remove("animate__animated"));
-        } else {
-          html.classList.remove("en");
-          enText.forEach((el) => el.classList.add("hidden"));
-          itText.forEach((el) => el.classList.remove("hidden"));
-        }
-      };
-
-      checkbox.addEventListener("click", toggleLang);
-    </script>
+    <script src="/assets/js/language-toggle.js"></script>
   </body>
 </html>
