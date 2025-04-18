@@ -6,16 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="keywords"
-      content="Adriano, Astorino, Stefano, Borello, Wine, Piemonte, Collegno, Torino, Vino, Champagne, Francia, Borgogna, AB Winetrader, AB, Winetrader, Bottiglie, Pregio, Etichette, Ricercate, Bottiglie di Pregio, Etichette Ricercate, Vino Pregiato, Vino Pregiato Piemonte, Vino Pregiato Torino, Vino Pregiato Collegno, Vino Pregiato Francia, Vino Pregiato Borgogna, Champagne Pregiato, Champagne Pregiato Piemonte, Champagne Pregiato Torino, Champagne Pregiato Collegno, Champagne Pregiato Francia, Champagne Pregiato, AB WineHouse"
-      , />
+      content="Adriano, Astorino, Stefano, Borello, Wine, Piemonte, Collegno, Torino, Vino, Champagne, Francia, Borgogna, AB Winetrader, AB, Winetrader, Bottiglie, Pregio, Etichette, Ricercate, Bottiglie di Pregio, Etichette Ricercate, Vino Pregiato, Vino Pregiato Piemonte, Vino Pregiato Torino, Vino Pregiato Collegno, Vino Pregiato Francia, Vino Pregiato Borgogna, Champagne Pregiato, Champagne Pregiato Piemonte, Champagne Pregiato Torino, Champagne Pregiato Collegno, Champagne Pregiato Francia, Champagne Pregiato, AB WineHouse" />
     <meta
       name="description"
       content="Commercializziamo bottiglie di pregio ed etichette ricercate." />
-    <meta name="title" property="og:title" content="Sito AB Winetrader" />
+    <meta property="og:title" content="Sito AB Winetrader" />
     <meta
-      name="image"
       property="og:image"
-      content="https://wvwall.github.io/AB_site/assets/img/anteprima.webp" />
+      content="https://www.abwinetrader.com/assets/img/anteprima.webp" />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:description"
+      content="Commercializziamo bottiglie di pregio ed etichette ricercate." />
+    <meta property="og:url" content="https://www.abwinetrader.com" />
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -26,14 +29,12 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="stylesheet" href="./assets/css/build.css" />
-
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
       integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
       crossorigin="anonymous"
       referrerpolicy="no-referrer" />
-
     <title>AB Winetrader | Wine Merchant</title>
   </head>
 
@@ -43,7 +44,7 @@
       <nav class="flex items-center justify-between px-4 py-4 md:px-12">
         <div class="flex items-center">
           <img
-            src="./assets/img/logo.jpg"
+            src="./assets/img/logo.webp"
             alt="logo aziendale"
             class="h-[30px] mr-2" />
           <span class="text-lg text-white playfair-display-sc-bold"
@@ -61,16 +62,14 @@
             >
           </a>
           <div class="flex items-center justify-end ml-2 space-x-2">
-            <div>
-              <input type="checkbox" name="toggle" id="toggle" class="hidden" />
-              <label for="toggle">
-                <div
-                  class="flex items-center w-12 h-8 p-1 bg-gray-800 rounded-full cursor-pointer">
-                  <div
-                    class="w-6 h-6 duration-300 ease-in-out transform bg-white rounded-full shadow-xl toggle-dot"></div>
-                </div>
-              </label>
-            </div>
+            <input type="checkbox" name="toggle" id="toggle" class="hidden" />
+            <label for="toggle">
+              <span
+                class="flex items-center w-12 h-8 p-1 bg-gray-800 rounded-full cursor-pointer">
+                <span
+                  class="w-6 h-6 duration-300 ease-in-out transform bg-white rounded-full shadow-xl toggle-dot"></span>
+              </span>
+            </label>
           </div>
         </div>
       </nav>
@@ -101,6 +100,8 @@
           in the world of wine.
         </p>
         <div
+          itemscope
+          itemtype="https://schema.org/LocalBusiness"
           class="flex flex-col items-center justify-center gap-6 mt-8 md:flex-row">
           <a
             class="it-text animate__animated animate__fadeInLeft"
@@ -108,7 +109,7 @@
             download="WineList.pdf">
             <span
               class="leading-[50px] inline-block text-center shadow-4xl w-[240px] bg-[#570E27] h-[50px] text-white cursor-pointer border-white border-[1px] hover:bg-white hover:text-[#570E27] hover:border-[#570E27]">
-              Listino prezzi
+              Lista dei Vini
             </span>
           </a>
           <a
@@ -117,7 +118,7 @@
             class="hidden en-text">
             <span
               class="text-center leading-[50px] inline-block shadow-4xl w-[240px] bg-[#570E27] h-[50px] text-white cursor-pointer border-white border-[1px] hover:bg-white hover:text-[#570E27] hover:border-[#570E27]">
-              Price List
+              Wine List
             </span>
           </a>
           <a
@@ -154,6 +155,7 @@
           <div class="flex gap-4">
             <!-- Instagram Icon -->
             <a
+              name="Instagram"
               href="https://www.instagram.com/ab_luxury_wine/"
               target="_blank"
               class="text-white">
@@ -162,6 +164,7 @@
 
             <!-- TikTok Icon -->
             <a
+              name="TikTok"
               href="https://www.tiktok.com/@ab_luxury_wine?_t=ZN-8uNMCOOkPAs&_r=1"
               target="_blank"
               class="text-white">
@@ -170,6 +173,7 @@
 
             <!-- Threads Icon -->
             <a
+              name="Threads"
               href="https://www.threads.net/@ab_luxury_wine?igshid=NTc4MTIwNjQ2YQ=="
               target="_blank"
               class="text-white">
