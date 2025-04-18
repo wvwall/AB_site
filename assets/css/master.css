@@ -401,6 +401,10 @@ Ensure the default browser behavior of the `hidden` attribute.
     font-weight: 700;
     font-style: normal;
   }
+
+  body {
+    cursor: url("../img/it.png"), auto !important;
+  }
 *, ::before, ::after {
   --tw-translate-x: 0;
   --tw-translate-y: 0;
@@ -652,12 +656,12 @@ Ensure the default browser behavior of the `hidden` attribute.
 .ease-in-out {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
-#toggle ~ label div.toggle-dot {
+#toggle ~ label span.toggle-dot {
   background-image: url("../img/it.png");
   background-size: contain;
 }
 
-#toggle:checked ~ label div.toggle-dot {
+#toggle:checked ~ label span.toggle-dot {
   --tw-translate-x: 0.75rem;
   transform: var(--tw-transform);
   background-image: url("../img/en.png");
