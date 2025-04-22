@@ -429,6 +429,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .top-\[65px\] {
   top: 65px;
 }
+.top-\[60px\] {
+  top: 60px;
+}
 .my-5 {
   margin-top: 1.25rem;
   margin-bottom: 1.25rem;
@@ -522,6 +525,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .gap-4 {
   gap: 1rem;
+}
+.gap-1 {
+  gap: 0.25rem;
 }
 .space-x-2 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-x-reverse: 0;
