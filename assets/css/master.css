@@ -496,6 +496,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .w-\[90\%\] {
   width: 90%;
 }
+.w-11 {
+  width: 2.75rem;
+}
 .transform {
   transform: var(--tw-transform);
 }
@@ -607,6 +610,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .p-4 {
   padding: 1rem;
+}
+.p-2 {
+  padding: 0.5rem;
 }
 .px-4 {
   padding-left: 1rem;
