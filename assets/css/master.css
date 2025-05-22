@@ -461,8 +461,8 @@ Ensure the default browser behavior of the `hidden` attribute.
 .hidden {
   display: none;
 }
-.h-\[40px\] {
-  height: 40px;
+.h-\[50px\] {
+  height: 50px;
 }
 .h-8 {
   height: 2rem;
@@ -476,11 +476,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 .h-\[500px\] {
   height: 500px;
 }
-.h-\[50px\] {
-  height: 50px;
-}
 .h-px {
   height: 1px;
+}
+.h-\[48px\] {
+  height: 48px;
 }
 .w-11 {
   width: 2.75rem;
@@ -532,11 +532,29 @@ Ensure the default browser behavior of the `hidden` attribute.
 .rounded-full {
   border-radius: 9999px;
 }
+.rounded-sm {
+  border-radius: 0.125rem;
+}
+.rounded-md {
+  border-radius: 0.375rem;
+}
 .border-\[1px\] {
   border-width: 1px;
 }
 .border-0 {
   border-width: 0px;
+}
+.border-2 {
+  border-width: 2px;
+}
+.border-\[0\.5px\] {
+  border-width: 0.5px;
+}
+.border-\[1pxpx\] {
+  border-width: 1pxpx;
+}
+.border-\[2px\] {
+  border-width: 2px;
 }
 .border-b-\[1px\] {
   border-bottom-width: 1px;
@@ -594,9 +612,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   font-size: 1.25rem;
   line-height: 1.75rem;
 }
-.text-\[20px\] {
-  font-size: 20px;
-}
 .text-\[45px\] {
   font-size: 45px;
 }
@@ -611,11 +626,20 @@ Ensure the default browser behavior of the `hidden` attribute.
 .text-\[10px\] {
   font-size: 10px;
 }
+.text-\[20px\] {
+  font-size: 20px;
+}
+.uppercase {
+  text-transform: uppercase;
+}
 .leading-\[0\.8\] {
   line-height: 0.8;
 }
 .leading-\[50px\] {
   line-height: 50px;
+}
+.leading-\[48px\] {
+  line-height: 48px;
 }
 .text-white {
   --tw-text-opacity: 1;
@@ -697,10 +721,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 @media (min-width: 320px) {
 
-  .xs\:text-\[24px\] {
-    font-size: 24px;
-  }
-
   .xs\:text-\[20px\] {
     font-size: 20px;
   }
@@ -770,10 +790,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 
 @media (min-width: 976px) {
-
-  .lg\:text-\[100px\] {
-    font-size: 100px;
-  }
 
   .lg\:text-\[90px\] {
     font-size: 90px;
