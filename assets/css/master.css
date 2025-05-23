@@ -695,6 +695,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   color: rgb(0 0 0 / var(--tw-text-opacity));
 }
 
+.hover\:text-\[\#009E91\]:hover {
+  --tw-text-opacity: 1;
+  color: rgb(0 158 145 / var(--tw-text-opacity));
+}
+
 @media (min-width: 480px) {
 
   .sm\:gap-2 {
