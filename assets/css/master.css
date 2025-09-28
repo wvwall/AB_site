@@ -401,6 +401,12 @@ Ensure the default browser behavior of the `hidden` attribute.
     font-weight: 700;
     font-style: normal;
   }
+
+  .playfair-display-sc-regular {
+    font-family: "Playfair Display SC", serif;
+    font-weight: 400;
+    font-style: normal;
+  }
 *, ::before, ::after {
   --tw-translate-x: 0;
   --tw-translate-y: 0;
@@ -452,6 +458,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .mt-8 {
   margin-top: 2rem;
 }
+.mt-\[140px\] {
+  margin-top: 140px;
+}
 .inline-block {
   display: inline-block;
 }
@@ -481,6 +490,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .h-px {
   height: 1px;
+}
+.h-\[30px\] {
+  height: 30px;
 }
 .w-11 {
   width: 2.75rem;
@@ -524,6 +536,12 @@ Ensure the default browser behavior of the `hidden` attribute.
 .gap-4 {
   gap: 1rem;
 }
+.gap-5 {
+  gap: 1.25rem;
+}
+.gap-10 {
+  gap: 2.5rem;
+}
 .space-x-2 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-x-reverse: 0;
   margin-right: calc(0.5rem * var(--tw-space-x-reverse));
@@ -532,8 +550,34 @@ Ensure the default browser behavior of the `hidden` attribute.
 .rounded-full {
   border-radius: 9999px;
 }
-.rounded-sm {
-  border-radius: 0.125rem;
+.rounded-md {
+  border-radius: 0.375rem;
+}
+.rounded-\[10px\] {
+  border-radius: 10px;
+}
+.rounded-\[12px\] {
+  border-radius: 12px;
+}
+.rounded-t-md {
+  border-top-left-radius: 0.375rem;
+  border-top-right-radius: 0.375rem;
+}
+.rounded-t-\[10px\] {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+.rounded-b-\[10px\] {
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+.rounded-b-\[12px\] {
+  border-bottom-right-radius: 12px;
+  border-bottom-left-radius: 12px;
+}
+.rounded-t-\[12px\] {
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
 }
 .border-\[2px\] {
   border-width: 2px;
@@ -544,13 +588,22 @@ Ensure the default browser behavior of the `hidden` attribute.
 .border-b-\[1px\] {
   border-bottom-width: 1px;
 }
-.border-zinc-800 {
-  --tw-border-opacity: 1;
-  border-color: rgb(39 39 42 / var(--tw-border-opacity));
+.border-b-\[2px\] {
+  border-bottom-width: 2px;
+}
+.border-b-\[20px\] {
+  border-bottom-width: 20px;
+}
+.border-t-\[2px\] {
+  border-top-width: 2px;
 }
 .border-zinc-900 {
   --tw-border-opacity: 1;
   border-color: rgb(24 24 27 / var(--tw-border-opacity));
+}
+.border-zinc-800 {
+  --tw-border-opacity: 1;
+  border-color: rgb(39 39 42 / var(--tw-border-opacity));
 }
 .bg-black {
   --tw-bg-opacity: 1;
@@ -610,8 +663,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .text-\[10px\] {
   font-size: 10px;
 }
-.text-\[20px\] {
-  font-size: 20px;
+.text-lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
 }
 .uppercase {
   text-transform: uppercase;
@@ -637,6 +691,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .underline-offset-4 {
   text-underline-offset: 4px;
 }
+.underline-offset-2 {
+  text-underline-offset: 2px;
+}
 .opacity-60 {
   opacity: 0.6;
 }
@@ -658,6 +715,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 .ease-in-out {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
+body {
+  background-color: black;
+}
+
 #toggle ~ label span.toggle-dot {
   background-image: url("../img/it.webp");
   background-size: contain;
@@ -757,11 +818,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   .md\:px-8 {
     padding-left: 2rem;
     padding-right: 2rem;
-  }
-
-  .md\:text-xl {
-    font-size: 1.25rem;
-    line-height: 1.75rem;
   }
 }
 
