@@ -27,43 +27,6 @@ This project serves as the online presence for AB Winetrader, an enoteca special
 - [Laravel Mix](https://laravel-mix.com/)
 - [SASS](https://sass-lang.com/)
 
-## Getting Started
-
-To get a local copy up and running follow these simple steps.
-
-### Installation
-
-1. Clone the repo
-   ```bash
-   git clone https://github.com/wvwall/AB_site.git
-   ```
-2. Install NPM packages
-   ```bash
-   npm install
-   ```
-
-## Usage
-
-### Build CSS
-
-To compile the CSS using Tailwind CSS and Laravel Mix, run the following command:
-
-```bash
-npx tailwindcss -i assets/css/master.css -o assets/css/build.css --minify
-```
-
-Or, if you are using Laravel Mix for compilation, you can run:
-
-```bash
-npm run dev
-```
-
-Or for production with minification:
-
-```bash
-npm run prod
-```
-
 ### Language Toggle
 
 The website includes a language toggle feature to switch between Italian and English content.
