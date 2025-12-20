@@ -67,9 +67,3 @@ npm run prod
 ### Language Toggle
 
 The website includes a language toggle feature to switch between Italian and English content.
-
-## Contact
-
-Adriano Astorino - info@abwinetrader.com
-
-Project Link: [https://github.com/wvwall/AB_site](https://github.com/wvwall/AB_site)
