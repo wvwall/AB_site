@@ -94,6 +94,14 @@
             >
           </a>
           <div class="flex items-center justify-end space-x-2">
+            <!-- Theme Toggle -->
+            <input type="checkbox" name="themeToggle" id="themeToggle" class="hidden" />
+            <label for="themeToggle" class="cursor-pointer">
+              <div class="flex items-center gap-1">
+                <i class="fa-solid fa-sun text-[18px] text-gray-300 theme-icon"></i>
+              </div>
+            </label>
+            <!-- Language Toggle -->
             <input type="checkbox" name="toggle" id="toggle" class="hidden" />
             <label for="toggle">
               <span
@@ -232,5 +240,6 @@
     </footer>
 
     <script src="/assets/js/language-toggle.js"></script>
+    <script src="/assets/js/theme-toggle.js"></script>
   </body>
 </html>
