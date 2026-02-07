@@ -691,6 +691,90 @@ body {
   background-color: black;
 }
 
+/* ===== Modern Design Enhancements ===== */
+
+/* Glassmorphism header */
+header {
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  background-color: rgba(18, 18, 18, 0.75) !important;
+  border-color: rgba(255, 255, 255, 0.05) !important;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Refined heading typography */
+h1 {
+  letter-spacing: 0.03em;
+}
+
+/* Modern CTA buttons */
+.cta-btn {
+  display: inline-block;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+}
+
+.cta-btn:hover {
+  transform: translateY(-2px);
+}
+
+.cta-btn-wine:hover {
+  box-shadow: 0 14px 30px -8px rgba(87, 14, 39, 0.5);
+}
+
+.cta-btn-contact:hover {
+  box-shadow: 0 14px 30px -8px rgba(0, 158, 145, 0.35);
+}
+
+/* Modern social icon hover */
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.social-link:hover {
+  background-color: rgba(255, 255, 255, 0.07);
+  transform: translateY(-3px);
+}
+
+/* Location icon hover */
+.icon-location svg {
+  transition: transform 0.3s ease;
+}
+
+.icon-location:hover svg {
+  transform: scale(1.1);
+}
+
+/* Email link underline animation */
+.footer-email {
+  position: relative;
+}
+
+.footer-email::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: #fff;
+  transition: width 0.3s ease;
+}
+
+.footer-email:hover::after {
+  width: 100%;
+}
+
+/* Text wrap utility */
+.text-pretty {
+  text-wrap: pretty;
+}
+
 #toggle ~ label span.toggle-dot {
   background-image: url("../img/it.webp");
   background-size: contain;
