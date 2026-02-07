@@ -72,7 +72,7 @@
   <body>
     <!-- Header -->
     <header
-      class="bg-blackFooter border-[2px] border-zinc-900 rounded-[12px] m-4">
+      class="backdrop-blur-xl bg-[rgba(18,18,18,0.7)] border border-[rgba(255,255,255,0.08)] rounded-2xl m-4 shadow-[0_8px_32px_rgba(0,0,0,0.3)] transition-all duration-300">
       <nav class="flex items-center justify-between px-4 py-4 md:px-12">
         <div class="flex items-center">
           <img
@@ -87,8 +87,8 @@
           <a
             href="https://g.co/kgs/V7LW5z2"
             target="_blank"
-            class="icon-location flex items-center gap-2 text-gray-300 text-md hover:text-white">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
+            class="group flex items-center gap-2 text-gray-300 hover:text-white transition-colors duration-300">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-transform duration-300 group-hover:scale-110"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
             <span class="hidden mb-1 md:block playfair-display-sc-bold"
               >AB Winehouse</span
             >
@@ -97,7 +97,7 @@
             <input type="checkbox" name="toggle" id="toggle" class="hidden" />
             <label for="toggle">
               <span
-                class="flex items-center h-8 p-1 rounded-full cursor-pointer w-11 bg-zinc-800">
+                class="flex items-center h-8 p-1 rounded-full cursor-pointer w-11 bg-zinc-800 border border-[rgba(255,255,255,0.08)]">
                 <span
                   class="w-6 h-6 duration-300 ease-in-out transform bg-white rounded-full shadow-xl toggle-dot"></span>
               </span>
@@ -115,7 +115,7 @@
         class="opacity-60 absolute left-[5%] xxl:left-[17%] h-[500px] top-[65px] hidden xl:block animate__animated animate__pulse" />
       <div class="mt-[140px] px-4 md:px-8 flex flex-col items-center gap-5">
         <h1
-          class="animate__animated animate__fadeInDown playfair-display-sc-black text-white text-[45px] sm:text-[75px] lg:text-[95px] leading-[0.8] text-center">
+          class="animate__animated animate__fadeInDown playfair-display-sc-black text-white text-[45px] sm:text-[75px] lg:text-[95px] leading-[0.8] text-center tracking-[0.03em] drop-shadow-[0_4px_30px_rgba(87,14,39,0.25)]">
           <span class="text-white playfair-display-sc-black"> AB</span>
           <br />
           Winetrader
@@ -136,30 +136,30 @@
         <div
           class="flex flex-col items-center justify-center gap-6 md:flex-row">
           <a
-            class="cta-btn cta-btn-wine rounded-md it-text animate__animated animate__fadeInLeft"
+            class="it-text animate__animated animate__fadeInLeft transition-all duration-[400ms] hover:-translate-y-1 hover:shadow-[0_14px_30px_-8px_rgba(87,14,39,0.5)] hover:scale-[1.02]"
             href="https://drive.google.com/uc?export=download&id=1hZYQNzIxBpTzQoeFT6Vs8_JgjaG7_RFA"
             download="WineList.pdf">
             <span
-              class="transition duration-300 ease-in-out playfair-display-sc-bold rounded-md leading-[46px] inline-block text-center w-[240px] bg-[#570E27] h-[50px] text-gray-300 cursor-pointer uppercase border-zinc-800 border-[2px] hover:bg-white hover:text-[#570E27] hover:border-[#570E27]">
+              class="transition-all duration-300 ease-in-out playfair-display-sc-bold rounded-xl leading-[46px] inline-block text-center w-[240px] bg-[#570E27] h-[50px] text-gray-300 cursor-pointer uppercase border border-[rgba(255,255,255,0.1)] hover:bg-white hover:text-[#570E27] hover:border-[#570E27]">
               Lista dei Vini
             </span>
           </a>
           <a
             href="https://drive.google.com/uc?export=download&id=1hZYQNzIxBpTzQoeFT6Vs8_JgjaG7_RFA"
             download="WineList.pdf"
-            class="cta-btn cta-btn-wine hidden rounded-md en-text">
+            class="hidden en-text transition-all duration-[400ms] hover:-translate-y-1 hover:shadow-[0_14px_30px_-8px_rgba(87,14,39,0.5)] hover:scale-[1.02]">
             <span
-              class="transition duration-300 ease-in-out playfair-display-sc-bold uppercase rounded-md text-center leading-[46px] inline-block w-[240px] bg-[#570E27] h-[50px] text-gray-300 cursor-pointer border-zinc-800 border-[2px] hover:bg-white hover:text-[#570E27] hover:border-[#570E27]">
+              class="transition-all duration-300 ease-in-out playfair-display-sc-bold uppercase rounded-xl text-center leading-[46px] inline-block w-[240px] bg-[#570E27] h-[50px] text-gray-300 cursor-pointer border border-[rgba(255,255,255,0.1)] hover:bg-white hover:text-[#570E27] hover:border-[#570E27]">
               Wine List
             </span>
           </a>
           <a
-            class="cta-btn cta-btn-contact rounded-md animate__animated animate__fadeInRight"
+            class="animate__animated animate__fadeInRight transition-all duration-[400ms] hover:-translate-y-1 hover:shadow-[0_14px_30px_-8px_rgba(0,158,145,0.35)] hover:scale-[1.02]"
             title="Whatsapp"
             target="_blank"
             href="https://wa.me/393355343628">
             <span
-              class="transition duration-300 ease-in-out playfair-display-sc-bold uppercase rounded-md leading-[46px] inline-block text-center w-[240px] bg-blackFooter h-[50px] text-gray-300 cursor-pointer border-zinc-800 border-[2px] hover:bg-white hover:text-[#009E91] hover:border-[#009E91]">
+              class="transition-all duration-300 ease-in-out playfair-display-sc-bold uppercase rounded-xl leading-[46px] inline-block text-center w-[240px] bg-blackFooter h-[50px] text-gray-300 cursor-pointer border border-[rgba(255,255,255,0.1)] hover:bg-white hover:text-[#009E91] hover:border-[#009E91]">
               Whatsapp
             </span>
           </a>
@@ -169,32 +169,32 @@
 
     <footer
       id="contatti"
-      class="rounded-[12px] border-[2px] border-zinc-900 m-4">
-      <div class="flex flex-col items-center bg-blackFooter rounded-[12px]">
+      class="rounded-2xl border border-[rgba(255,255,255,0.08)] m-4 shadow-[0_8px_32px_rgba(0,0,0,0.3)] overflow-hidden">
+      <div class="flex flex-col items-center bg-blackFooter rounded-2xl">
         <h2
-          class="my-6 text-2xl text-gray-300 it-text playfair-display-sc-bold md:my-8">
+          class="my-6 text-2xl text-gray-300 it-text playfair-display-sc-bold md:my-8 tracking-wider">
           Contatti
         </h2>
         <h2
-          class="hidden my-6 text-2xl text-gray-300 en-text playfair-display-sc-bold md:my-8">
+          class="hidden my-6 text-2xl text-gray-300 en-text playfair-display-sc-bold md:my-8 tracking-wider">
           Contacts
         </h2>
-        <hr class="h-px bg-zinc-800 border-0 w-[90%]" />
+        <hr class="h-px border-0 w-[90%] bg-gradient-to-r from-transparent via-zinc-700 to-transparent" />
         <div
           class="flex flex-col md:flex-row my-5 md:my-8 md:mr-[25px] justify-center items-center gap-6 md:gap-12 text-sm">
           <a
             href="mailto:info@abwinetrader.com"
-            class="footer-email text-gray-300 hover:text-white"
+            class="relative text-gray-300 hover:text-white transition-colors duration-300 after:content-[''] after:absolute after:bottom-[-2px] after:left-0 after:w-0 after:h-px after:bg-white after:transition-[width] after:duration-300 hover:after:w-full"
             >info@abwinetrader.com</a
           >
 
-          <div class="flex gap-2">
+          <div class="flex gap-3">
             <!-- Instagram Icon -->
             <a
               aria-label="Instagram"
               href="https://www.instagram.com/ab_luxury_wine/"
               target="_blank"
-              class="social-link text-gray-300 hover:text-white">
+              class="inline-flex items-center justify-center w-[42px] h-[42px] rounded-full border border-[rgba(255,255,255,0.08)] text-gray-300 hover:text-white hover:bg-[rgba(255,255,255,0.07)] hover:-translate-y-[3px] hover:border-[rgba(255,255,255,0.2)] transition-all duration-300">
               <i class="text-2xl fa-brands fa-instagram"></i>
             </a>
 
@@ -203,7 +203,7 @@
               aria-label="TikTok"
               href="https://www.tiktok.com/@ab_luxury_wine?_t=ZN-8uNMCOOkPAs&_r=1"
               target="_blank"
-              class="social-link text-gray-300 hover:text-white">
+              class="inline-flex items-center justify-center w-[42px] h-[42px] rounded-full border border-[rgba(255,255,255,0.08)] text-gray-300 hover:text-white hover:bg-[rgba(255,255,255,0.07)] hover:-translate-y-[3px] hover:border-[rgba(255,255,255,0.2)] transition-all duration-300">
               <i class="text-2xl fa-brands fa-tiktok"></i>
             </a>
 
@@ -212,12 +212,12 @@
               aria-label="Threads"
               href="https://www.threads.net/@ab_luxury_wine?igshid=NTc4MTIwNjQ2YQ=="
               target="_blank"
-              class="social-link text-gray-300 hover:text-white">
+              class="inline-flex items-center justify-center w-[42px] h-[42px] rounded-full border border-[rgba(255,255,255,0.08)] text-gray-300 hover:text-white hover:bg-[rgba(255,255,255,0.07)] hover:-translate-y-[3px] hover:border-[rgba(255,255,255,0.2)] transition-all duration-300">
               <i class="text-2xl fa-brands fa-threads"></i>
             </a>
           </div>
 
-          <span class="text-gray-300 hover:text-white">+39 335 534 3628</span>
+          <span class="text-gray-300 hover:text-white transition-colors duration-300">+39 335 534 3628</span>
         </div>
       </div>
 
