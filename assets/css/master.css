@@ -696,6 +696,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .duration-300 {
   transition-duration: 300ms;
 }
+.duration-\[400ms\] {
+  transition-duration: 400ms;
+}
 .ease-in-out {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -797,6 +800,11 @@ body {
   content: var(--tw-content);
 }
 
+.hover\:-translate-y-1\.5:hover {
+  --tw-translate-y: -0.375rem;
+  transform: var(--tw-transform);
+}
+
 .hover\:-translate-y-1:hover {
   --tw-translate-y: -0.25rem;
   transform: var(--tw-transform);
@@ -807,15 +815,14 @@ body {
   transform: var(--tw-transform);
 }
 
-.hover\:scale-\[1\.02\]:hover {
-  --tw-scale-x: 1.02;
-  --tw-scale-y: 1.02;
+.hover\:scale-\[1\.03\]:hover {
+  --tw-scale-x: 1.03;
+  --tw-scale-y: 1.03;
   transform: var(--tw-transform);
 }
 
-.hover\:border-\[\#570E27\]:hover {
-  --tw-border-opacity: 1;
-  border-color: rgb(87 14 39 / var(--tw-border-opacity));
+.hover\:border-\[rgba\(255\2c 255\2c 255\2c 0\.2\)\]:hover {
+  border-color: rgba(255,255,255,0.2);
 }
 
 .hover\:border-\[\#009E91\]:hover {
@@ -823,13 +830,14 @@ body {
   border-color: rgb(0 158 145 / var(--tw-border-opacity));
 }
 
-.hover\:border-\[rgba\(255\2c 255\2c 255\2c 0\.2\)\]:hover {
-  border-color: rgba(255,255,255,0.2);
+.hover\:bg-\[\#7a1835\]:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(122 24 53 / var(--tw-bg-opacity));
 }
 
-.hover\:bg-white:hover {
+.hover\:bg-\[\#009E91\]:hover {
   --tw-bg-opacity: 1;
-  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+  background-color: rgb(0 158 145 / var(--tw-bg-opacity));
 }
 
 .hover\:bg-\[rgba\(255\2c 255\2c 255\2c 0\.07\)\]:hover {
@@ -839,16 +847,6 @@ body {
 .hover\:text-white:hover {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
-}
-
-.hover\:text-\[\#570E27\]:hover {
-  --tw-text-opacity: 1;
-  color: rgb(87 14 39 / var(--tw-text-opacity));
-}
-
-.hover\:text-\[\#009E91\]:hover {
-  --tw-text-opacity: 1;
-  color: rgb(0 158 145 / var(--tw-text-opacity));
 }
 
 .hover\:shadow-\[0_14px_30px_-8px_rgba\(87\2c 14\2c 39\2c 0\.4\)\]:hover {
