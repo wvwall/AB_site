@@ -71,13 +71,22 @@
 
   <body>
     <!-- Loading Screen -->
-    <div id="loading-screen">
-      <div class="loading-content">
+    <div
+      id="loading-screen"
+      class="fixed inset-0 bg-black flex items-center justify-center z-[9999] transition-opacity duration-[800ms] ease-in-out">
+      <div
+        class="flex flex-col items-center gap-4"
+        style="animation: loadingFadeIn 1.2s ease forwards">
         <img
           src="./assets/img/logo-no-testo.png"
           alt="AB Winetrader"
-          class="loading-logo" />
-        <span class="loading-name playfair-display-sc-bold">ab winetrader</span>
+          class="h-[80px] opacity-0"
+          style="animation: loadingFadeIn 1s ease 0.2s forwards" />
+        <span
+          class="text-2xl text-gray-300 tracking-wider opacity-0 playfair-display-sc-bold"
+          style="animation: loadingFadeIn 1s ease 0.6s forwards"
+          >ab winetrader</span
+        >
       </div>
     </div>
 
