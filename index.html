@@ -67,9 +67,33 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer" />
     <title>AB Winetrader | Wine Merchant</title>
+    <style>
+      #loading-screen.no-loading {
+        display: none;
+      }
+    </style>
+    <script>
+      if (sessionStorage.getItem('ab_visited')) {
+        document.addEventListener('DOMContentLoaded', function () {
+          var ls = document.getElementById('loading-screen');
+          if (ls) ls.classList.add('no-loading');
+        });
+      }
+    </script>
   </head>
 
   <body>
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+      <div class="loading-content">
+        <img
+          src="./assets/img/logo-no-testo.png"
+          alt="AB Winetrader"
+          class="loading-logo" />
+        <span class="loading-name playfair-display-sc-bold">ab winetrader</span>
+      </div>
+    </div>
+
     <!-- Header -->
     <header
       class="backdrop-blur-xl bg-[rgba(18,18,18,0.7)] border border-[rgba(255,255,255,0.08)] rounded-2xl m-4 shadow-[0_8px_32px_rgba(0,0,0,0.3)] transition-all duration-300">
@@ -250,5 +274,22 @@
     </footer>
 
     <script src="/assets/js/language-toggle.js"></script>
+    <script>
+      (function () {
+        var loadingScreen = document.getElementById('loading-screen');
+        if (!loadingScreen || sessionStorage.getItem('ab_visited')) return;
+
+        sessionStorage.setItem('ab_visited', '1');
+
+        window.addEventListener('load', function () {
+          setTimeout(function () {
+            loadingScreen.classList.add('fade-out');
+            loadingScreen.addEventListener('transitionend', function () {
+              loadingScreen.style.display = 'none';
+            });
+          }, 1800);
+        });
+      })();
+    </script>
   </body>
 </html>
