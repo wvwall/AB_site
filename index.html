@@ -67,19 +67,6 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer" />
     <title>AB Winetrader | Wine Merchant</title>
-    <style>
-      #loading-screen.no-loading {
-        display: none;
-      }
-    </style>
-    <script>
-      if (sessionStorage.getItem('ab_visited')) {
-        document.addEventListener('DOMContentLoaded', function () {
-          var ls = document.getElementById('loading-screen');
-          if (ls) ls.classList.add('no-loading');
-        });
-      }
-    </script>
   </head>
 
   <body>
@@ -277,9 +264,7 @@
     <script>
       (function () {
         var loadingScreen = document.getElementById('loading-screen');
-        if (!loadingScreen || sessionStorage.getItem('ab_visited')) return;
-
-        sessionStorage.setItem('ab_visited', '1');
+        if (!loadingScreen) return;
 
         window.addEventListener('load', function () {
           setTimeout(function () {
