@@ -73,18 +73,19 @@
     <!-- Loading Screen -->
     <div
       id="loading-screen"
-      class="fixed inset-0 bg-black flex items-center justify-center z-[9999] transition-opacity duration-[800ms] ease-in-out">
-      <div
-        class="flex flex-col items-center gap-4"
-        style="animation: loadingFadeIn 1.2s ease forwards">
+      class="fixed inset-0 bg-black flex items-center justify-center z-[9999] transition-opacity duration-1000 ease-in-out">
+      <div class="flex flex-col items-center">
         <img
           src="./assets/img/logo-no-testo.png"
           alt="AB Winetrader"
-          class="h-[80px] opacity-0"
-          style="animation: loadingFadeIn 1s ease 0.2s forwards" />
+          class="h-[90px] opacity-0"
+          style="animation: logoReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards" />
+        <div
+          class="w-[80px] h-px bg-[#570E27] my-5 opacity-0"
+          style="animation: lineExpand 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.9s forwards; transform-origin: center"></div>
         <span
-          class="text-2xl text-gray-300 tracking-wider opacity-0 playfair-display-sc-bold"
-          style="animation: loadingFadeIn 1s ease 0.6s forwards"
+          class="text-gray-300 opacity-0 playfair-display-sc-bold uppercase text-xs"
+          style="animation: textReveal 1s cubic-bezier(0.16, 1, 0.3, 1) 1.2s forwards"
           >ab winetrader</span
         >
       </div>
@@ -281,7 +282,7 @@
             loadingScreen.addEventListener('transitionend', function () {
               loadingScreen.style.display = 'none';
             });
-          }, 1800);
+          }, 2500);
         });
       })();
     </script>
