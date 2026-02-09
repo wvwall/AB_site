@@ -742,8 +742,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
 }
-.duration-1000 {
-  transition-duration: 1000ms;
+.duration-\[1800ms\] {
+  transition-duration: 1800ms;
 }
 .duration-300 {
   transition-duration: 300ms;
@@ -944,6 +944,11 @@ body {
 }
 @media (min-width: 768px) {
 
+  .md\:my-6 {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
   .md\:my-8 {
     margin-top: 2rem;
     margin-bottom: 2rem;
@@ -957,8 +962,16 @@ body {
     display: block;
   }
 
+  .md\:h-\[140px\] {
+    height: 140px;
+  }
+
   .md\:h-screen {
     height: 100vh;
+  }
+
+  .md\:w-\[120px\] {
+    width: 120px;
   }
 
   .md\:w-\[600px\] {
@@ -986,6 +999,11 @@ body {
   .md\:px-8 {
     padding-left: 2rem;
     padding-right: 2rem;
+  }
+
+  .md\:text-sm {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
   }
 }
 @media (min-width: 976px) {
