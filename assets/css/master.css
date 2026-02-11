@@ -536,6 +536,12 @@ Ensure the default browser behavior of the `hidden` attribute.
 .w-\[42px\] {
   width: 42px;
 }
+.w-\[12\] {
+  width: 12;
+}
+.w-\[12px\] {
+  width: 12px;
+}
 .max-w-2xl {
   max-width: 42rem;
 }
@@ -547,6 +553,12 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .max-w-5xl {
   max-width: 64rem;
+}
+.max-w-xl {
+  max-width: 36rem;
+}
+.max-w-lg {
+  max-width: 32rem;
 }
 .transform {
   transform: var(--tw-transform);
