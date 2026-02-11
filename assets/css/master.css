@@ -460,6 +460,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-top: 1.25rem;
   margin-bottom: 1.25rem;
 }
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
 .mr-2 {
   margin-right: 0.5rem;
 }
@@ -468,6 +472,18 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .mt-\[140px\] {
   margin-top: 140px;
+}
+.mb-3 {
+  margin-bottom: 0.75rem;
+}
+.mt-2 {
+  margin-top: 0.5rem;
+}
+.mt-6 {
+  margin-top: 1.5rem;
+}
+.mt-8 {
+  margin-top: 2rem;
 }
 .inline-block {
   display: inline-block;
@@ -520,6 +536,18 @@ Ensure the default browser behavior of the `hidden` attribute.
 .w-\[42px\] {
   width: 42px;
 }
+.max-w-2xl {
+  max-width: 42rem;
+}
+.max-w-3xl {
+  max-width: 48rem;
+}
+.max-w-4xl {
+  max-width: 56rem;
+}
+.max-w-5xl {
+  max-width: 64rem;
+}
 .transform {
   transform: var(--tw-transform);
 }
@@ -541,23 +569,17 @@ Ensure the default browser behavior of the `hidden` attribute.
 .justify-between {
   justify-content: space-between;
 }
-.gap-2 {
-  gap: 0.5rem;
+.gap-1 {
+  gap: 0.25rem;
 }
-.gap-5 {
-  gap: 1.25rem;
+.gap-8 {
+  gap: 2rem;
 }
 .gap-6 {
   gap: 1.5rem;
 }
 .gap-3 {
   gap: 0.75rem;
-}
-.gap-1 {
-  gap: 0.25rem;
-}
-.gap-8 {
-  gap: 2rem;
 }
 .space-x-2 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-x-reverse: 0;
@@ -570,11 +592,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 .rounded-2xl {
   border-radius: 1rem;
 }
-.rounded-full {
-  border-radius: 9999px;
-}
 .rounded-xl {
   border-radius: 0.75rem;
+}
+.rounded-full {
+  border-radius: 9999px;
 }
 .rounded-t-2xl {
   border-top-left-radius: 1rem;
@@ -634,12 +656,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .p-4 {
   padding: 1rem;
 }
-.p-2 {
-  padding: 0.5rem;
-}
-.p-3 {
-  padding: 0.75rem;
-}
 .px-4 {
   padding-left: 1rem;
   padding-right: 1rem;
@@ -648,14 +664,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-top: 1rem;
   padding-bottom: 1rem;
 }
-.px-2 {
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
-}
-.py-1 {
-  padding-top: 0.25rem;
-  padding-bottom: 0.25rem;
-}
 .px-3 {
   padding-left: 0.75rem;
   padding-right: 0.75rem;
@@ -663,6 +671,28 @@ Ensure the default browser behavior of the `hidden` attribute.
 .py-2 {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
+}
+.px-6 {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+.pt-4 {
+  padding-top: 1rem;
+}
+.pb-2 {
+  padding-bottom: 0.5rem;
+}
+.pt-2 {
+  padding-top: 0.5rem;
+}
+.pb-4 {
+  padding-bottom: 1rem;
+}
+.pt-6 {
+  padding-top: 1.5rem;
+}
+.pb-0 {
+  padding-bottom: 0px;
 }
 .text-center {
   text-align: center;
@@ -685,18 +715,8 @@ Ensure the default browser behavior of the `hidden` attribute.
 .text-\[10px\] {
   font-size: 10px;
 }
-.text-xs {
-  font-size: 0.75rem;
-  line-height: 1rem;
-}
 .font-semibold {
   font-weight: 600;
-}
-.font-bold {
-  font-weight: 700;
-}
-.font-black {
-  font-weight: 900;
 }
 .uppercase {
   text-transform: uppercase;
@@ -706,6 +726,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .leading-\[46px\] {
   line-height: 46px;
+}
+.leading-relaxed {
+  line-height: 1.625;
 }
 .tracking-\[0\.03em\] {
   letter-spacing: 0.03em;
@@ -720,6 +743,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+.text-gray-500 {
+  --tw-text-opacity: 1;
+  color: rgb(107 114 128 / var(--tw-text-opacity));
 }
 .opacity-60 {
   opacity: 0.6;
@@ -856,12 +883,6 @@ body {
   transform: var(--tw-transform);
 }
 
-.hover\:scale-\[1\.02\]:hover {
-  --tw-scale-x: 1.02;
-  --tw-scale-y: 1.02;
-  transform: var(--tw-transform);
-}
-
 .hover\:border-\[rgba\(255\2c 255\2c 255\2c 0\.2\)\]:hover {
   border-color: rgba(255,255,255,0.2);
 }
@@ -871,9 +892,8 @@ body {
   border-color: rgb(0 158 145 / var(--tw-border-opacity));
 }
 
-.hover\:border-\[\#570E27\]:hover {
-  --tw-border-opacity: 1;
-  border-color: rgb(87 14 39 / var(--tw-border-opacity));
+.hover\:bg-\[rgba\(255\2c 255\2c 255\2c 0\.07\)\]:hover {
+  background-color: rgba(255,255,255,0.07);
 }
 
 .hover\:bg-\[\#7a1835\]:hover {
@@ -886,38 +906,14 @@ body {
   background-color: rgb(0 158 145 / var(--tw-bg-opacity));
 }
 
-.hover\:bg-\[rgba\(255\2c 255\2c 255\2c 0\.07\)\]:hover {
-  background-color: rgba(255,255,255,0.07);
-}
-
-.hover\:bg-white:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
-}
-
-.hover\:bg-gray-500:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(107 114 128 / var(--tw-bg-opacity));
+.hover\:text-black:hover {
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity));
 }
 
 .hover\:text-white:hover {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
-}
-
-.hover\:text-\[\#570E27\]:hover {
-  --tw-text-opacity: 1;
-  color: rgb(87 14 39 / var(--tw-text-opacity));
-}
-
-.hover\:text-\[\#009E91\]:hover {
-  --tw-text-opacity: 1;
-  color: rgb(0 158 145 / var(--tw-text-opacity));
-}
-
-.hover\:text-black:hover {
-  --tw-text-opacity: 1;
-  color: rgb(0 0 0 / var(--tw-text-opacity));
 }
 
 .hover\:shadow-\[0_14px_30px_-8px_rgba\(87\2c 14\2c 39\2c 0\.4\)\]:hover {
@@ -932,27 +928,9 @@ body {
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
-.hover\:shadow-\[0_14px_30px_-8px_rgba\(87\2c 14\2c 39\2c 0\.5\)\]:hover {
-  --tw-shadow: 0 14px 30px -8px rgba(87,14,39,0.5);
-  --tw-shadow-colored: 0 14px 30px -8px var(--tw-shadow-color);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-}
-
-.hover\:shadow-\[0_14px_30px_-8px_rgba\(0\2c 158\2c 145\2c 0\.35\)\]:hover {
-  --tw-shadow: 0 14px 30px -8px rgba(0,158,145,0.35);
-  --tw-shadow-colored: 0 14px 30px -8px var(--tw-shadow-color);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-}
-
 .hover\:after\:w-full:hover::after {
   content: var(--tw-content);
   width: 100%;
-}
-
-.group:hover .group-hover\:scale-110 {
-  --tw-scale-x: 1.1;
-  --tw-scale-y: 1.1;
-  transform: var(--tw-transform);
 }
 
 @media (min-width: 480px) {
@@ -963,11 +941,6 @@ body {
 
   .sm\:text-\[75px\] {
     font-size: 75px;
-  }
-
-  .sm\:text-lg {
-    font-size: 1.125rem;
-    line-height: 1.75rem;
   }
 }
 
@@ -1007,19 +980,14 @@ body {
     padding-right: 3rem;
   }
 
-  .md\:px-8 {
-    padding-left: 2rem;
-    padding-right: 2rem;
-  }
-
-  .md\:px-3 {
-    padding-left: 0.75rem;
-    padding-right: 0.75rem;
-  }
-
   .md\:py-1 {
     padding-top: 0.25rem;
     padding-bottom: 0.25rem;
+  }
+
+  .md\:px-8 {
+    padding-left: 2rem;
+    padding-right: 2rem;
   }
 }
 
