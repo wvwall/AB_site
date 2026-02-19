@@ -1,0 +1,1497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AB Winetrader — Figma Design System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Playfair+Display+SC:wght@400;700;900&family=Poppins:wght@100;400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+  <style>
+    /* ─────────────────────────────────────────
+       DESIGN SYSTEM TOKENS
+    ───────────────────────────────────────── */
+    :root {
+      /* Colors */
+      --color-wine:        #570E27;
+      --color-wine-hover:  #7a1835;
+      --color-teal:        #009E91;
+      --color-black:       #000000;
+      --color-bg-footer:   #121212;
+      --color-zinc-800:    #282828;
+      --color-gray-300:    #d1d5db;
+      --color-gray-400:    #9ca3af;
+      --color-white:       #ffffff;
+      --color-border:      rgba(255,255,255,0.08);
+      --color-border-hover:rgba(255,255,255,0.2);
+
+      /* Typography */
+      --font-heading: 'Playfair Display SC', Georgia, serif;
+      --font-body:    'Lato', sans-serif;
+      --font-accent:  'Poppins', sans-serif;
+
+      /* Spacing */
+      --radius-card: 16px;
+      --radius-btn:  12px;
+      --radius-pill: 9999px;
+
+      /* Shadows */
+      --shadow-card: 0 8px 32px rgba(0,0,0,0.3);
+      --shadow-wine: 0 14px 30px -8px rgba(87,14,39,0.4);
+      --shadow-teal: 0 14px 30px -8px rgba(0,158,145,0.4);
+    }
+
+    /* ─────────────────────────────────────────
+       GLOBAL CANVAS STYLES
+    ───────────────────────────────────────── */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #1a1a1a;
+      font-family: var(--font-body);
+      color: #ccc;
+      padding: 40px 24px;
+      min-width: 360px;
+    }
+
+    /* ─────────────────────────────────────────
+       DESIGN SYSTEM LAYOUT HELPERS
+    ───────────────────────────────────────── */
+    .ds-canvas {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .ds-section {
+      margin-bottom: 64px;
+    }
+
+    .ds-section-title {
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--color-gray-400);
+      margin-bottom: 24px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .ds-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .ds-label {
+      font-size: 10px;
+      font-family: var(--font-body);
+      color: var(--color-gray-400);
+      margin-top: 8px;
+      text-align: center;
+      letter-spacing: 0.04em;
+    }
+
+    .ds-value {
+      font-size: 9px;
+      color: #666;
+      text-align: center;
+      font-family: monospace;
+    }
+
+    /* page title */
+    .page-title {
+      font-family: var(--font-heading);
+      font-size: 28px;
+      color: var(--color-white);
+      margin-bottom: 4px;
+    }
+    .page-subtitle {
+      font-size: 13px;
+      color: var(--color-gray-400);
+      margin-bottom: 56px;
+      letter-spacing: 0.04em;
+    }
+
+    /* divider */
+    .gradient-hr {
+      height: 1px;
+      border: none;
+      background: linear-gradient(to right, transparent, #3f3f46, transparent);
+      margin: 56px 0;
+    }
+
+    /* ─────────────────────────────────────────
+       COLOR SWATCHES
+    ───────────────────────────────────────── */
+    .swatch-wrap { text-align: center; }
+    .swatch {
+      width: 80px;
+      height: 80px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.08);
+      display: inline-block;
+    }
+    .swatch.wine       { background: var(--color-wine); }
+    .swatch.wine-hover { background: var(--color-wine-hover); }
+    .swatch.teal       { background: var(--color-teal); }
+    .swatch.black      { background: var(--color-black); border-color: rgba(255,255,255,0.18); }
+    .swatch.bg-footer  { background: var(--color-bg-footer); }
+    .swatch.zinc-800   { background: var(--color-zinc-800); }
+    .swatch.gray-300   { background: var(--color-gray-300); }
+    .swatch.gray-400   { background: var(--color-gray-400); }
+    .swatch.white      { background: var(--color-white); }
+
+    /* ─────────────────────────────────────────
+       TYPOGRAPHY SPECIMENS
+    ───────────────────────────────────────── */
+    .type-specimen {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px;
+      padding: 20px 24px;
+      flex: 1;
+      min-width: 240px;
+    }
+
+    .type-meta {
+      font-size: 10px;
+      color: #555;
+      font-family: monospace;
+      margin-bottom: 12px;
+    }
+
+    /* ─────────────────────────────────────────
+       COMPONENT CARD WRAPPER
+    ───────────────────────────────────────── */
+    .comp-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px;
+      padding: 32px;
+    }
+
+    .comp-card-label {
+      font-size: 10px;
+      color: #555;
+      font-family: monospace;
+      margin-bottom: 20px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    /* ─────────────────────────────────────────
+       ACTUAL COMPONENTS — HEADER
+    ───────────────────────────────────────── */
+    .ab-header {
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      background: rgba(18,18,18,0.7);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-card);
+      box-shadow: var(--shadow-card);
+      padding: 16px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .ab-header-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* wine-bottle shape icon (inline SVG stand-in) */
+    .ab-logo-icon {
+      width: 12px;
+      height: 35px;
+      background: linear-gradient(180deg, #e0e0e0 0%, #a0a0a0 100%);
+      border-radius: 3px 3px 8px 8px;
+    }
+
+    .ab-header-brand {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 18px;
+      color: var(--color-gray-300);
+      letter-spacing: 0.02em;
+    }
+
+    .ab-header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .ab-map-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 12px;
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+      color: var(--color-gray-300);
+      text-decoration: none;
+      font-family: var(--font-heading);
+      font-size: 13px;
+      transition: background 0.3s;
+      cursor: default;
+    }
+
+    /* language toggle */
+    .ab-lang-toggle {
+      width: 44px;
+      height: 32px;
+      background: var(--color-zinc-800);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-pill);
+      display: flex;
+      align-items: center;
+      padding: 4px;
+      cursor: default;
+    }
+
+    .ab-lang-dot {
+      width: 24px;
+      height: 24px;
+      background: var(--color-white);
+      border-radius: 50%;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    }
+
+    /* ─────────────────────────────────────────
+       ACTUAL COMPONENTS — BUTTONS
+    ───────────────────────────────────────── */
+    .ab-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 240px;
+      height: 50px;
+      border-radius: var(--radius-btn);
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 14px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border: 1px solid var(--color-border);
+      cursor: default;
+      transition: all 0.4s ease-in-out;
+      text-decoration: none;
+    }
+
+    .ab-btn-wine {
+      background: var(--color-wine);
+      color: var(--color-gray-300);
+    }
+
+    .ab-btn-wine-hover {
+      background: var(--color-wine-hover);
+      color: #000;
+      border-color: var(--color-border-hover);
+      box-shadow: var(--shadow-wine);
+    }
+
+    .ab-btn-whatsapp {
+      background: var(--color-bg-footer);
+      color: var(--color-gray-300);
+    }
+
+    .ab-btn-whatsapp-hover {
+      background: var(--color-teal);
+      color: #000;
+      border-color: var(--color-teal);
+      box-shadow: var(--shadow-teal);
+      transform: translateY(-6px) scale(1.03);
+    }
+
+    /* ─────────────────────────────────────────
+       ACTUAL COMPONENTS — HERO SECTION
+    ───────────────────────────────────────── */
+    .ab-hero {
+      background: var(--color-black);
+      border-radius: var(--radius-card);
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 520px;
+      padding: 64px 24px;
+      gap: 32px;
+    }
+
+    .ab-hero-bg-logo {
+      position: absolute;
+      left: 5%;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 60px;
+      height: 200px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.03) 100%);
+      border-radius: 8px 8px 24px 24px;
+      opacity: 0.4;
+    }
+
+    .ab-hero-heading {
+      font-family: var(--font-heading);
+      font-weight: 900;
+      font-size: 80px;
+      line-height: 0.85;
+      text-align: center;
+      color: var(--color-white);
+      letter-spacing: 0.03em;
+      filter: drop-shadow(0 4px 30px rgba(87,14,39,0.25));
+      z-index: 1;
+    }
+
+    .ab-hero-heading .hero-sm { font-size: 48px; }
+
+    .ab-hero-tagline {
+      font-family: var(--font-body);
+      font-size: 14px;
+      color: var(--color-gray-300);
+      text-align: center;
+      max-width: 540px;
+      line-height: 1.65;
+      z-index: 1;
+    }
+
+    .ab-hero-ctas {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      justify-content: center;
+      z-index: 1;
+    }
+
+    /* ─────────────────────────────────────────
+       ACTUAL COMPONENTS — FOOTER
+    ───────────────────────────────────────── */
+    .ab-footer {
+      background: var(--color-bg-footer);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-card);
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+    }
+
+    .ab-footer-top {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 32px 24px 20px;
+      gap: 20px;
+    }
+
+    .ab-footer-heading {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 22px;
+      color: var(--color-gray-300);
+      letter-spacing: 0.08em;
+    }
+
+    .ab-footer-divider {
+      height: 1px;
+      width: 90%;
+      background: linear-gradient(to right, transparent, #3f3f46, transparent);
+    }
+
+    .ab-footer-contacts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px 48px;
+      align-items: center;
+      justify-content: center;
+      padding: 0 24px 8px;
+    }
+
+    .ab-footer-email {
+      font-family: var(--font-body);
+      font-size: 13px;
+      color: var(--color-gray-300);
+      text-decoration: none;
+      position: relative;
+    }
+
+    .ab-footer-email::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: #fff;
+      transition: width 0.3s;
+    }
+
+    .ab-footer-email:hover::after { width: 100%; }
+
+    .ab-social-icons {
+      display: flex;
+      gap: 12px;
+    }
+
+    .ab-social-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 1px solid var(--color-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-gray-300);
+      font-size: 18px;
+      cursor: default;
+      transition: all 0.3s;
+    }
+
+    .ab-social-icon:hover {
+      background: rgba(255,255,255,0.07);
+      transform: translateY(-3px);
+      border-color: var(--color-border-hover);
+      color: #fff;
+    }
+
+    .ab-footer-phone {
+      font-family: var(--font-body);
+      font-size: 13px;
+      color: var(--color-gray-300);
+    }
+
+    .ab-footer-bottom {
+      padding: 12px 24px 16px;
+      text-align: center;
+      background: var(--color-bg-footer);
+    }
+
+    .ab-footer-copy {
+      font-size: 10px;
+      color: var(--color-gray-300);
+      display: block;
+    }
+
+    .ab-footer-cookie {
+      font-size: 10px;
+      color: var(--color-gray-400);
+      line-height: 1.7;
+      margin-top: 6px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ─────────────────────────────────────────
+       FULL MOCKUP SCREENS
+    ───────────────────────────────────────── */
+    .screen-wrap {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.06), var(--shadow-card);
+    }
+
+    .screen-label {
+      font-size: 10px;
+      font-family: monospace;
+      color: #555;
+      margin-bottom: 10px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    /* Desktop full page */
+    .mockup-desktop {
+      background: var(--color-black);
+      width: 100%;
+      max-width: 1024px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .mockup-desktop .ab-header { border-radius: 12px; margin-bottom: 0; }
+
+    .mockup-desktop .ab-hero {
+      border-radius: 0;
+      min-height: 460px;
+    }
+
+    .mockup-desktop .ab-hero-bg-logo {
+      width: 50px;
+      height: 180px;
+    }
+
+    .mockup-desktop .ab-hero-heading { font-size: 72px; }
+
+    .mockup-desktop .ab-footer { border-radius: 12px; margin-top: 0; }
+
+    /* Mobile full page */
+    .mockup-mobile-outer {
+      width: 375px;
+      background: #1c1c1e;
+      border-radius: 40px;
+      padding: 12px;
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.10), 0 24px 64px rgba(0,0,0,0.6);
+    }
+
+    .mockup-mobile-screen {
+      background: var(--color-black);
+      border-radius: 32px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .mockup-mobile-screen .ab-header {
+      padding: 12px 16px;
+      margin: 8px;
+      border-radius: 12px;
+    }
+
+    .mockup-mobile-screen .ab-header-brand { font-size: 14px; }
+
+    .mockup-mobile-screen .ab-map-btn span { display: none; }
+
+    .mockup-mobile-screen .ab-hero {
+      border-radius: 0;
+      min-height: 400px;
+      padding: 40px 16px;
+    }
+
+    .mockup-mobile-screen .ab-hero-heading { font-size: 48px; }
+
+    .mockup-mobile-screen .ab-hero-bg-logo { display: none; }
+
+    .mockup-mobile-screen .ab-hero-ctas { flex-direction: column; gap: 12px; }
+
+    .mockup-mobile-screen .ab-btn { width: 220px; height: 46px; font-size: 13px; }
+
+    .mockup-mobile-screen .ab-footer-contacts { flex-direction: column; gap: 16px; }
+
+    /* ─────────────────────────────────────────
+       INTERACTION STATES GRID
+    ───────────────────────────────────────── */
+    .state-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 16px;
+    }
+
+    .state-item {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px;
+      padding: 20px 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .state-tag {
+      font-size: 9px;
+      font-family: monospace;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 4px;
+      background: rgba(255,255,255,0.06);
+      color: #777;
+    }
+
+    /* social icon hover state */
+    .ab-social-icon.is-hover {
+      background: rgba(255,255,255,0.07);
+      transform: translateY(-3px);
+      border-color: var(--color-border-hover);
+      color: #fff;
+    }
+
+    /* ─────────────────────────────────────────
+       SPACING SCALE
+    ───────────────────────────────────────── */
+    .spacing-row {
+      display: flex;
+      align-items: flex-end;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .spacing-block-wrap { text-align: center; }
+    .spacing-block {
+      background: rgba(87,14,39,0.4);
+      border: 1px solid rgba(87,14,39,0.6);
+      border-radius: 4px;
+      display: inline-block;
+    }
+
+    /* ─────────────────────────────────────────
+       ICON SPECIMENS
+    ───────────────────────────────────────── */
+    .icon-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      padding: 16px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px;
+      width: 80px;
+    }
+
+    .icon-item i { font-size: 22px; color: var(--color-gray-300); }
+
+    /* ─────────────────────────────────────────
+       BREAKPOINT DIAGRAM
+    ───────────────────────────────────────── */
+    .bp-row {
+      display: flex;
+      gap: 8px;
+      align-items: flex-end;
+      flex-wrap: wrap;
+    }
+    .bp-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+    .bp-bar {
+      background: linear-gradient(180deg, rgba(87,14,39,0.7) 0%, rgba(87,14,39,0.3) 100%);
+      border: 1px solid rgba(87,14,39,0.5);
+      border-radius: 4px 4px 0 0;
+      width: 50px;
+    }
+    .bp-name {
+      font-size: 10px;
+      color: var(--color-gray-400);
+      font-family: monospace;
+    }
+    .bp-val {
+      font-size: 9px;
+      color: #555;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+  <div class="ds-canvas">
+
+    <!-- ── HEADER ─────────────────────────── -->
+    <h1 class="page-title">AB Winetrader</h1>
+    <p class="page-subtitle">Design System &amp; Screen Mockups — v1.0</p>
+
+
+    <!-- ════════════════════════════════════
+         1. COLORS
+    ════════════════════════════════════ -->
+    <div class="ds-section">
+      <p class="ds-section-title">01 — Color Palette</p>
+      <div class="ds-row">
+
+        <div class="swatch-wrap">
+          <div class="swatch wine"></div>
+          <p class="ds-label">Wine Red</p>
+          <p class="ds-value">#570E27</p>
+        </div>
+
+        <div class="swatch-wrap">
+          <div class="swatch wine-hover"></div>
+          <p class="ds-label">Wine Hover</p>
+          <p class="ds-value">#7a1835</p>
+        </div>
+
+        <div class="swatch-wrap">
+          <div class="swatch teal"></div>
+          <p class="ds-label">Teal / WA</p>
+          <p class="ds-value">#009E91</p>
+        </div>
+
+        <div class="swatch-wrap">
+          <div class="swatch black"></div>
+          <p class="ds-label">Background</p>
+          <p class="ds-value">#000000</p>
+        </div>
+
+        <div class="swatch-wrap">
+          <div class="swatch bg-footer"></div>
+          <p class="ds-label">Footer / Header</p>
+          <p class="ds-value">#121212</p>
+        </div>
+
+        <div class="swatch-wrap">
+          <div class="swatch zinc-800"></div>
+          <p class="ds-label">Zinc-800</p>
+          <p class="ds-value">#282828</p>
+        </div>
+
+        <div class="swatch-wrap">
+          <div class="swatch gray-300"></div>
+          <p class="ds-label">Gray-300</p>
+          <p class="ds-value">#d1d5db</p>
+        </div>
+
+        <div class="swatch-wrap">
+          <div class="swatch gray-400"></div>
+          <p class="ds-label">Gray-400</p>
+          <p class="ds-value">#9ca3af</p>
+        </div>
+
+        <div class="swatch-wrap">
+          <div class="swatch white"></div>
+          <p class="ds-label">White</p>
+          <p class="ds-value">#ffffff</p>
+        </div>
+
+      </div>
+    </div>
+
+    <hr class="gradient-hr" />
+
+
+    <!-- ════════════════════════════════════
+         2. TYPOGRAPHY
+    ════════════════════════════════════ -->
+    <div class="ds-section">
+      <p class="ds-section-title">02 — Typography</p>
+      <div class="ds-row">
+
+        <div class="type-specimen">
+          <p class="type-meta">Playfair Display SC · 900 · Headings / Brand</p>
+          <p style="font-family:'Playfair Display SC',serif; font-weight:900; font-size:48px; color:#fff; line-height:0.9;">AB<br>winetrader</p>
+          <p style="font-family:'Playfair Display SC',serif; font-weight:700; font-size:20px; color:#d1d5db; margin-top:12px;">ab winetrader</p>
+          <p style="font-family:'Playfair Display SC',serif; font-weight:700; font-size:16px; color:#d1d5db; margin-top:6px;">Contatti / Contacts</p>
+          <p style="font-family:'Playfair Display SC',serif; font-size:13px; color:#9ca3af; margin-top:6px;">ab winehouse</p>
+        </div>
+
+        <div class="type-specimen">
+          <p class="type-meta">Lato · 400 / 600 / 700 · Body / UI</p>
+          <p style="font-family:'Lato',sans-serif; font-weight:700; font-size:18px; color:#fff;">LISTA DEI VINI</p>
+          <p style="font-family:'Lato',sans-serif; font-weight:600; font-size:14px; color:#d1d5db; margin-top:8px; text-transform:uppercase;">WHATSAPP</p>
+          <p style="font-family:'Lato',sans-serif; font-size:14px; color:#d1d5db; margin-top:12px; line-height:1.65;">Commercializziamo bottiglie di pregio ed etichette ricercate. Mettiamo a disposizione del cliente grande esperienza nel settore.</p>
+          <p style="font-family:'Lato',sans-serif; font-size:10px; color:#9ca3af; margin-top:10px;">© 2025 AB Winetrader - Tutti i diritti riservati.</p>
+        </div>
+
+        <div class="type-specimen">
+          <p class="type-meta">Poppins · 100 · Accent</p>
+          <p style="font-family:'Poppins',sans-serif; font-weight:100; font-size:36px; color:#fff; letter-spacing:0.06em;">ab winetrader</p>
+          <p style="font-family:'Poppins',sans-serif; font-weight:100; font-size:14px; color:#9ca3af; margin-top:8px; letter-spacing:0.1em;">FINE WINES · CHAMPAGNE</p>
+        </div>
+
+      </div>
+
+      <!-- Type scale -->
+      <div style="margin-top: 24px;">
+        <p style="font-size:10px; color:#555; font-family:monospace; margin-bottom:12px; letter-spacing:0.06em; text-transform:uppercase;">TYPE SCALE — HERO HEADING (RESPONSIVE)</p>
+        <div class="ds-row" style="align-items: baseline; gap: 24px;">
+          <div>
+            <p style="font-family:'Playfair Display SC',serif; font-weight:900; font-size:45px; color:#fff; line-height:1;">AB<br/>winetrader</p>
+            <p class="ds-label">Mobile · 45px</p>
+          </div>
+          <div>
+            <p style="font-family:'Playfair Display SC',serif; font-weight:900; font-size:60px; color:#fff; line-height:1;">AB<br/>winetrader</p>
+            <p class="ds-label">Tablet · 75px</p>
+          </div>
+          <div>
+            <p style="font-family:'Playfair Display SC',serif; font-weight:900; font-size:80px; color:#fff; line-height:1;">AB<br/>winetrader</p>
+            <p class="ds-label">Desktop · 95px</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="gradient-hr" />
+
+
+    <!-- ════════════════════════════════════
+         3. ICONS
+    ════════════════════════════════════ -->
+    <div class="ds-section">
+      <p class="ds-section-title">03 — Iconography (Font Awesome 6)</p>
+      <div class="ds-row">
+        <div class="icon-item">
+          <i class="fa-brands fa-instagram"></i>
+          <p class="ds-label" style="font-size:9px;">instagram</p>
+        </div>
+        <div class="icon-item">
+          <i class="fa-brands fa-threads"></i>
+          <p class="ds-label" style="font-size:9px;">threads</p>
+        </div>
+        <div class="icon-item">
+          <i class="fa-brands fa-whatsapp"></i>
+          <p class="ds-label" style="font-size:9px;">whatsapp</p>
+        </div>
+        <div class="icon-item">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d1d5db" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/>
+            <circle cx="12" cy="10" r="1"/>
+          </svg>
+          <p class="ds-label" style="font-size:9px;">location pin</p>
+        </div>
+      </div>
+    </div>
+
+    <hr class="gradient-hr" />
+
+
+    <!-- ════════════════════════════════════
+         4. COMPONENTS
+    ════════════════════════════════════ -->
+    <div class="ds-section">
+      <p class="ds-section-title">04 — Components</p>
+
+      <!-- 4.1 Header -->
+      <div style="margin-bottom:32px;">
+        <p class="screen-label">4.1 — Header / Navigation Bar</p>
+        <div class="comp-card" style="background: var(--color-black); padding: 16px;">
+          <div class="ab-header">
+            <div class="ab-header-logo">
+              <div class="ab-logo-icon"></div>
+              <span class="ab-header-brand">ab winetrader</span>
+            </div>
+            <div class="ab-header-actions">
+              <a class="ab-map-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/>
+                  <circle cx="12" cy="10" r="1"/>
+                </svg>
+                <span>ab winehouse</span>
+              </a>
+              <div class="ab-lang-toggle">
+                <div class="ab-lang-dot"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4.2 Buttons -->
+      <div style="margin-bottom:32px;">
+        <p class="screen-label">4.2 — Call-to-Action Buttons</p>
+        <div class="comp-card">
+          <div class="ds-row" style="align-items:center; gap: 32px; flex-wrap: wrap;">
+
+            <!-- Wine CTA default -->
+            <div style="text-align:center;">
+              <div class="ab-btn ab-btn-wine">Lista dei Vini</div>
+              <p class="ds-label">Default</p>
+              <p class="ds-value">bg #570E27 · text gray-300</p>
+            </div>
+
+            <!-- Wine CTA hover -->
+            <div style="text-align:center;">
+              <div class="ab-btn ab-btn-wine-hover">Lista dei Vini</div>
+              <p class="ds-label">:hover</p>
+              <p class="ds-value">bg #7a1835 · text #000</p>
+            </div>
+
+            <!-- Wine CTA EN -->
+            <div style="text-align:center;">
+              <div class="ab-btn ab-btn-wine">Wine List</div>
+              <p class="ds-label">EN default</p>
+              <p class="ds-value">bg #570E27 · text gray-300</p>
+            </div>
+
+            <!-- WhatsApp default -->
+            <div style="text-align:center;">
+              <div class="ab-btn ab-btn-whatsapp">Whatsapp</div>
+              <p class="ds-label">Default</p>
+              <p class="ds-value">bg #121212 · text gray-300</p>
+            </div>
+
+            <!-- WhatsApp hover -->
+            <div style="text-align:center;">
+              <div class="ab-btn ab-btn-whatsapp-hover">Whatsapp</div>
+              <p class="ds-label">:hover</p>
+              <p class="ds-value">bg #009E91 · text #000</p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- 4.3 Language Toggle -->
+      <div style="margin-bottom:32px;">
+        <p class="screen-label">4.3 — Language Toggle Switch</p>
+        <div class="comp-card">
+          <div class="ds-row" style="gap: 40px; align-items:center;">
+
+            <div style="text-align:center;">
+              <div class="ab-lang-toggle">
+                <div class="ab-lang-dot" style="background: url('assets/img/it.webp') center/cover; border: 1px solid rgba(255,255,255,0.2);"></div>
+              </div>
+              <p class="ds-label">IT (default)</p>
+              <p class="ds-value">dot left · 🇮🇹 flag</p>
+            </div>
+
+            <div style="text-align:center;">
+              <div class="ab-lang-toggle" style="justify-content:flex-end;">
+                <div class="ab-lang-dot" style="background: url('assets/img/en.webp') center/cover; border: 1px solid rgba(255,255,255,0.2);"></div>
+              </div>
+              <p class="ds-label">EN (toggled)</p>
+              <p class="ds-value">dot right · 🇬🇧 flag</p>
+            </div>
+
+            <div style="flex: 1; max-width: 280px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius:10px; padding: 12px 16px;">
+              <p style="font-size:10px; font-family:monospace; color:#555; margin-bottom:6px;">TOGGLE ANATOMY</p>
+              <p style="font-size:11px; color: var(--color-gray-400); line-height:1.6;">
+                • Container: 44×32px · pill · zinc-800 bg<br>
+                • Dot: 24×24px · white rounded-full<br>
+                • Transition: 300ms ease-in-out<br>
+                • Implemented: hidden checkbox + label
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- 4.4 Social Icons -->
+      <div style="margin-bottom:32px;">
+        <p class="screen-label">4.4 — Social Icon Buttons</p>
+        <div class="comp-card">
+          <div class="ds-row" style="gap: 40px; align-items:center; flex-wrap: wrap;">
+
+            <div style="text-align:center;">
+              <div class="ab-social-icon">
+                <i class="fa-brands fa-instagram"></i>
+              </div>
+              <p class="ds-label">Default</p>
+              <p class="ds-value">42×42 · border rgba</p>
+            </div>
+
+            <div style="text-align:center;">
+              <div class="ab-social-icon is-hover">
+                <i class="fa-brands fa-instagram"></i>
+              </div>
+              <p class="ds-label">:hover</p>
+              <p class="ds-value">translateY(-3px) · bg 7%</p>
+            </div>
+
+            <div style="text-align:center;">
+              <div class="ab-social-icon">
+                <i class="fa-brands fa-threads"></i>
+              </div>
+              <p class="ds-label">Threads default</p>
+            </div>
+
+            <div style="text-align:center;">
+              <div class="ab-social-icon is-hover">
+                <i class="fa-brands fa-threads"></i>
+              </div>
+              <p class="ds-label">Threads :hover</p>
+            </div>
+
+            <div style="flex:1; max-width: 280px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius:10px; padding: 12px 16px;">
+              <p style="font-size:10px; font-family:monospace; color:#555; margin-bottom:6px;">ICON BUTTON SPEC</p>
+              <p style="font-size:11px; color: var(--color-gray-400); line-height:1.6;">
+                • Size: 42×42px · border-radius: 50%<br>
+                • Border: rgba(255,255,255,0.08) → 0.2 on hover<br>
+                • Hover bg: rgba(255,255,255,0.07)<br>
+                • Hover lift: translateY(-3px)<br>
+                • Transition: 300ms
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- 4.5 Footer Section -->
+      <div>
+        <p class="screen-label">4.5 — Footer / Contacts Section</p>
+        <div class="comp-card" style="background: var(--color-black); padding: 16px;">
+          <div class="ab-footer">
+            <div class="ab-footer-top">
+              <h2 class="ab-footer-heading">Contatti</h2>
+              <div class="ab-footer-divider"></div>
+              <div class="ab-footer-contacts">
+                <a href="#" class="ab-footer-email">info@abwinetrader.com</a>
+                <div class="ab-social-icons">
+                  <div class="ab-social-icon"><i class="fa-brands fa-instagram"></i></div>
+                  <div class="ab-social-icon"><i class="fa-brands fa-threads"></i></div>
+                </div>
+                <span class="ab-footer-phone">+39 335 534 3628</span>
+              </div>
+            </div>
+            <div class="ab-footer-bottom">
+              <small class="ab-footer-copy">© 2025 AB Winetrader - Tutti i diritti riservati.</small>
+              <p class="ab-footer-cookie">Questo sito utilizza esclusivamente cookie tecnici necessari al funzionamento e non raccoglie dati personali degli utenti. Non vengono utilizzati cookie di profilazione né strumenti di tracciamento di terze parti.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <hr class="gradient-hr" />
+
+
+    <!-- ════════════════════════════════════
+         5. INTERACTION STATES
+    ════════════════════════════════════ -->
+    <div class="ds-section">
+      <p class="ds-section-title">05 — Interaction States</p>
+      <div class="state-grid">
+
+        <div class="state-item">
+          <span class="state-tag">default</span>
+          <div class="ab-btn ab-btn-wine" style="width:160px; height:42px; font-size:12px;">Lista dei Vini</div>
+          <p class="ds-label" style="font-size:9px;">bg #570E27 · gray-300</p>
+        </div>
+
+        <div class="state-item">
+          <span class="state-tag">:hover</span>
+          <div class="ab-btn ab-btn-wine-hover" style="width:160px; height:42px; font-size:12px;">Lista dei Vini</div>
+          <p class="ds-label" style="font-size:9px;">bg #7a1835 · #000 · shadow</p>
+        </div>
+
+        <div class="state-item">
+          <span class="state-tag">default</span>
+          <div class="ab-btn ab-btn-whatsapp" style="width:160px; height:42px; font-size:12px;">Whatsapp</div>
+          <p class="ds-label" style="font-size:9px;">bg #121212 · gray-300</p>
+        </div>
+
+        <div class="state-item">
+          <span class="state-tag">:hover</span>
+          <div class="ab-btn ab-btn-whatsapp-hover" style="width:160px; height:42px; font-size:12px;">Whatsapp</div>
+          <p class="ds-label" style="font-size:9px;">teal · scale · translateY</p>
+        </div>
+
+        <div class="state-item">
+          <span class="state-tag">default</span>
+          <a class="ab-map-btn" style="cursor:default;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/>
+              <circle cx="12" cy="10" r="1"/>
+            </svg>
+            ab winehouse
+          </a>
+          <p class="ds-label" style="font-size:9px;">transparent bg</p>
+        </div>
+
+        <div class="state-item">
+          <span class="state-tag">:hover</span>
+          <a class="ab-map-btn" style="cursor:default; background: rgba(255,255,255,0.07);">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/>
+              <circle cx="12" cy="10" r="1"/>
+            </svg>
+            ab winehouse
+          </a>
+          <p class="ds-label" style="font-size:9px;">bg rgba(255,255,255,0.07)</p>
+        </div>
+
+      </div>
+    </div>
+
+    <hr class="gradient-hr" />
+
+
+    <!-- ════════════════════════════════════
+         6. SPACING & RADIUS TOKENS
+    ════════════════════════════════════ -->
+    <div class="ds-section">
+      <p class="ds-section-title">06 — Spacing &amp; Radius Tokens</p>
+      <div class="ds-row" style="gap: 40px; flex-wrap: wrap;">
+
+        <!-- Spacing scale -->
+        <div>
+          <p style="font-size:10px; color:#555; font-family:monospace; margin-bottom:12px;">SPACING SCALE (px)</p>
+          <div class="spacing-row">
+            <div class="spacing-block-wrap">
+              <div class="spacing-block" style="width:4px; height:4px;"></div>
+              <p class="ds-label" style="font-size:9px;">4</p>
+            </div>
+            <div class="spacing-block-wrap">
+              <div class="spacing-block" style="width:8px; height:8px;"></div>
+              <p class="ds-label" style="font-size:9px;">8</p>
+            </div>
+            <div class="spacing-block-wrap">
+              <div class="spacing-block" style="width:12px; height:12px;"></div>
+              <p class="ds-label" style="font-size:9px;">12</p>
+            </div>
+            <div class="spacing-block-wrap">
+              <div class="spacing-block" style="width:16px; height:16px;"></div>
+              <p class="ds-label" style="font-size:9px;">16</p>
+            </div>
+            <div class="spacing-block-wrap">
+              <div class="spacing-block" style="width:24px; height:24px;"></div>
+              <p class="ds-label" style="font-size:9px;">24</p>
+            </div>
+            <div class="spacing-block-wrap">
+              <div class="spacing-block" style="width:32px; height:32px;"></div>
+              <p class="ds-label" style="font-size:9px;">32</p>
+            </div>
+            <div class="spacing-block-wrap">
+              <div class="spacing-block" style="width:48px; height:48px;"></div>
+              <p class="ds-label" style="font-size:9px;">48</p>
+            </div>
+            <div class="spacing-block-wrap">
+              <div class="spacing-block" style="width:64px; height:64px;"></div>
+              <p class="ds-label" style="font-size:9px;">64</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Border radius -->
+        <div>
+          <p style="font-size:10px; color:#555; font-family:monospace; margin-bottom:12px;">BORDER RADIUS</p>
+          <div class="ds-row" style="align-items:flex-end;">
+            <div style="text-align:center;">
+              <div style="width:48px; height:48px; background:rgba(87,14,39,0.4); border:1px solid rgba(87,14,39,0.6); border-radius:4px;"></div>
+              <p class="ds-label" style="font-size:9px;">4px<br>btn inner</p>
+            </div>
+            <div style="text-align:center;">
+              <div style="width:56px; height:56px; background:rgba(87,14,39,0.4); border:1px solid rgba(87,14,39,0.6); border-radius:12px;"></div>
+              <p class="ds-label" style="font-size:9px;">12px<br>buttons</p>
+            </div>
+            <div style="text-align:center;">
+              <div style="width:64px; height:64px; background:rgba(87,14,39,0.4); border:1px solid rgba(87,14,39,0.6); border-radius:16px;"></div>
+              <p class="ds-label" style="font-size:9px;">16px<br>cards / header</p>
+            </div>
+            <div style="text-align:center;">
+              <div style="width:72px; height:40px; background:rgba(87,14,39,0.4); border:1px solid rgba(87,14,39,0.6); border-radius:9999px;"></div>
+              <p class="ds-label" style="font-size:9px;">pill<br>lang toggle</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <hr class="gradient-hr" />
+
+
+    <!-- ════════════════════════════════════
+         7. RESPONSIVE BREAKPOINTS
+    ════════════════════════════════════ -->
+    <div class="ds-section">
+      <p class="ds-section-title">07 — Responsive Breakpoints</p>
+      <div class="bp-row">
+        <div class="bp-item">
+          <div class="bp-bar" style="height:30px;"></div>
+          <p class="bp-name">xs</p>
+          <p class="bp-val">default</p>
+          <p class="bp-val">< 480</p>
+        </div>
+        <div class="bp-item">
+          <div class="bp-bar" style="height:50px;"></div>
+          <p class="bp-name">sm</p>
+          <p class="bp-val">480px</p>
+          <p class="bp-val">phones</p>
+        </div>
+        <div class="bp-item">
+          <div class="bp-bar" style="height:70px;"></div>
+          <p class="bp-name">md</p>
+          <p class="bp-val">768px</p>
+          <p class="bp-val">tablets</p>
+        </div>
+        <div class="bp-item">
+          <div class="bp-bar" style="height:90px;"></div>
+          <p class="bp-name">lg</p>
+          <p class="bp-val">976px</p>
+          <p class="bp-val">laptops</p>
+        </div>
+        <div class="bp-item">
+          <div class="bp-bar" style="height:110px;"></div>
+          <p class="bp-name">xl</p>
+          <p class="bp-val">1024px</p>
+          <p class="bp-val">desktop</p>
+        </div>
+        <div class="bp-item">
+          <div class="bp-bar" style="height:130px;"></div>
+          <p class="bp-name">xxl</p>
+          <p class="bp-val">1440px</p>
+          <p class="bp-val">large</p>
+        </div>
+      </div>
+
+      <div style="margin-top:24px; display:grid; grid-template-columns: repeat(auto-fill, minmax(260px,1fr)); gap:12px;">
+        <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); border-radius:10px; padding:14px 16px;">
+          <p style="font-size:10px; color:#555; font-family:monospace; margin-bottom:6px;">HERO HEADING SIZE</p>
+          <p style="font-size:11px; color:var(--color-gray-400); line-height:1.7;">Mobile: 45px<br>sm (480px): 75px<br>lg (976px+): 95px</p>
+        </div>
+        <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); border-radius:10px; padding:14px 16px;">
+          <p style="font-size:10px; color:#555; font-family:monospace; margin-bottom:6px;">MAP BUTTON LABEL</p>
+          <p style="font-size:11px; color:var(--color-gray-400); line-height:1.7;">Mobile: icon only<br>md (768px)+: icon + "ab winehouse"</p>
+        </div>
+        <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); border-radius:10px; padding:14px 16px;">
+          <p style="font-size:10px; color:#555; font-family:monospace; margin-bottom:6px;">BG LOGO ILLUSTRATION</p>
+          <p style="font-size:11px; color:var(--color-gray-400); line-height:1.7;">Mobile: hidden<br>xl (1024px)+: visible (opacity-60)</p>
+        </div>
+        <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); border-radius:10px; padding:14px 16px;">
+          <p style="font-size:10px; color:#555; font-family:monospace; margin-bottom:6px;">CTA BUTTONS LAYOUT</p>
+          <p style="font-size:11px; color:var(--color-gray-400); line-height:1.7;">Mobile: column (stacked)<br>md (768px)+: row (side-by-side)</p>
+        </div>
+        <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); border-radius:10px; padding:14px 16px;">
+          <p style="font-size:10px; color:#555; font-family:monospace; margin-bottom:6px;">FOOTER CONTACTS LAYOUT</p>
+          <p style="font-size:11px; color:var(--color-gray-400); line-height:1.7;">Mobile: column<br>md (768px)+: row (flex)</p>
+        </div>
+        <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); border-radius:10px; padding:14px 16px;">
+          <p style="font-size:10px; color:#555; font-family:monospace; margin-bottom:6px;">HEADER PADDING</p>
+          <p style="font-size:11px; color:var(--color-gray-400); line-height:1.7;">Mobile: px-4 py-4<br>md (768px)+: px-12 py-4</p>
+        </div>
+      </div>
+    </div>
+
+    <hr class="gradient-hr" />
+
+
+    <!-- ════════════════════════════════════
+         8. FULL PAGE MOCKUP — DESKTOP
+    ════════════════════════════════════ -->
+    <div class="ds-section">
+      <p class="ds-section-title">08 — Full Page Mockup — Desktop (≥ 1024px)</p>
+      <div class="screen-wrap">
+        <div class="mockup-desktop">
+
+          <!-- Header -->
+          <div class="ab-header" style="margin-bottom:0; border-radius:12px;">
+            <div class="ab-header-logo">
+              <div class="ab-logo-icon"></div>
+              <span class="ab-header-brand">ab winetrader</span>
+            </div>
+            <div class="ab-header-actions">
+              <a class="ab-map-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/>
+                  <circle cx="12" cy="10" r="1"/>
+                </svg>
+                <span>ab winehouse</span>
+              </a>
+              <div class="ab-lang-toggle">
+                <div class="ab-lang-dot"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hero -->
+          <div class="ab-hero" style="border-radius:0; min-height: 500px;">
+            <div class="ab-hero-bg-logo"></div>
+            <h1 class="ab-hero-heading">AB<br>winetrader</h1>
+            <p class="ab-hero-tagline">Commercializziamo bottiglie di pregio ed etichette ricercate. Mettiamo a disposizione del cliente grande esperienza nel settore unita alla forte passione nel mondo del vino.</p>
+            <div class="ab-hero-ctas">
+              <div class="ab-btn ab-btn-wine">Lista dei Vini</div>
+              <div class="ab-btn ab-btn-whatsapp">Whatsapp</div>
+            </div>
+          </div>
+
+          <!-- Footer -->
+          <div class="ab-footer" style="border-radius:12px;">
+            <div class="ab-footer-top">
+              <h2 class="ab-footer-heading">Contatti</h2>
+              <div class="ab-footer-divider"></div>
+              <div class="ab-footer-contacts">
+                <a href="#" class="ab-footer-email">info@abwinetrader.com</a>
+                <div class="ab-social-icons">
+                  <div class="ab-social-icon"><i class="fa-brands fa-instagram"></i></div>
+                  <div class="ab-social-icon"><i class="fa-brands fa-threads"></i></div>
+                </div>
+                <span class="ab-footer-phone">+39 335 534 3628</span>
+              </div>
+            </div>
+            <div class="ab-footer-bottom">
+              <small class="ab-footer-copy">© 2025 AB Winetrader - Tutti i diritti riservati.</small>
+              <p class="ab-footer-cookie">Questo sito utilizza esclusivamente cookie tecnici necessari al funzionamento e non raccoglie dati personali degli utenti. Non vengono utilizzati cookie di profilazione né strumenti di tracciamento di terze parti.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <hr class="gradient-hr" />
+
+
+    <!-- ════════════════════════════════════
+         9. FULL PAGE MOCKUP — MOBILE
+    ════════════════════════════════════ -->
+    <div class="ds-section">
+      <p class="ds-section-title">09 — Full Page Mockup — Mobile (375px)</p>
+      <div style="display: flex; gap: 40px; flex-wrap: wrap; align-items: flex-start;">
+
+        <!-- Italian version -->
+        <div>
+          <p class="screen-label" style="margin-bottom:12px;">Italian (default)</p>
+          <div class="mockup-mobile-outer">
+            <div class="mockup-mobile-screen">
+
+              <!-- Header -->
+              <div class="ab-header mockup-mobile-screen .ab-header" style="padding:12px 16px; margin:8px; border-radius:12px;">
+                <div class="ab-header-logo">
+                  <div class="ab-logo-icon"></div>
+                  <span class="ab-header-brand" style="font-size:14px;">ab winetrader</span>
+                </div>
+                <div class="ab-header-actions">
+                  <a class="ab-map-btn" style="padding:6px 8px;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/>
+                      <circle cx="12" cy="10" r="1"/>
+                    </svg>
+                  </a>
+                  <div class="ab-lang-toggle">
+                    <div class="ab-lang-dot"></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Hero -->
+              <div style="background:var(--color-black); padding: 40px 20px; display:flex; flex-direction:column; align-items:center; gap:24px; min-height:380px; justify-content:center;">
+                <h1 style="font-family:var(--font-heading); font-weight:900; font-size:48px; line-height:0.85; text-align:center; color:#fff; letter-spacing:0.03em; filter:drop-shadow(0 4px 30px rgba(87,14,39,0.25));">AB<br>winetrader</h1>
+                <p style="font-family:var(--font-body); font-size:13px; color:var(--color-gray-300); text-align:center; line-height:1.65; max-width:300px;">Commercializziamo bottiglie di pregio ed etichette ricercate.</p>
+                <div style="display:flex; flex-direction:column; gap:12px; align-items:center;">
+                  <div class="ab-btn ab-btn-wine" style="width:220px; height:46px; font-size:13px;">Lista dei Vini</div>
+                  <div class="ab-btn ab-btn-whatsapp" style="width:220px; height:46px; font-size:13px;">Whatsapp</div>
+                </div>
+              </div>
+
+              <!-- Footer -->
+              <div style="background:var(--color-bg-footer); padding: 24px 16px 16px; display:flex; flex-direction:column; align-items:center; gap:16px;">
+                <h2 style="font-family:var(--font-heading); font-weight:700; font-size:20px; color:var(--color-gray-300); letter-spacing:0.08em;">Contatti</h2>
+                <div style="height:1px; width:90%; background:linear-gradient(to right, transparent, #3f3f46, transparent);"></div>
+                <div style="display:flex; flex-direction:column; align-items:center; gap:12px;">
+                  <a href="#" class="ab-footer-email" style="font-size:12px;">info@abwinetrader.com</a>
+                  <div class="ab-social-icons">
+                    <div class="ab-social-icon"><i class="fa-brands fa-instagram"></i></div>
+                    <div class="ab-social-icon"><i class="fa-brands fa-threads"></i></div>
+                  </div>
+                  <span style="font-size:12px; color:var(--color-gray-300);">+39 335 534 3628</span>
+                </div>
+                <small style="font-size:9px; color:var(--color-gray-300); display:block; text-align:center;">© 2025 AB Winetrader - Tutti i diritti riservati.</small>
+                <p style="font-size:9px; color:var(--color-gray-400); line-height:1.6; text-align:center;">Questo sito utilizza esclusivamente cookie tecnici necessari al funzionamento.</p>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- English version -->
+        <div>
+          <p class="screen-label" style="margin-bottom:12px;">English (toggled)</p>
+          <div class="mockup-mobile-outer">
+            <div class="mockup-mobile-screen">
+
+              <!-- Header -->
+              <div class="ab-header mockup-mobile-screen .ab-header" style="padding:12px 16px; margin:8px; border-radius:12px;">
+                <div class="ab-header-logo">
+                  <div class="ab-logo-icon"></div>
+                  <span class="ab-header-brand" style="font-size:14px;">ab winetrader</span>
+                </div>
+                <div class="ab-header-actions">
+                  <a class="ab-map-btn" style="padding:6px 8px;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/>
+                      <circle cx="12" cy="10" r="1"/>
+                    </svg>
+                  </a>
+                  <div class="ab-lang-toggle" style="justify-content:flex-end;">
+                    <div class="ab-lang-dot"></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Hero (EN) -->
+              <div style="background:var(--color-black); padding: 40px 20px; display:flex; flex-direction:column; align-items:center; gap:24px; min-height:380px; justify-content:center;">
+                <h1 style="font-family:var(--font-heading); font-weight:900; font-size:48px; line-height:0.85; text-align:center; color:#fff; letter-spacing:0.03em; filter:drop-shadow(0 4px 30px rgba(87,14,39,0.25));">AB<br>winetrader</h1>
+                <p style="font-family:var(--font-body); font-size:13px; color:var(--color-gray-300); text-align:center; line-height:1.65; max-width:300px;">We market fine bottles and sophisticated labels.</p>
+                <div style="display:flex; flex-direction:column; gap:12px; align-items:center;">
+                  <div class="ab-btn ab-btn-wine" style="width:220px; height:46px; font-size:13px;">Wine List</div>
+                  <div class="ab-btn ab-btn-whatsapp" style="width:220px; height:46px; font-size:13px;">Whatsapp</div>
+                </div>
+              </div>
+
+              <!-- Footer (EN) -->
+              <div style="background:var(--color-bg-footer); padding: 24px 16px 16px; display:flex; flex-direction:column; align-items:center; gap:16px;">
+                <h2 style="font-family:var(--font-heading); font-weight:700; font-size:20px; color:var(--color-gray-300); letter-spacing:0.08em;">Contacts</h2>
+                <div style="height:1px; width:90%; background:linear-gradient(to right, transparent, #3f3f46, transparent);"></div>
+                <div style="display:flex; flex-direction:column; align-items:center; gap:12px;">
+                  <a href="#" class="ab-footer-email" style="font-size:12px;">info@abwinetrader.com</a>
+                  <div class="ab-social-icons">
+                    <div class="ab-social-icon"><i class="fa-brands fa-instagram"></i></div>
+                    <div class="ab-social-icon"><i class="fa-brands fa-threads"></i></div>
+                  </div>
+                  <span style="font-size:12px; color:var(--color-gray-300);">+39 335 534 3628</span>
+                </div>
+                <small style="font-size:9px; color:var(--color-gray-300); display:block; text-align:center;">© 2025 AB Winetrader - All rights reserved.</small>
+                <p style="font-size:9px; color:var(--color-gray-400); line-height:1.6; text-align:center;">This site uses only technical cookies necessary for its operation.</p>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <hr class="gradient-hr" />
+
+
+    <!-- ════════════════════════════════════
+         10. ANIMATION SPEC
+    ════════════════════════════════════ -->
+    <div class="ds-section">
+      <p class="ds-section-title">10 — Animation &amp; Motion Spec</p>
+      <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(220px,1fr)); gap:12px;">
+
+        <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); border-radius:12px; padding:16px;">
+          <p style="font-size:10px; color:#555; font-family:monospace; margin-bottom:8px;">HERO HEADING</p>
+          <p style="font-size:11px; color:var(--color-gray-400); line-height:1.7;">animate__fadeInDown<br>Duration: 1s (default)<br>Trigger: page load</p>
+        </div>
+
+        <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); border-radius:12px; padding:16px;">
+          <p style="font-size:10px; color:#555; font-family:monospace; margin-bottom:8px;">BG LOGO ICON</p>
+          <p style="font-size:11px; color:var(--color-gray-400); line-height:1.7;">animate__pulse<br>Duration: 2s infinite<br>opacity-60</p>
+        </div>
+
+        <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); border-radius:12px; padding:16px;">
+          <p style="font-size:10px; color:#555; font-family:monospace; margin-bottom:8px;">WINE LIST BTN</p>
+          <p style="font-size:11px; color:var(--color-gray-400); line-height:1.7;">animate__fadeInLeft<br>Duration: 1s<br>Trigger: page load</p>
+        </div>
+
+        <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); border-radius:12px; padding:16px;">
+          <p style="font-size:10px; color:#555; font-family:monospace; margin-bottom:8px;">WHATSAPP BTN</p>
+          <p style="font-size:11px; color:var(--color-gray-400); line-height:1.7;">animate__fadeInRight<br>Duration: 1s<br>Trigger: page load</p>
+        </div>
+
+        <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); border-radius:12px; padding:16px;">
+          <p style="font-size:10px; color:#555; font-family:monospace; margin-bottom:8px;">HOVER TRANSITIONS</p>
+          <p style="font-size:11px; color:var(--color-gray-400); line-height:1.7;">all buttons: 400ms ease-in-out<br>header map btn: 300ms<br>social icons: 300ms</p>
+        </div>
+
+        <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); border-radius:12px; padding:16px;">
+          <p style="font-size:10px; color:#555; font-family:monospace; margin-bottom:8px;">LANG TOGGLE DOT</p>
+          <p style="font-size:11px; color:var(--color-gray-400); line-height:1.7;">transform translateX<br>Duration: 300ms ease-in-out<br>Shows flag on toggle</p>
+        </div>
+
+        <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); border-radius:12px; padding:16px;">
+          <p style="font-size:10px; color:#555; font-family:monospace; margin-bottom:8px;">EMAIL UNDERLINE</p>
+          <p style="font-size:11px; color:var(--color-gray-400); line-height:1.7;">::after width 0→100%<br>Duration: 300ms<br>1px white bottom border</p>
+        </div>
+
+        <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); border-radius:12px; padding:16px;">
+          <p style="font-size:10px; color:#555; font-family:monospace; margin-bottom:8px;">WA BTN HOVER</p>
+          <p style="font-size:11px; color:var(--color-gray-400); line-height:1.7;">translateY(-6px) + scale(1.03)<br>bg → teal #009E91<br>Duration: 400ms</p>
+        </div>
+
+      </div>
+    </div>
+
+    <hr class="gradient-hr" />
+
+    <!-- Footer note -->
+    <p style="text-align:center; font-size:10px; color:#444; font-family:monospace; margin-bottom:32px; letter-spacing:0.06em;">
+      AB WINETRADER — DESIGN SYSTEM · GENERATED FROM CODEBASE · abwinetrader.com
+    </p>
+
+  </div>
+</body>
+</html>
