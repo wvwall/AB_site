@@ -792,7 +792,20 @@ Ensure the default browser behavior of the `hidden` attribute.
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 body {
-  background-color: black;
+  background-color: #100a06;
+}
+
+.bg-blackWarm {
+  background-color: #100a06;
+}
+
+.-translate-x-1\/2 {
+  --tw-translate-x: -50%;
+  transform: var(--tw-transform);
+}
+
+.left-1\/2 {
+  left: 50%;
 }
 
 #toggle ~ label span.toggle-dot {
