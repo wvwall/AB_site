@@ -918,14 +918,14 @@ body {
 }
 
 #toggle ~ label span.toggle-dot {
-  background-image: url("../assets/img/it.webp");
+  background-image: url("../img/it.webp");
   background-size: contain;
 }
 
 #toggle:checked ~ label span.toggle-dot {
   --tw-translate-x: 0.75rem;
   transform: var(--tw-transform);
-  background-image: url("../assets/img/en.webp");
+  background-image: url("../img/en.webp");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
