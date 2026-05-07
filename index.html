@@ -251,19 +251,33 @@
         </small>
       </div>
       <div class="px-6 pt-2 pb-4 text-center bg-blackFooter">
-        <p
-          class="text-[10px] leading-relaxed text-gray-400 it-text max-w-5xl mx-auto">
-          Questo sito utilizza esclusivamente cookie tecnici necessari al
-          funzionamento e non raccoglie dati personali degli utenti. <br />
-          Non vengono utilizzati cookie di profilazione né strumenti di
-          tracciamento di terze parti.
-        </p>
-        <p
-          class="hidden text-[10px] leading-relaxed text-gray-400 en-text max-w-5xl mx-auto">
-          This site uses only technical cookies necessary for its operation and
-          does not collect users' personal data. No profiling cookies or
-          third-party tracking tools are used.
-        </p>
+        <button
+          id="cookieToggle"
+          class="flex items-center justify-center gap-1 mx-auto cursor-pointer bg-transparent border-0 text-gray-400 hover:text-gray-300 text-[10px] leading-relaxed p-1 transition-colors duration-300"
+          aria-expanded="false"
+          aria-controls="cookieText">
+          <i class="fa-solid fa-cookie-bite"></i>
+          <span>Cookie Policy</span>
+          <i
+            id="cookieChevron"
+            class="fa-solid fa-chevron-down transition-transform duration-300 ease-in-out"
+            aria-hidden="true"></i>
+        </button>
+        <div
+          id="cookieText"
+          class="overflow-hidden transition-all duration-300 ease-in-out max-h-0">
+          <p class="text-[10px] leading-relaxed text-gray-400 it-text max-w-5xl mx-auto">
+            Questo sito utilizza esclusivamente cookie tecnici necessari al
+            funzionamento e non raccoglie dati personali degli utenti. <br />
+            Non vengono utilizzati cookie di profilazione né strumenti di
+            tracciamento di terze parti.
+          </p>
+          <p class="hidden text-[10px] leading-relaxed text-gray-400 en-text max-w-5xl mx-auto">
+            This site uses only technical cookies necessary for its operation and
+            does not collect users' personal data. No profiling cookies or
+            third-party tracking tools are used.
+          </p>
+        </div>
       </div>
     </footer>
 
