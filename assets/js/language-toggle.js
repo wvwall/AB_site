@@ -13,10 +13,21 @@ document.addEventListener("DOMContentLoaded", () => {
     const isEnglish = checkbox.checked;
     html.classList.toggle("en", isEnglish);
 
-    enText.forEach((el) => el.classList.toggle("hidden", !isEnglish));
+    enText.forEach((el) => {
+      if (el.tagName === "P") {
+        el.classList.toggle("invisible", !isEnglish);
+      } else {
+        el.classList.toggle("hidden", !isEnglish);
+      }
+    });
     itText.forEach((el) => {
-      el.classList.toggle("hidden", isEnglish);
-      if (isEnglish) el.classList.remove("animate__animated");
+      if (el.tagName === "P") {
+        el.classList.toggle("invisible", isEnglish);
+        if (isEnglish) el.classList.remove("animate__animated");
+      } else {
+        el.classList.toggle("hidden", isEnglish);
+        if (isEnglish) el.classList.remove("animate__animated");
+      }
     });
   };
 
