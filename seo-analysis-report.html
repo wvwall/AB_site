@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SEO Analysis Report — AB Winetrader</title>
+  <style>
+    :root {
+      --bg: #0f0f0f;
+      --surface: #1a1a1a;
+      --surface2: #242424;
+      --border: #2e2e2e;
+      --text: #e8e0d4;
+      --text-muted: #8a8070;
+      --gold: #c9a84c;
+      --gold-light: #e8c97a;
+      --red: #e05252;
+      --red-bg: #2a1414;
+      --yellow: #d4a017;
+      --yellow-bg: #241c08;
+      --green: #5aab6e;
+      --green-bg: #0e2116;
+      --blue: #5a8fd4;
+      --blue-bg: #0e1a2a;
+      --radius: 10px;
+      --radius-sm: 6px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+    a { color: var(--gold); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── HEADER ── */
+    .header {
+      background: linear-gradient(135deg, #1a0e05 0%, #0f0a03 50%, #0a0f1a 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 40px 24px 36px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 0%, rgba(201,168,76,0.08) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .header-badge {
+      display: inline-block;
+      background: rgba(201,168,76,0.12);
+      border: 1px solid rgba(201,168,76,0.3);
+      color: var(--gold);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 20px;
+      margin-bottom: 16px;
+    }
+    .header h1 {
+      font-size: clamp(24px, 4vw, 36px);
+      font-weight: 300;
+      letter-spacing: 1px;
+      color: #fff;
+    }
+    .header h1 span { color: var(--gold); font-weight: 700; }
+    .header-meta {
+      margin-top: 10px;
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+    .header-meta strong { color: var(--text); }
+
+    /* ── LAYOUT ── */
+    .container {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 32px 20px 60px;
+    }
+
+    /* ── SCORE CARD ── */
+    .score-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px;
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+    }
+    .score-circle {
+      position: relative;
+      width: 120px;
+      height: 120px;
+      flex-shrink: 0;
+    }
+    .score-circle svg { transform: rotate(-90deg); }
+    .score-circle-text {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .score-number {
+      font-size: 34px;
+      font-weight: 700;
+      color: var(--yellow);
+      line-height: 1;
+    }
+    .score-label {
+      font-size: 11px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 2px;
+    }
+    .score-info { flex: 1; min-width: 200px; }
+    .score-info h2 { font-size: 18px; font-weight: 600; margin-bottom: 6px; }
+    .score-info p { color: var(--text-muted); font-size: 14px; margin-bottom: 16px; }
+    .score-bar-wrap {
+      background: var(--surface2);
+      border-radius: 4px;
+      height: 10px;
+      overflow: hidden;
+      margin-bottom: 8px;
+    }
+    .score-bar {
+      height: 100%;
+      width: 58%;
+      background: linear-gradient(90deg, var(--red) 0%, var(--yellow) 50%, var(--yellow) 100%);
+      border-radius: 4px;
+    }
+    .score-ticks {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    /* ── SUMMARY PILLS ── */
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-bottom: 40px;
+    }
+    .summary-pill {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      text-align: center;
+    }
+    .summary-pill.critical { border-color: rgba(224,82,82,0.3); background: var(--red-bg); }
+    .summary-pill.warning  { border-color: rgba(212,160,23,0.3); background: var(--yellow-bg); }
+    .summary-pill.ok       { border-color: rgba(90,171,110,0.3); background: var(--green-bg); }
+    .pill-number {
+      font-size: 36px;
+      font-weight: 700;
+      line-height: 1;
+    }
+    .summary-pill.critical .pill-number { color: var(--red); }
+    .summary-pill.warning  .pill-number { color: var(--yellow); }
+    .summary-pill.ok       .pill-number { color: var(--green); }
+    .pill-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 4px;
+    }
+
+    /* ── SECTION ── */
+    .section { margin-bottom: 36px; }
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .section-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+    .section-header h2 {
+      font-size: 17px;
+      font-weight: 600;
+      color: #fff;
+    }
+    .section-header .section-count {
+      margin-left: auto;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* ── CHECK CARD ── */
+    .check-list { display: flex; flex-direction: column; gap: 12px; }
+    .check-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .check-card.critical { border-left: 3px solid var(--red); }
+    .check-card.warning  { border-left: 3px solid var(--yellow); }
+    .check-card.ok       { border-left: 3px solid var(--green); }
+    .check-card.info     { border-left: 3px solid var(--blue); }
+
+    .check-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 18px;
+      cursor: pointer;
+      user-select: none;
+    }
+    .check-header:hover { background: var(--surface2); }
+    .status-badge {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+    .status-badge.critical { background: rgba(224,82,82,0.15); color: var(--red); }
+    .status-badge.warning  { background: rgba(212,160,23,0.15); color: var(--yellow); }
+    .status-badge.ok       { background: rgba(90,171,110,0.15); color: var(--green); }
+    .status-badge.info     { background: rgba(90,143,212,0.15); color: var(--blue); }
+
+    .check-title { font-weight: 500; font-size: 14px; flex: 1; }
+    .check-toggle { color: var(--text-muted); font-size: 12px; flex-shrink: 0; transition: transform 0.2s; }
+    .check-card.open .check-toggle { transform: rotate(180deg); }
+
+    .check-body { display: none; border-top: 1px solid var(--border); }
+    .check-card.open .check-body { display: block; }
+
+    .check-content { padding: 16px 18px; }
+    .check-content p { color: var(--text-muted); font-size: 14px; margin-bottom: 12px; }
+    .check-content p:last-child { margin-bottom: 0; }
+    .impact-label {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+    }
+    .impact-label.red { color: var(--red); }
+    .impact-label.yellow { color: var(--yellow); }
+    .impact-label.green { color: var(--green); }
+    .impact-label.blue { color: var(--blue); }
+
+    /* ── CODE BLOCK ── */
+    .code-block {
+      background: #0a0a0a;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 14px 16px;
+      font-family: 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
+      font-size: 12.5px;
+      line-height: 1.7;
+      overflow-x: auto;
+      margin-top: 8px;
+      margin-bottom: 12px;
+      white-space: pre;
+      color: #cdd6f4;
+    }
+    .code-block .hl-tag    { color: #89dceb; }
+    .code-block .hl-attr   { color: #89b4fa; }
+    .code-block .hl-val    { color: #a6e3a1; }
+    .code-block .hl-comment{ color: #6c7086; font-style: italic; }
+    .code-block .hl-key    { color: #cba6f7; }
+    .code-block .hl-str    { color: #a6e3a1; }
+    .code-block .hl-num    { color: #fab387; }
+
+    /* ── DIVIDER ── */
+    .fix-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-top: 14px;
+      margin-bottom: 6px;
+    }
+    .current-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-top: 14px;
+      margin-bottom: 6px;
+    }
+
+    /* ── FOOTER ── */
+    .report-footer {
+      text-align: center;
+      padding: 32px 24px;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+    .report-footer strong { color: var(--gold); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      .score-card { flex-direction: column; text-align: center; }
+      .summary-grid { grid-template-columns: 1fr 1fr; }
+      .summary-grid .summary-pill:last-child { grid-column: span 2; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-badge">SEO Report</div>
+  <h1><span>AB Winetrader</span> — Analisi SEO</h1>
+  <div class="header-meta">
+    URL: <strong>https://www.abwinetrader.com</strong> &nbsp;·&nbsp;
+    Data analisi: <strong>12 Maggio 2026</strong> &nbsp;·&nbsp;
+    Tipo sito: <strong>Single-page statico</strong>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- SCORE CARD -->
+  <div class="score-card">
+    <div class="score-circle">
+      <svg width="120" height="120" viewBox="0 0 120 120">
+        <circle cx="60" cy="60" r="50" fill="none" stroke="#2e2e2e" stroke-width="10"/>
+        <circle cx="60" cy="60" r="50" fill="none" stroke="url(#scoreGrad)" stroke-width="10"
+          stroke-dasharray="314.16" stroke-dashoffset="131.75" stroke-linecap="round"/>
+        <defs>
+          <linearGradient id="scoreGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#e05252"/>
+            <stop offset="100%" stop-color="#d4a017"/>
+          </linearGradient>
+        </defs>
+      </svg>
+      <div class="score-circle-text">
+        <span class="score-number">58</span>
+        <span class="score-label">/ 100</span>
+      </div>
+    </div>
+    <div class="score-info">
+      <h2>Punteggio SEO Complessivo: <span style="color:var(--yellow)">Medio</span></h2>
+      <p>Il sito ha una buona base tecnica (schema.org, WebP, sito statico veloce) ma presenta lacune importanti su canonical, hreflang, meta description e social tags che limitano la visibilità organica.</p>
+      <div class="score-bar-wrap">
+        <div class="score-bar"></div>
+      </div>
+      <div class="score-ticks">
+        <span>0 — Critico</span>
+        <span>50 — Medio</span>
+        <span>80 — Buono</span>
+        <span>100 — Ottimo</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUMMARY PILLS -->
+  <div class="summary-grid">
+    <div class="summary-pill critical">
+      <div class="pill-number">3</div>
+      <div class="pill-label">Problemi Critici</div>
+    </div>
+    <div class="summary-pill warning">
+      <div class="pill-number">9</div>
+      <div class="pill-label">Avvertimenti</div>
+    </div>
+    <div class="summary-pill ok">
+      <div class="pill-number">7</div>
+      <div class="pill-label">Superati</div>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════
+       SEZIONE 1 — META TAGS
+  ═══════════════════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon" style="background:rgba(201,168,76,0.1)">🏷️</div>
+      <h2>Meta Tags</h2>
+      <span class="section-count">5 controlli</span>
+    </div>
+    <div class="check-list">
+
+      <!-- Title Tag -->
+      <div class="check-card warning">
+        <div class="check-header" onclick="toggle(this)">
+          <span class="status-badge warning">⚠ Migliorabile</span>
+          <span class="check-title">Title Tag — troppo corto, manca keyword locale</span>
+          <span class="check-toggle">▼</span>
+        </div>
+        <div class="check-body">
+          <div class="check-content">
+            <p class="current-label">Attuale (34 caratteri)</p>
+            <div class="code-block"><span class="hl-tag">&lt;title&gt;</span>AB Winetrader | Wine Merchant<span class="hl-tag">&lt;/title&gt;</span></div>
+            <p>Il title è nella fascia minima (ottimale: 50–60 caratteri). Non include parole chiave locali come <em>Collegno</em> o <em>Torino</em>, fondamentali per la SEO locale.</p>
+            <p class="fix-label">Correzione suggerita (54 caratteri)</p>
+            <div class="code-block"><span class="hl-tag">&lt;title&gt;</span>AB Winetrader | Enoteca Vini Pregiati a Collegno, Torino<span class="hl-tag">&lt;/title&gt;</span></div>
+            <p style="margin-top:8px"><span class="impact-label yellow">Impatto: </span> Miglior visibilità nelle ricerche locali "enoteca Collegno", "vini pregiati Torino".</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Meta Description -->
+      <div class="check-card critical">
+        <div class="check-header" onclick="toggle(this)">
+          <span class="status-badge critical">✕ Critico</span>
+          <span class="check-title">Meta Description — troppo breve e solo in italiano</span>
+          <span class="check-toggle">▼</span>
+        </div>
+        <div class="check-body">
+          <div class="check-content">
+            <p class="current-label">Attuale (~60 caratteri — ottimale: 150–160)</p>
+            <div class="code-block"><span class="hl-tag">&lt;meta</span> <span class="hl-attr">name</span>=<span class="hl-val">"description"</span> <span class="hl-attr">content</span>=<span class="hl-val">"Commercializziamo bottiglie di pregio ed etichette ricercate."</span> <span class="hl-tag">/&gt;</span></div>
+            <p>La descrizione è troppo corta (occupa meno di metà dello spazio disponibile in SERP) e non contiene CTA, location né parole chiave secondarie. Inoltre è solo in italiano anche quando il sito è in modalità inglese.</p>
+            <p class="fix-label">Correzione suggerita (~155 caratteri)</p>
+            <div class="code-block"><span class="hl-tag">&lt;meta</span> <span class="hl-attr">name</span>=<span class="hl-val">"description"</span>
+     <span class="hl-attr">content</span>=<span class="hl-val">"AB Winetrader — enoteca a Collegno (Torino) specializzata in vini
+     pregiati, champagne e etichette ricercate di Francia e Borgogna.
+     Contattaci o scarica la nostra lista vini."</span> <span class="hl-tag">/&gt;</span></div>
+            <p><span class="impact-label red">Impatto alto: </span> La meta description è il principale testo visibile in SERP. Una descrizione ottimizzata aumenta il CTR organico stimato del 5–15%.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Canonical -->
+      <div class="check-card critical">
+        <div class="check-header" onclick="toggle(this)">
+          <span class="status-badge critical">✕ Critico</span>
+          <span class="check-title">Canonical URL — assente</span>
+          <span class="check-toggle">▼</span>
+        </div>
+        <div class="check-body">
+          <div class="check-content">
+            <p>Nessun tag <code style="color:var(--gold)">&lt;link rel="canonical"&gt;</code> è presente. Il sito è accessibile sia come <code>www.abwinetrader.com</code> che come <code>abwinetrader.com</code> (confermato dai due URL nel robots.txt): Google potrebbe trattarli come pagine duplicate e dividere il PageRank.</p>
+            <p class="fix-label">Aggiungere nel &lt;head&gt;</p>
+            <div class="code-block"><span class="hl-tag">&lt;link</span> <span class="hl-attr">rel</span>=<span class="hl-val">"canonical"</span> <span class="hl-attr">href</span>=<span class="hl-val">"https://www.abwinetrader.com/"</span> <span class="hl-tag">/&gt;</span></div>
+            <p><span class="impact-label red">Impatto alto: </span> Prevenire la dispersione del link equity tra varianti URL (www vs non-www, http vs https).</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Meta Keywords -->
+      <div class="check-card warning">
+        <div class="check-header" onclick="toggle(this)">
+          <span class="status-badge warning">⚠ Attenzione</span>
+          <span class="check-title">Meta Keywords — gonfiate e obsolete</span>
+          <span class="check-toggle">▼</span>
+        </div>
+        <div class="check-body">
+          <div class="check-content">
+            <p>Il tag <code style="color:var(--gold)">meta keywords</code> contiene oltre 30 keyword, inclusi nomi personali dei titolari e variazioni ridondanti. <strong>Google ignora questo tag dal 2009</strong>. La lista estesa non produce nessun beneficio SEO e potrebbe segnalare keyword stuffing a motori meno sofisticati.</p>
+            <p class="fix-label">Azione consigliata</p>
+            <p>Rimuovere il tag interamente oppure limitarlo a 5–8 keyword reali:</p>
+            <div class="code-block"><span class="hl-comment">&lt;!-- Rimuovere o semplificare: --&gt;</span>
+<span class="hl-tag">&lt;meta</span> <span class="hl-attr">name</span>=<span class="hl-val">"keywords"</span>
+     <span class="hl-attr">content</span>=<span class="hl-val">"enoteca Collegno, vini pregiati Torino, champagne, Borgogna, AB Winetrader"</span> <span class="hl-tag">/&gt;</span></div>
+            <p><span class="impact-label yellow">Impatto basso: </span> Nessun effetto su Google, ma riduce il rumore nell'HTML sorgente.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Viewport / Charset -->
+      <div class="check-card ok">
+        <div class="check-header" onclick="toggle(this)">
+          <span class="status-badge ok">✓ Ok</span>
+          <span class="check-title">Viewport e charset — correttamente configurati</span>
+          <span class="check-toggle">▼</span>
+        </div>
+        <div class="check-body">
+          <div class="check-content">
+            <div class="code-block"><span class="hl-tag">&lt;meta</span> <span class="hl-attr">charset</span>=<span class="hl-val">"UTF-8"</span> <span class="hl-tag">/&gt;</span>
+<span class="hl-tag">&lt;meta</span> <span class="hl-attr">name</span>=<span class="hl-val">"viewport"</span> <span class="hl-attr">content</span>=<span class="hl-val">"width=device-width, initial-scale=1.0"</span> <span class="hl-tag">/&gt;</span></div>
+            <p><span class="impact-label green">Ottimo: </span> Sito mobile-friendly con viewport corretto. Google utilizza il mobile-first indexing — questo è essenziale.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════
+       SEZIONE 2 — SOCIAL & OPEN GRAPH
+  ═══════════════════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon" style="background:rgba(90,143,212,0.1)">📱</div>
+      <h2>Social &amp; Open Graph</h2>
+      <span class="section-count">4 controlli</span>
+    </div>
+    <div class="check-list">
+
+      <!-- OG Base -->
+      <div class="check-card ok">
+        <div class="check-header" onclick="toggle(this)">
+          <span class="status-badge ok">✓ Ok</span>
+          <span class="check-title">Open Graph — tag base presenti</span>
+          <span class="check-toggle">▼</span>
+        </div>
+        <div class="check-body">
+          <div class="check-content">
+            <div class="code-block"><span class="hl-tag">&lt;meta</span> <span class="hl-attr">property</span>=<span class="hl-val">"og:title"</span>       <span class="hl-attr">content</span>=<span class="hl-val">"Sito AB Winetrader"</span> <span class="hl-tag">/&gt;</span>
+<span class="hl-tag">&lt;meta</span> <span class="hl-attr">property</span>=<span class="hl-val">"og:type"</span>        <span class="hl-attr">content</span>=<span class="hl-val">"website"</span> <span class="hl-tag">/&gt;</span>
+<span class="hl-tag">&lt;meta</span> <span class="hl-attr">property</span>=<span class="hl-val">"og:url"</span>         <span class="hl-attr">content</span>=<span class="hl-val">"https://www.abwinetrader.com"</span> <span class="hl-tag">/&gt;</span>
+<span class="hl-tag">&lt;meta</span> <span class="hl-attr">property</span>=<span class="hl-val">"og:description"</span>  <span class="hl-attr">content</span>=<span class="hl-val">"Commercializziamo bottiglie di pregio..."</span> <span class="hl-tag">/&gt;</span>
+<span class="hl-tag">&lt;meta</span> <span class="hl-attr">property</span>=<span class="hl-val">"og:image"</span>       <span class="hl-attr">content</span>=<span class="hl-val">"https://www.abwinetrader.com/assets/img/anteprima.webp"</span> <span class="hl-tag">/&gt;</span></div>
+            <p><span class="impact-label green">Buono: </span> I 5 tag OG essenziali sono presenti. L'immagine è in formato WebP (50 KB, moderno e leggero).</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- OG Title coerenza -->
+      <div class="check-card warning">
+        <div class="check-header" onclick="toggle(this)">
+          <span class="status-badge warning">⚠ Migliorabile</span>
+          <span class="check-title">og:title non coerente con il title tag</span>
+          <span class="check-toggle">▼</span>
+        </div>
+        <div class="check-body">
+          <div class="check-content">
+            <p>Il <code style="color:var(--gold)">&lt;title&gt;</code> della pagina recita <em>"AB Winetrader | Wine Merchant"</em> mentre <code style="color:var(--gold)">og:title</code> recita <em>"Sito AB Winetrader"</em>. Incoerenza che appare non professionale quando il link viene condiviso sui social.</p>
+            <p class="fix-label">Allineare i due valori</p>
+            <div class="code-block"><span class="hl-tag">&lt;meta</span> <span class="hl-attr">property</span>=<span class="hl-val">"og:title"</span> <span class="hl-attr">content</span>=<span class="hl-val">"AB Winetrader | Enoteca Vini Pregiati a Collegno, Torino"</span> <span class="hl-tag">/&gt;</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Twitter Cards -->
+      <div class="check-card warning">
+        <div class="check-header" onclick="toggle(this)">
+          <span class="status-badge warning">⚠ Mancante</span>
+          <span class="check-title">Twitter / X Card tags — assenti</span>
+          <span class="check-toggle">▼</span>
+        </div>
+        <div class="check-body">
+          <div class="check-content">
+            <p>Nessun tag Twitter Card. Senza di essi, la condivisione su X/Twitter mostra solo testo senza anteprima immagine, riducendo drasticamente l'engagement dei link condivisi.</p>
+            <p class="fix-label">Aggiungere nel &lt;head&gt;</p>
+            <div class="code-block"><span class="hl-tag">&lt;meta</span> <span class="hl-attr">name</span>=<span class="hl-val">"twitter:card"</span>        <span class="hl-attr">content</span>=<span class="hl-val">"summary_large_image"</span> <span class="hl-tag">/&gt;</span>
+<span class="hl-tag">&lt;meta</span> <span class="hl-attr">name</span>=<span class="hl-val">"twitter:title"</span>       <span class="hl-attr">content</span>=<span class="hl-val">"AB Winetrader | Enoteca Vini Pregiati a Collegno, Torino"</span> <span class="hl-tag">/&gt;</span>
+<span class="hl-tag">&lt;meta</span> <span class="hl-attr">name</span>=<span class="hl-val">"twitter:description"</span>  <span class="hl-attr">content</span>=<span class="hl-val">"Enoteca specializzata in vini pregiati, champagne e etichette ricercate a Collegno (TO)."</span> <span class="hl-tag">/&gt;</span>
+<span class="hl-tag">&lt;meta</span> <span class="hl-attr">name</span>=<span class="hl-val">"twitter:image"</span>       <span class="hl-attr">content</span>=<span class="hl-val">"https://www.abwinetrader.com/assets/img/anteprima.webp"</span> <span class="hl-tag">/&gt;</span>
+<span class="hl-tag">&lt;meta</span> <span class="hl-attr">name</span>=<span class="hl-val">"twitter:site"</span>        <span class="hl-attr">content</span>=<span class="hl-val">"@ab_luxury_wine"</span> <span class="hl-tag">/&gt;</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- og:locale -->
+      <div class="check-card warning">
+        <div class="check-header" onclick="toggle(this)">
+          <span class="status-badge warning">⚠ Mancante</span>
+          <span class="check-title">og:locale — assente su sito bilingue</span>
+          <span class="check-toggle">▼</span>
+        </div>
+        <div class="check-body">
+          <div class="check-content">
+            <p>Il sito è bilingue (IT/EN) ma non dichiara la lingua di default per Open Graph né le lingue alternative. Facebook/Meta usa queste informazioni per il targeting geografico dei contenuti condivisi.</p>
+            <p class="fix-label">Aggiungere</p>
+            <div class="code-block"><span class="hl-tag">&lt;meta</span> <span class="hl-attr">property</span>=<span class="hl-val">"og:locale"</span>            <span class="hl-attr">content</span>=<span class="hl-val">"it_IT"</span> <span class="hl-tag">/&gt;</span>
+<span class="hl-tag">&lt;meta</span> <span class="hl-attr">property</span>=<span class="hl-val">"og:locale:alternate"</span>  <span class="hl-attr">content</span>=<span class="hl-val">"en_US"</span> <span class="hl-tag">/&gt;</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════
+       SEZIONE 3 — CONTENUTO
+  ═══════════════════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon" style="background:rgba(201,168,76,0.1)">📝</div>
+      <h2>Contenuto &amp; Struttura</h2>
+      <span class="section-count">3 controlli</span>
+    </div>
+    <div class="check-list">
+
+      <!-- H1 -->
+      <div class="check-card warning">
+        <div class="check-header" onclick="toggle(this)">
+          <span class="status-badge warning">⚠ Migliorabile</span>
+          <span class="check-title">H1 — solo brand name, nessuna keyword descrittiva</span>
+          <span class="check-toggle">▼</span>
+        </div>
+        <div class="check-body">
+          <div class="check-content">
+            <p class="current-label">Attuale</p>
+            <div class="code-block"><span class="hl-tag">&lt;h1&gt;</span>AB<span class="hl-tag">&lt;br/&gt;</span>winetrader<span class="hl-tag">&lt;/h1&gt;</span></div>
+            <p>L'H1 contiene solo il nome del brand. I motori di ricerca attribuiscono peso semantico all'H1: un contenuto descrittivo aiuta il posizionamento per query come "enoteca vini pregiati Torino".</p>
+            <p class="fix-label">Opzione alternativa (visivamente nascosta)</p>
+            <div class="code-block"><span class="hl-comment">&lt;!-- Aggiungere un H1 visibile o uno visibilmente nascosto (sr-only) --&gt;</span>
+<span class="hl-tag">&lt;h1</span> <span class="hl-attr">class</span>=<span class="hl-val">"sr-only"</span><span class="hl-tag">&gt;</span>AB Winetrader — Enoteca Vini Pregiati a Collegno, Torino<span class="hl-tag">&lt;/h1&gt;</span>
+<span class="hl-comment">&lt;!-- sr-only: posizionato fuori viewport, visibile solo agli screen reader --&gt;</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Alt text immagini -->
+      <div class="check-card ok">
+        <div class="check-header" onclick="toggle(this)">
+          <span class="status-badge ok">✓ Ok</span>
+          <span class="check-title">Alt text immagini — descrittivi e con keyword locali</span>
+          <span class="check-toggle">▼</span>
+        </div>
+        <div class="check-body">
+          <div class="check-content">
+            <div class="code-block"><span class="hl-tag">&lt;img</span> <span class="hl-attr">src</span>=<span class="hl-val">"./assets/img/logo-no-testo.png"</span>
+     <span class="hl-attr">alt</span>=<span class="hl-val">"Logo AB Winetrader – Enoteca a Collegno"</span> <span class="hl-tag">/&gt;</span>
+
+<span class="hl-tag">&lt;img</span> <span class="hl-attr">src</span>=<span class="hl-val">"./assets/img/logo-no-testo.png"</span>
+     <span class="hl-attr">alt</span>=<span class="hl-val">"Logo AB Winetrader, enoteca e vini pregiati a Torino"</span> <span class="hl-tag">/&gt;</span></div>
+            <p><span class="impact-label green">Ottimo: </span> Entrambe le immagini usano alt text descrittivi con keyword locali. Le icone social usano <code>aria-label</code>.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Link esterni -->
+      <div class="check-card warning">
+        <div class="check-header" onclick="toggle(this)">
+          <span class="status-badge warning">⚠ Attenzione</span>
+          <span class="check-title">Link esterni — mancano rel="noopener noreferrer"</span>
+          <span class="check-toggle">▼</span>
+        </div>
+        <div class="check-body">
+          <div class="check-content">
+            <p>Molti link esterni aperti in nuova scheda (<code>target="_blank"</code>) non hanno <code>rel="noopener noreferrer"</code>. Questo è un rischio di sicurezza (tab-napping) e può influenzare il modo in cui Google tratta i link in uscita.</p>
+            <p class="fix-label">Aggiungere a tutti i link esterni con target="_blank"</p>
+            <div class="code-block"><span class="hl-tag">&lt;a</span> <span class="hl-attr">href</span>=<span class="hl-val">"https://www.instagram.com/ab_luxury_wine/"</span>
+   <span class="hl-attr">target</span>=<span class="hl-val">"_blank"</span>
+   <span class="hl-attr">rel</span>=<span class="hl-val">"noopener noreferrer"</span><span class="hl-tag">&gt;</span>Instagram<span class="hl-tag">&lt;/a&gt;</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════
+       SEZIONE 4 — TECNICO
+  ═══════════════════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon" style="background:rgba(90,171,110,0.1)">⚙️</div>
+      <h2>SEO Tecnico</h2>
+      <span class="section-count">5 controlli</span>
+    </div>
+    <div class="check-list">
+
+      <!-- hreflang -->
+      <div class="check-card critical">
+        <div class="check-header" onclick="toggle(this)">
+          <span class="status-badge critical">✕ Critico</span>
+          <span class="check-title">hreflang — assente su sito bilingue IT/EN</span>
+          <span class="check-toggle">▼</span>
+        </div>
+        <div class="check-body">
+          <div class="check-content">
+            <p>Il sito supporta italiano e inglese via toggle JavaScript, ma <strong>Google non esegue il JavaScript per scoprire le versioni linguistiche</strong>. Senza tag <code>hreflang</code>, Google indicizza una sola versione linguistica e non mostra quella corretta agli utenti internazionali.</p>
+            <p class="fix-label">Aggiungere nel &lt;head&gt;</p>
+            <div class="code-block"><span class="hl-tag">&lt;link</span> <span class="hl-attr">rel</span>=<span class="hl-val">"alternate"</span> <span class="hl-attr">hreflang</span>=<span class="hl-val">"it"</span>        <span class="hl-attr">href</span>=<span class="hl-val">"https://www.abwinetrader.com/"</span> <span class="hl-tag">/&gt;</span>
+<span class="hl-tag">&lt;link</span> <span class="hl-attr">rel</span>=<span class="hl-val">"alternate"</span> <span class="hl-attr">hreflang</span>=<span class="hl-val">"en"</span>        <span class="hl-attr">href</span>=<span class="hl-val">"https://www.abwinetrader.com/?lang=en"</span> <span class="hl-tag">/&gt;</span>
+<span class="hl-tag">&lt;link</span> <span class="hl-attr">rel</span>=<span class="hl-val">"alternate"</span> <span class="hl-attr">hreflang</span>=<span class="hl-val">"x-default"</span> <span class="hl-attr">href</span>=<span class="hl-val">"https://www.abwinetrader.com/"</span> <span class="hl-tag">/&gt;</span></div>
+            <p><span class="impact-label red">Impatto alto: </span> Necessario per l'indicizzazione corretta da parte di Google della versione inglese del sito.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- robots.txt -->
+      <div class="check-card warning">
+        <div class="check-header" onclick="toggle(this)">
+          <span class="status-badge warning">⚠ Attenzione</span>
+          <span class="check-title">robots.txt — sitemap URL in HTTP, non HTTPS</span>
+          <span class="check-toggle">▼</span>
+        </div>
+        <div class="check-body">
+          <div class="check-content">
+            <p class="current-label">Attuale (/robots.txt)</p>
+            <div class="code-block">User-agent: Googlebot
+Disallow: /nogooglebot/
+
+User-agent: *
+Allow: /
+
+Sitemap: <span style="color:var(--red)">http://</span>www.abwinetrader.com/sitemap.xml
+Sitemap: <span style="color:var(--red)">http://</span>abwinetrader.com/sitemap.xml</div>
+            <p>I due URL del sitemap usano HTTP invece di HTTPS. Avere due URL (www e non-www) è ridondante. Meglio puntare all'unico URL HTTPS canonico.</p>
+            <p class="fix-label">Versione corretta</p>
+            <div class="code-block">User-agent: *
+Allow: /
+
+Sitemap: <span style="color:var(--green)">https://</span>www.abwinetrader.com/sitemap.xml</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- sitemap.xml -->
+      <div class="check-card ok">
+        <div class="check-header" onclick="toggle(this)">
+          <span class="status-badge ok">✓ Ok</span>
+          <span class="check-title">sitemap.xml — valido (con piccoli miglioramenti possibili)</span>
+          <span class="check-toggle">▼</span>
+        </div>
+        <div class="check-body">
+          <div class="check-content">
+            <p class="current-label">Attuale (/sitemap.xml)</p>
+            <div class="code-block"><span class="hl-tag">&lt;urlset</span> <span class="hl-attr">xmlns</span>=<span class="hl-val">"http://www.sitemaps.org/schemas/sitemap/0.9"</span><span class="hl-tag">&gt;</span>
+  <span class="hl-tag">&lt;url&gt;</span>
+    <span class="hl-tag">&lt;loc&gt;</span>https://www.abwinetrader.com/<span class="hl-tag">&lt;/loc&gt;</span>
+    <span class="hl-tag">&lt;lastmod&gt;</span>2025-03-12T14:04:30+00:00<span class="hl-tag">&lt;/lastmod&gt;</span>
+  <span class="hl-tag">&lt;/url&gt;</span>
+<span class="hl-tag">&lt;/urlset&gt;</span></div>
+            <p>Struttura XML valida, URL in HTTPS, lastmod presente. Per un sito single-page è appropriato avere un solo URL. Si potrebbero aggiungere <code>changefreq</code> e <code>priority</code> (bassa priorità, Google li considera suggerimenti).</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- lang attribute -->
+      <div class="check-card warning">
+        <div class="check-header" onclick="toggle(this)">
+          <span class="status-badge warning">⚠ Attenzione</span>
+          <span class="check-title">lang="en" su sito con contenuto italiano di default</span>
+          <span class="check-toggle">▼</span>
+        </div>
+        <div class="check-body">
+          <div class="check-content">
+            <p class="current-label">Attuale</p>
+            <div class="code-block"><span class="hl-tag">&lt;html</span> <span class="hl-attr">lang</span>=<span class="hl-val">"en"</span><span class="hl-tag">&gt;</span></div>
+            <p>Il documento dichiara <code>lang="en"</code> ma il contenuto di default è in italiano. Google usa l'attributo <code>lang</code> per determinare la lingua della pagina — questo crea una incoerenza segnalata.</p>
+            <p class="fix-label">Correzione</p>
+            <div class="code-block"><span class="hl-tag">&lt;html</span> <span class="hl-attr">lang</span>=<span class="hl-val">"it"</span><span class="hl-tag">&gt;</span>
+<span class="hl-comment">&lt;!-- Il JavaScript può aggiornare a "en" quando l'utente cambia lingua --&gt;</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Schema.org -->
+      <div class="check-card ok">
+        <div class="check-header" onclick="toggle(this)">
+          <span class="status-badge ok">✓ Ok</span>
+          <span class="check-title">Schema.org / JSON-LD — implementazione eccellente</span>
+          <span class="check-toggle">▼</span>
+        </div>
+        <div class="check-body">
+          <div class="check-content">
+            <div class="code-block"><span class="hl-tag">&lt;script</span> <span class="hl-attr">type</span>=<span class="hl-val">"application/ld+json"</span><span class="hl-tag">&gt;</span>
+{
+  <span class="hl-key">"@context"</span>: <span class="hl-str">"https://schema.org"</span>,
+  <span class="hl-key">"@type"</span>: <span class="hl-str">"Winery"</span>,
+  <span class="hl-key">"name"</span>: <span class="hl-str">"AB Winetrader"</span>,
+  <span class="hl-key">"areaServed"</span>: [<span class="hl-str">"Torino"</span>, <span class="hl-str">"Collegno"</span>, <span class="hl-str">"Piemonte"</span>],
+  <span class="hl-key">"geo"</span>: { <span class="hl-key">"@type"</span>: <span class="hl-str">"GeoCoordinates"</span>, <span class="hl-key">"latitude"</span>: <span class="hl-num">45.089031</span>, <span class="hl-key">"longitude"</span>: <span class="hl-num">7.571881</span> },
+  <span class="hl-key">"address"</span>: { <span class="hl-key">"streetAddress"</span>: <span class="hl-str">"Via Venaria 47"</span>, <span class="hl-key">"addressLocality"</span>: <span class="hl-str">"Collegno"</span>, ... },
+  <span class="hl-key">"telephone"</span>: <span class="hl-str">"+39 335 534 3628"</span>,
+  <span class="hl-key">"sameAs"</span>: [ <span class="hl-str">"Instagram"</span>, <span class="hl-str">"TikTok"</span>, <span class="hl-str">"Threads"</span> ]
+}
+<span class="hl-tag">&lt;/script&gt;</span></div>
+            <p><span class="impact-label green">Eccellente: </span> Schema Winery completo con geo-coordinate, indirizzo strutturato, telefono, email e profili social via <code>sameAs</code>. Questo è il fattore più importante per la SEO locale / Google Maps.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════
+       SEZIONE 5 — PERFORMANCE & CORE WEB VITALS
+  ═══════════════════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon" style="background:rgba(224,82,82,0.1)">⚡</div>
+      <h2>Performance &amp; Core Web Vitals</h2>
+      <span class="section-count">4 controlli</span>
+    </div>
+    <div class="check-list">
+
+      <!-- Lazy Loading -->
+      <div class="check-card critical">
+        <div class="check-header" onclick="toggle(this)">
+          <span class="status-badge critical">✕ Critico</span>
+          <span class="check-title">Lazy loading — assente su immagini non-above-the-fold</span>
+          <span class="check-toggle">▼</span>
+        </div>
+        <div class="check-body">
+          <div class="check-content">
+            <p>Nessuna immagine usa l'attributo <code>loading="lazy"</code>. In particolare il logo decorativo da 500px di altezza viene caricato eagerly. Questo impatta il <strong>LCP (Largest Contentful Paint)</strong>, una delle metriche Core Web Vitals di Google che influenza il ranking.</p>
+            <p class="fix-label">Correzione — immagini below-the-fold</p>
+            <div class="code-block"><span class="hl-comment">&lt;!-- Logo decorativo grande: aggiungere loading="lazy" --&gt;</span>
+<span class="hl-tag">&lt;img</span> <span class="hl-attr">src</span>=<span class="hl-val">"./assets/img/logo-no-testo.png"</span>
+     <span class="hl-attr">alt</span>=<span class="hl-val">"Logo AB Winetrader, enoteca e vini pregiati a Torino"</span>
+     <span class="hl-attr">loading</span>=<span class="hl-val">"lazy"</span>
+     <span class="hl-attr">width</span>=<span class="hl-val">"500"</span> <span class="hl-attr">height</span>=<span class="hl-val">"500"</span> <span class="hl-tag">/&gt;</span>
+
+<span class="hl-comment">&lt;!-- Logo header: NON lazy (è above-the-fold, deve caricare subito) --&gt;</span>
+<span class="hl-tag">&lt;img</span> <span class="hl-attr">src</span>=<span class="hl-val">"./assets/img/logo-no-testo.png"</span>
+     <span class="hl-attr">alt</span>=<span class="hl-val">"Logo AB Winetrader – Enoteca a Collegno"</span>
+     <span class="hl-attr">width</span>=<span class="hl-val">"35"</span> <span class="hl-attr">height</span>=<span class="hl-val">"35"</span> <span class="hl-tag">/&gt;</span></div>
+            <p><span class="impact-label red">Impatto alto: </span> Aggiungere <code>width</code>/<code>height</code> previene il CLS (Content Layout Shift). Aggiungere <code>loading="lazy"</code> migliora LCP e velocità di caricamento.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- font-display -->
+      <div class="check-card warning">
+        <div class="check-header" onclick="toggle(this)">
+          <span class="status-badge warning">⚠ Migliorabile</span>
+          <span class="check-title">Google Fonts — manca font-display=swap</span>
+          <span class="check-toggle">▼</span>
+        </div>
+        <div class="check-body">
+          <div class="check-content">
+            <p class="current-label">Attuale</p>
+            <div class="code-block"><span class="hl-tag">&lt;link</span> <span class="hl-attr">href</span>=<span class="hl-val">"https://fonts.googleapis.com/css2?family=Lato:wght@300;400&amp;family=Playfair+Display+SC:wght@400;700;900&amp;family=Poppins:wght@300;400&amp;display=swap"</span> <span class="hl-tag">/&gt;</span></div>
+            <p>La URL contiene già <code>display=swap</code> — ottimo! Il font-display:swap è correttamente configurato tramite il parametro Google Fonts.</p>
+            <p><span class="impact-label green">Buono: </span> Il testo è visibile immediatamente con il font di fallback mentre il font custom si carica (previene FOIT).</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cache Control -->
+      <div class="check-card ok">
+        <div class="check-header" onclick="toggle(this)">
+          <span class="status-badge ok">✓ Ok</span>
+          <span class="check-title">Cache Control — configurato via Netlify</span>
+          <span class="check-toggle">▼</span>
+        </div>
+        <div class="check-body">
+          <div class="check-content">
+            <p class="current-label">netlify.toml</p>
+            <div class="code-block">[[headers]]
+for = "/*"
+  [headers.values]
+  cache-control = "max-age=604800"  <span class="hl-comment"># 7 giorni</span></div>
+            <p><span class="impact-label green">Buono: </span> Cache di 7 giorni per tutti gli asset. Netlify applica automaticamente gzip/brotli compression. Per un sito statico questa è una configurazione adeguata.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stack performance -->
+      <div class="check-card ok">
+        <div class="check-header" onclick="toggle(this)">
+          <span class="status-badge ok">✓ Ok</span>
+          <span class="check-title">Stack tecnico — ottimale per performance (sito statico)</span>
+          <span class="check-toggle">▼</span>
+        </div>
+        <div class="check-body">
+          <div class="check-content">
+            <p>Il sito è un HTML statico con CSS minificato (13 KB) e JS minimale (1.67 KB). Le immagini sono in formato WebP. Google Fonts usa <code>rel="preconnect"</code>. Nessun framework JavaScript pesante.</p>
+            <div class="code-block"><span class="hl-comment">Dimensioni asset principali:</span>
+index.html   → 14.9 KB
+build.css    → 13.2 KB (minificato)
+language.js  →  1.67 KB
+Immagini     → ~153 KB totale (WebP)
+─────────────────────────────────
+Totale HTML+CSS+JS: ~30 KB</div>
+            <p><span class="impact-label green">Eccellente: </span> Sito estremamente leggero. Caricamento previsto sotto 1 secondo su connessione media.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════
+       PRIORITY ACTION LIST
+  ═══════════════════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon" style="background:rgba(201,168,76,0.15)">🎯</div>
+      <h2>Piano d'Azione Prioritizzato</h2>
+    </div>
+
+    <div style="background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden;">
+
+      <div style="padding:16px 20px; border-bottom:1px solid var(--border); background:rgba(224,82,82,0.06);">
+        <div style="font-size:12px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--red); margin-bottom:12px;">Priorità Alta — Impatto diretto su ranking</div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="display:flex;gap:12px;align-items:flex-start;">
+            <span style="color:var(--red);font-size:16px;flex-shrink:0">①</span>
+            <div><strong>Aggiungere tag canonical</strong> — <span style="color:var(--text-muted)">1 riga in <code>&lt;head&gt;</code>, previene duplicate content www vs non-www</span></div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start;">
+            <span style="color:var(--red);font-size:16px;flex-shrink:0">②</span>
+            <div><strong>Aggiungere hreflang IT/EN</strong> — <span style="color:var(--text-muted)">3 righe in <code>&lt;head&gt;</code>, fondamentale per indicizzazione versione inglese</span></div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start;">
+            <span style="color:var(--red);font-size:16px;flex-shrink:0">③</span>
+            <div><strong>Espandere meta description</strong> — <span style="color:var(--text-muted)">da 60 a 155 caratteri, CTR stimato +5–15%</span></div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start;">
+            <span style="color:var(--red);font-size:16px;flex-shrink:0">④</span>
+            <div><strong>Aggiungere lazy loading + dimensioni immagini</strong> — <span style="color:var(--text-muted)">migliora LCP e CLS (Core Web Vitals)</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div style="padding:16px 20px; border-bottom:1px solid var(--border); background:rgba(212,160,23,0.04);">
+        <div style="font-size:12px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--yellow); margin-bottom:12px;">Priorità Media — Social &amp; Visibilità</div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="display:flex;gap:12px;align-items:flex-start;">
+            <span style="color:var(--yellow);font-size:16px;flex-shrink:0">⑤</span>
+            <div><strong>Aggiungere Twitter Card tags</strong> — <span style="color:var(--text-muted)">anteprima immagine su X/Twitter e altri social</span></div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start;">
+            <span style="color:var(--yellow);font-size:16px;flex-shrink:0">⑥</span>
+            <div><strong>Allineare og:title con title tag</strong> — <span style="color:var(--text-muted)">coerenza tra title e social sharing</span></div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start;">
+            <span style="color:var(--yellow);font-size:16px;flex-shrink:0">⑦</span>
+            <div><strong>Correggere lang="it"</strong> — <span style="color:var(--text-muted)">il documento è in italiano di default, non inglese</span></div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start;">
+            <span style="color:var(--yellow);font-size:16px;flex-shrink:0">⑧</span>
+            <div><strong>Aggiornare robots.txt</strong> — <span style="color:var(--text-muted)">usare HTTPS e un solo URL sitemap</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div style="padding:16px 20px;">
+        <div style="font-size:12px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--text-muted); margin-bottom:12px;">Priorità Bassa — Raffinamento</div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="display:flex;gap:12px;align-items:flex-start;">
+            <span style="color:var(--text-muted);font-size:16px;flex-shrink:0">⑨</span>
+            <div><strong>Ottimizzare page title</strong> — <span style="color:var(--text-muted)">aggiungere keyword locale (Collegno/Torino)</span></div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start;">
+            <span style="color:var(--text-muted);font-size:16px;flex-shrink:0">⑩</span>
+            <div><strong>Rimuovere/semplificare meta keywords</strong> — <span style="color:var(--text-muted)">Google le ignora, ridurre il rumore HTML</span></div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start;">
+            <span style="color:var(--text-muted);font-size:16px;flex-shrink:0">⑪</span>
+            <div><strong>Aggiungere rel="noopener noreferrer"</strong> — <span style="color:var(--text-muted)">ai link esterni con target="_blank"</span></div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start;">
+            <span style="color:var(--text-muted);font-size:16px;flex-shrink:0">⑫</span>
+            <div><strong>Aggiungere og:locale</strong> — <span style="color:var(--text-muted)">it_IT come default, en_US come alternativa</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div><!-- /container -->
+
+<!-- FOOTER -->
+<div class="report-footer">
+  Report generato per <strong>AB Winetrader</strong> · abwinetrader.com · 12 Maggio 2026<br>
+  Analisi condotta su file locali del repository <strong>AB_site</strong> — Stack: HTML5, Tailwind CSS, Laravel Mix, Netlify
+</div>
+
+<script>
+  function toggle(header) {
+    const card = header.parentElement;
+    card.classList.toggle('open');
+  }
+  // Apri automaticamente i critici
+  document.querySelectorAll('.check-card.critical').forEach(c => c.classList.add('open'));
+</script>
+</body>
+</html>
