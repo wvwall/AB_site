@@ -15,14 +15,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     enText.forEach((el) => {
       if (el.tagName === "P") {
-        el.classList.toggle("invisible", !isEnglish);
+        el.style.visibility = isEnglish ? "" : "hidden";
       } else {
         el.classList.toggle("hidden", !isEnglish);
       }
     });
     itText.forEach((el) => {
       if (el.tagName === "P") {
-        el.classList.toggle("invisible", isEnglish);
+        el.style.visibility = isEnglish ? "hidden" : "";
         if (isEnglish) el.classList.remove("animate__animated");
       } else {
         el.classList.toggle("hidden", isEnglish);
