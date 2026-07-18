@@ -4,6 +4,145 @@
 
 body {
   background-color: black;
+  position: relative;
+}
+
+::selection {
+  background-color: rgba(87, 14, 39, 0.6);
+  color: #fff;
+}
+
+:focus-visible {
+  outline: 2px solid rgba(0, 158, 145, 0.85);
+  outline-offset: 3px;
+  border-radius: 1px;
+}
+
+html {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.25) #000;
+}
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #000;
+}
+::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  border: 2px solid #000;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Forward the keyboard focus ring from the visually-hidden language checkbox
+   to the visible switch track, since the input itself is clipped via sr-only */
+#toggle:focus-visible ~ label span:first-child {
+  outline: 2px solid rgba(0, 158, 145, 0.85);
+  outline-offset: 3px;
+}
+
+/* Subtle film-grain texture over the whole page, for depth on flat black */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.04;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+
+/* Soft radial spotlight behind the hero title, using the existing accent hues */
+.hero-glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 60% 45% at 50% 30%, rgba(87, 14, 39, 0.35), transparent 70%),
+    radial-gradient(ellipse 50% 30% at 50% 95%, rgba(0, 158, 145, 0.07), transparent 70%);
+}
+
+/* Diagonal light sweep on CTA hover */
+.btn-shine {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.btn-shine::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    115deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.18) 50%,
+    transparent 60%
+  );
+  transform: translateX(-120%);
+  transition: transform 0.6s ease;
+}
+.btn-shine:hover::before {
+  transform: translateX(120%);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes reveal-down {
+    from {
+      opacity: 0;
+      transform: translateY(-28px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes reveal-left {
+    from {
+      opacity: 0;
+      transform: translateX(-28px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  @keyframes reveal-right {
+    from {
+      opacity: 0;
+      transform: translateX(28px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  @keyframes reveal-pulse {
+    from {
+      opacity: 0;
+      transform: scale(0.96);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .reveal-down {
+    animation: reveal-down 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  .reveal-left {
+    animation: reveal-left 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.35s both;
+  }
+  .reveal-right {
+    animation: reveal-right 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.5s both;
+  }
+  .reveal-pulse {
+    animation: reveal-pulse 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+  }
 }
 
 #toggle ~ label span.toggle-dot {

@@ -16,7 +16,8 @@ document.addEventListener("DOMContentLoaded", () => {
     enText.forEach((el) => el.classList.toggle("hidden", !isEnglish));
     itText.forEach((el) => {
       el.classList.toggle("hidden", isEnglish);
-      if (isEnglish) el.classList.remove("animate__animated");
+      if (isEnglish)
+        el.classList.remove("reveal-down", "reveal-left", "reveal-pulse");
     });
   };
 
