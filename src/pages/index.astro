@@ -1,3 +1,11 @@
+---
+import "@fontsource/lato/400.css";
+import "@fontsource/lato/700.css";
+import "@fontsource/playfair-display-sc/700.css";
+import "@fontsource/playfair-display-sc/900.css";
+import "../styles/global.css";
+---
+
 <!doctype html>
 <html lang="it">
   <head>
@@ -62,16 +70,7 @@
       rel="alternate"
       hreflang="x-default"
       href="https://www.abwinetrader.com/" />
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Playfair+Display+SC:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Poppins:wght@100&display=swap"
-      rel="stylesheet" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
-    <link rel="stylesheet" href="./assets/css/build.css" />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
@@ -88,7 +87,7 @@
       <nav class="flex items-center justify-between px-4 py-4 md:px-12">
         <div class="flex items-center">
           <img
-            src="./assets/img/logo-no-testo.png"
+            src="/assets/img/logo-no-testo.png"
             alt="Logo AB Winetrader – Enoteca a Collegno"
             class="h-[35px] w-[12px] mr-2"
             width="278"
@@ -123,7 +122,12 @@
             >
           </a>
           <div class="flex items-center justify-end space-x-2">
-            <input type="checkbox" name="toggle" id="toggle" class="hidden" />
+            <input
+              type="checkbox"
+              name="toggle"
+              id="toggle"
+              aria-label="Cambia lingua / Switch language"
+              class="sr-only" />
             <label for="toggle">
               <span
                 class="flex items-center h-8 p-1 cursor-pointer w-11 bg-zinc-800 border border-[rgba(255,255,255,0.08)]">
@@ -137,22 +141,23 @@
     </header>
 
     <main
-      class="relative flex flex-col items-center h-screen bg-blackMain md:h-screen">
+      class="relative flex flex-col items-center min-h-screen overflow-hidden bg-blackMain md:min-h-screen">
+      <div class="hero-glow" aria-hidden="true"></div>
       <!-- <img
-        src="./assets/img/logo-no-testo.png"
+        src="/assets/img/logo-no-testo.png"
         alt="Logo AB Winetrader, enoteca e vini pregiati a Torino"
         class="opacity-60 absolute left-[5%] xxl:left-[17%] h-[500px] top-[65px] hidden xl:block animate__animated animate__pulse"
         width="278" height="782" loading="lazy" /> -->
       <div
         class="flex flex-col items-center justify-center h-[80vh] gap-8 px-4 md:px-8">
         <h1
-          class="animate__animated animate__fadeInDown playfair-display-sc-black text-white text-[45px] sm:text-[75px] lg:text-[150px] leading-[0.8] text-center tracking-[0.03em] drop-shadow-[0_4px_30px_rgba(87,14,39,0.25)]">
+          class="reveal-down playfair-display-sc-black text-white text-[45px] sm:text-[75px] lg:text-[150px] leading-[0.8] text-center tracking-[0.03em] drop-shadow-[0_4px_30px_rgba(87,14,39,0.25)]">
           <span class="text-white playfair-display-sc-black">AB</span>
           <br />
           Winetrader
         </h1>
         <p
-          class="it-text animate__animated animate__pulse md:w-[600px] text-gray-300 text-center text-sm sm:text-md text-pretty">
+          class="it-text reveal-pulse md:w-[600px] text-gray-300 text-center text-sm sm:text-md text-pretty">
           Commercializziamo bottiglie di pregio ed etichette ricercate. Mettiamo
           a disposizione del cliente grande esperienza nel settore unita alla
           forte passione nel mondo del vino.
@@ -167,11 +172,11 @@
         <div
           class="flex flex-col items-center justify-center gap-6 md:flex-row">
           <a
-            class="it-text animate__animated animate__fadeInLeft transition-all duration-[400ms] ease-in-out hover:shadow-[0_14px_30px_-8px_rgba(87,14,39,0.4)]"
+            class="it-text reveal-left transition-all duration-[400ms] ease-in-out hover:shadow-[0_14px_30px_-8px_rgba(87,14,39,0.4)]"
             href="https://drive.google.com/uc?export=download&id=1hZYQNzIxBpTzQoeFT6Vs8_JgjaG7_RFA"
             download="WineList.pdf">
             <span
-              class="transition-all uppercase duration-[400ms] ease-in-out font-semibold leading-[62px] md:leading-[46px] inline-block text-center w-[320px] md:w-[240px] bg-[#570E27] h-16 md:h-[50px] text-gray-300 cursor-pointer border border-[rgba(255,255,255,0.1)] hover:bg-[#7a1835] hover:text-black hover:border-[rgba(255,255,255,0.2)]">
+              class="btn-shine transition-all uppercase duration-[400ms] ease-in-out font-semibold leading-[62px] md:leading-[46px] inline-block text-center w-[320px] md:w-[240px] bg-[#570E27] h-16 md:h-[50px] text-gray-300 cursor-pointer border border-[rgba(255,255,255,0.1)] hover:bg-[#7a1835] hover:text-black hover:border-[rgba(255,255,255,0.2)]">
               Lista dei Vini
             </span>
           </a>
@@ -180,18 +185,18 @@
             download="WineList.pdf"
             class="hidden en-text transition-all duration-[400ms] ease-in-out hover:shadow-[0_14px_30px_-8px_rgba(87,14,39,0.4)]">
             <span
-              class="transition-all uppercase duration-[400ms] ease-in-out font-semibold text-center leading-[62px] md:leading-[46px] inline-block w-[320px] md:w-[240px] bg-[#570E27] h-16 md:h-[50px] text-gray-300 cursor-pointer border border-[rgba(255,255,255,0.1)] hover:bg-[#7a1835] hover:text-black hover:border-[rgba(255,255,255,0.2)]">
+              class="btn-shine transition-all uppercase duration-[400ms] ease-in-out font-semibold text-center leading-[62px] md:leading-[46px] inline-block w-[320px] md:w-[240px] bg-[#570E27] h-16 md:h-[50px] text-gray-300 cursor-pointer border border-[rgba(255,255,255,0.1)] hover:bg-[#7a1835] hover:text-black hover:border-[rgba(255,255,255,0.2)]">
               Wine List
             </span>
           </a>
           <a
-            class="animate__animated animate__fadeInRight font-semibold transition-all duration-[400ms] ease-in-out hover:-translate-y-1.5 hover:scale-[1.03] hover:shadow-[0_14px_30px_-8px_rgba(0,158,145,0.4)]"
+            class="reveal-right font-semibold transition-all duration-[400ms] ease-in-out hover:-translate-y-1.5 hover:scale-[1.03] hover:shadow-[0_14px_30px_-8px_rgba(0,158,145,0.4)]"
             title="Whatsapp"
             target="_blank"
             rel="noopener noreferrer"
             href="https://wa.me/393355343628">
             <span
-              class="transition-all uppercase duration-[400ms] ease-in-out leading-[62px] md:leading-[46px] inline-block text-center w-[320px] md:w-[240px] bg-blackFooter h-16 md:h-[50px] text-gray-300 cursor-pointer border border-[rgba(255,255,255,0.1)] hover:bg-[#009E91] hover:text-black hover:border-[#009E91]">
+              class="btn-shine transition-all uppercase duration-[400ms] ease-in-out leading-[62px] md:leading-[46px] inline-block text-center w-[320px] md:w-[240px] bg-blackFooter h-16 md:h-[50px] text-gray-300 cursor-pointer border border-[rgba(255,255,255,0.1)] hover:bg-[#009E91] hover:text-black hover:border-[#009E91]">
               Whatsapp
             </span>
           </a>
@@ -303,6 +308,6 @@
       </div>
     </footer>
 
-    <script src="/assets/js/language-toggle.js"></script>
+    <script is:inline src="/assets/js/language-toggle.js"></script>
   </body>
 </html>
