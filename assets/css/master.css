@@ -512,6 +512,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .h-\[42px\] {
   height: 42px;
 }
+.h-\[80vh\] {
+  height: 80vh;
+}
 .max-h-0 {
   max-height: 0px;
 }
@@ -532,6 +535,12 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .w-\[42px\] {
   width: 42px;
+}
+.w-\[80vh\] {
+  width: 80vh;
+}
+.w-screen {
+  width: 100vw;
 }
 .max-w-5xl {
   max-width: 64rem;
@@ -991,6 +1000,10 @@ body {
 
   .lg\:text-\[95px\] {
     font-size: 95px;
+  }
+
+  .lg\:text-\[150px\] {
+    font-size: 150px;
   }
 }
 
