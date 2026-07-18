@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: black;
+}
+
+#toggle ~ label span.toggle-dot {
+  background-image: url("/assets/img/it.webp");
+  background-size: contain;
+}
+#toggle:checked ~ label span.toggle-dot {
+  @apply translate-x-3;
+  background-image: url("/assets/img/en.webp");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Lato", serif;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+
+  .playfair-display-sc-black {
+    font-family: "Playfair Display SC", serif;
+    font-weight: 900;
+    font-style: normal;
+  }
+  .playfair-display-sc-bold {
+    font-family: "Playfair Display SC", serif;
+    font-weight: 700;
+    font-style: normal;
+  }
+  .playfair-display-sc-regular {
+    font-family: "Playfair Display SC", serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+}

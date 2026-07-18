@@ -1,3 +1,11 @@
+---
+import "@fontsource/lato/400.css";
+import "@fontsource/lato/700.css";
+import "@fontsource/playfair-display-sc/700.css";
+import "@fontsource/playfair-display-sc/900.css";
+import "../styles/global.css";
+---
+
 <!doctype html>
 <html lang="it">
   <head>
@@ -62,16 +70,10 @@
       rel="alternate"
       hreflang="x-default"
       href="https://www.abwinetrader.com/" />
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Playfair+Display+SC:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Poppins:wght@100&display=swap"
-      rel="stylesheet" />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
-    <link rel="stylesheet" href="./assets/css/build.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
@@ -88,7 +90,7 @@
       <nav class="flex items-center justify-between px-4 py-4 md:px-12">
         <div class="flex items-center">
           <img
-            src="./assets/img/logo-no-testo.png"
+            src="/assets/img/logo-no-testo.png"
             alt="Logo AB Winetrader – Enoteca a Collegno"
             class="h-[35px] w-[12px] mr-2"
             width="278"
@@ -139,7 +141,7 @@
     <main
       class="relative flex flex-col items-center h-screen bg-blackMain md:h-screen">
       <!-- <img
-        src="./assets/img/logo-no-testo.png"
+        src="/assets/img/logo-no-testo.png"
         alt="Logo AB Winetrader, enoteca e vini pregiati a Torino"
         class="opacity-60 absolute left-[5%] xxl:left-[17%] h-[500px] top-[65px] hidden xl:block animate__animated animate__pulse"
         width="278" height="782" loading="lazy" /> -->
@@ -303,6 +305,6 @@
       </div>
     </footer>
 
-    <script src="/assets/js/language-toggle.js"></script>
+    <script is:inline src="/assets/js/language-toggle.js"></script>
   </body>
 </html>

@@ -1,4 +1,4 @@
 node_modules
-src 
-/tailwind.config.js
 /seo-analysis-report.html
+dist
+.astro
