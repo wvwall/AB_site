@@ -1,0 +1,96 @@
+---
+import SocialIcon from "./SocialIcon.astro";
+---
+
+<footer
+  id="contatti"
+  class="border border-[rgba(255,255,255,0.08)] m-4 shadow-[0_8px_32px_rgba(0,0,0,0.3)] overflow-hidden">
+  <div class="flex flex-col items-center bg-blackFooter">
+    <h2
+      class="my-6 text-2xl tracking-wider text-gray-300 it-text playfair-display-sc-bold md:my-8">
+      Contatti
+    </h2>
+    <h2
+      class="hidden my-6 text-2xl tracking-wider text-gray-300 en-text playfair-display-sc-bold md:my-8">
+      Contacts
+    </h2>
+    <hr
+      class="h-px border-0 w-[90%] bg-gradient-to-r from-transparent via-zinc-700 to-transparent" />
+    <div
+      class="flex flex-col md:flex-row my-5 md:my-8 md:mr-[25px] justify-center items-center gap-6 md:gap-12 text-sm">
+      <a
+        href="mailto:info@abwinetrader.com"
+        class="relative text-gray-300 hover:text-white transition-colors duration-300 after:content-[''] after:absolute after:bottom-[-2px] after:left-0 after:w-0 after:h-px after:bg-white after:transition-[width] after:duration-300 hover:after:w-full"
+        >info@abwinetrader.com</a
+      >
+
+      <div class="flex gap-3">
+        <SocialIcon
+          ariaLabel="Instagram"
+          href="https://www.instagram.com/ab_luxury_wine/"
+          iconClass="fa-brands fa-instagram"
+        />
+
+        <!-- TikTok Icon
+        <a
+          aria-label="TikTok"
+          href="https://www.tiktok.com/@ab_luxury_wine?_t=ZN-8uNMCOOkPAs&_r=1"
+          target="_blank"
+          class="inline-flex items-center justify-center w-[42px] h-[42px] rounded-full border border-[rgba(255,255,255,0.08)] text-gray-300 hover:text-white hover:bg-[rgba(255,255,255,0.07)] hover:-translate-y-[3px] hover:border-[rgba(255,255,255,0.2)] transition-all duration-300">
+          <i class="text-2xl fa-brands fa-tiktok"></i>
+        </a> -->
+
+        <SocialIcon
+          ariaLabel="Threads"
+          href="https://www.threads.net/@ab_luxury_wine?igshid=NTc4MTIwNjQ2YQ=="
+          iconClass="fa-brands fa-threads"
+        />
+      </div>
+
+      <span
+        class="relative text-gray-300 hover:text-white transition-colors duration-300 after:content-[''] after:absolute after:bottom-[-2px] after:left-0 after:w-0 after:h-px after:bg-white after:transition-[width] after:duration-300 hover:after:w-full"
+        >+39 335 534 3628</span
+      >
+    </div>
+  </div>
+
+  <div class="px-4 pt-6 pb-4 text-center bg-blackFooter">
+    <small class="text-[10px] text-gray-300 it-text">
+      © <span id="yearIT"></span> AB Winetrader - Tutti i diritti riservati.
+    </small>
+    <small class="hidden text-[10px] text-gray-300 en-text">
+      © <span id="yearEN"></span> AB Winetrader - All rights reserved.
+    </small>
+  </div>
+  <div class="px-6 pt-2 pb-4 text-center bg-blackFooter">
+    <button
+      id="cookieToggle"
+      class="flex items-center justify-center gap-1 mx-auto cursor-pointer bg-transparent border-0 text-gray-400 hover:text-gray-300 text-[10px] leading-relaxed p-1 transition-colors duration-300"
+      aria-expanded="false"
+      aria-controls="cookieText">
+      <i class="fa-solid fa-cookie-bite"></i>
+      <span>Cookie Policy</span>
+      <i
+        id="cookieChevron"
+        class="transition-transform duration-300 ease-in-out fa-solid fa-chevron-down"
+        aria-hidden="true"></i>
+    </button>
+    <div
+      id="cookieText"
+      class="overflow-hidden transition-all duration-300 ease-in-out max-h-0">
+      <p
+        class="text-[10px] leading-relaxed text-gray-400 it-text max-w-5xl mx-auto">
+        Questo sito utilizza esclusivamente cookie tecnici necessari al
+        funzionamento e non raccoglie dati personali degli utenti. <br />
+        Non vengono utilizzati cookie di profilazione né strumenti di
+        tracciamento di terze parti.
+      </p>
+      <p
+        class="hidden text-[10px] leading-relaxed text-gray-400 en-text max-w-5xl mx-auto">
+        This site uses only technical cookies necessary for its operation
+        and does not collect users' personal data. No profiling cookies or
+        third-party tracking tools are used.
+      </p>
+    </div>
+  </div>
+</footer>
