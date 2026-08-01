@@ -143,21 +143,6 @@ body::after {
   .reveal-pulse {
     animation: reveal-pulse 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
   }
-
-  /* Typewriter-style reveal for the hero tagline: clip-path wipes the
-     already-wrapped text left to right in discrete steps, mimicking a
-     typewriter cadence without reflowing multi-line text. */
-  @keyframes typewriter-reveal {
-    from {
-      clip-path: inset(0 100% 0 0);
-    }
-    to {
-      clip-path: inset(0 0 0 0);
-    }
-  }
-  .typewriter {
-    animation: typewriter-reveal 2.2s steps(40, end) 0.3s both;
-  }
 }
 
 #toggle ~ label span.toggle-dot {
