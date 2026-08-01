@@ -1,0 +1,79 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "AB Winetrader | Enoteca Vini Pregiati a Collegno, Torino",
+  description = "AB Winetrader — enoteca a Collegno (Torino) specializzata in vini pregiati, champagne e etichette ricercate di Francia e Borgogna. Contattaci o scarica la nostra lista vini.",
+} = Astro.props;
+---
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Winery",
+    "areaServed": ["Torino", "Collegno", "Piemonte"],
+    "name": "AB Winetrader",
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 45.089031,
+      "longitude": 7.571881
+    },
+    "image": "https://www.abwinetrader.com/assets/img/logo.webp",
+    "url": "https://www.abwinetrader.com",
+    "email": "info@abwinetrader.com",
+    "telephone": "+39 335 534 3628",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Via Venaria 47",
+      "addressLocality": "Collegno",
+      "addressRegion": "TO",
+      "postalCode": "10093",
+      "addressCountry": "IT"
+    },
+    "sameAs": [
+      "https://www.instagram.com/ab_luxury_wine/",
+      "https://www.tiktok.com/@ab_luxury_wine",
+      "https://www.threads.net/@ab_luxury_wine"
+    ],
+    "description": "Enoteca a Collegno (Torino) specializzata in vini pregiati, champagne e etichette ricercate. Scopri la selezione esclusiva di AB Winetrader."
+  }
+</script>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta
+  name="keywords"
+  content="enoteca Collegno, vini pregiati Torino, champagne, Borgogna, AB Winetrader" />
+<meta name="description" content={description} />
+<meta property="og:title" content="AB Winetrader | Wine Merchant" />
+<meta
+  property="og:image"
+  content="https://www.abwinetrader.com/assets/img/anteprima.webp" />
+<meta property="og:type" content="website" />
+<meta
+  property="og:description"
+  content="Commercializziamo bottiglie di pregio ed etichette ricercate." />
+<meta property="og:url" content="https://www.abwinetrader.com" />
+<meta property="og:locale" content="it_IT" />
+<meta property="og:locale:alternate" content="en_US" />
+<link rel="canonical" href="https://www.abwinetrader.com/" />
+<link rel="alternate" hreflang="it" href="https://www.abwinetrader.com/" />
+<link
+  rel="alternate"
+  hreflang="en"
+  href="https://www.abwinetrader.com/?lang=en" />
+<link
+  rel="alternate"
+  hreflang="x-default"
+  href="https://www.abwinetrader.com/" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+  integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer" />
+<title>{title}</title>

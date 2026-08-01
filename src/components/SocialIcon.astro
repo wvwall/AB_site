@@ -1,0 +1,18 @@
+---
+interface Props {
+  href: string;
+  ariaLabel: string;
+  iconClass: string;
+}
+
+const { href, ariaLabel, iconClass } = Astro.props;
+---
+
+<a
+  aria-label={ariaLabel}
+  href={href}
+  target="_blank"
+  rel="noopener noreferrer"
+  class="inline-flex items-center justify-center w-[42px] h-[42px] border border-[rgba(255,255,255,0.08)] text-gray-300 hover:text-white hover:bg-[rgba(255,255,255,0.07)] hover:-translate-y-[3px] hover:border-[rgba(255,255,255,0.2)] transition-all duration-300">
+  <i class={`text-2xl ${iconClass}`}></i>
+</a>
