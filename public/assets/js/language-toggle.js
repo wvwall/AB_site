@@ -8,9 +8,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Toggle language and navigate
   const toggleLang = () => {
-    const newLang = checkbox.checked ? "en" : "it";
-    const newPath = currentPath.replace(/^\/(it|en)\//, `/${newLang}/`);
-    window.location.href = newPath;
+    if (checkbox.checked) {
+      // Switch to English (/en/)
+      window.location.href = "/en/";
+    } else {
+      // Switch to Italian (/)
+      window.location.href = "/";
+    }
   };
 
   checkbox.addEventListener("click", toggleLang);

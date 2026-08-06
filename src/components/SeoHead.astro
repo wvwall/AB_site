@@ -17,7 +17,9 @@ const schemaDescription = t(lang, "seo.schemaDescription");
 const locale = lang === "it" ? "it_IT" : "en_US";
 const alternateLocale = lang === "it" ? "en_US" : "it_IT";
 const currentUrl = Astro.url.href;
-const alternateUrl = currentUrl.replace(`/${lang}/`, `/${lang === "it" ? "en" : "it"}/`);
+
+// Calcola l'URL alternato: "/" per IT, "/en/" per EN
+const alternateUrl = lang === "it" ? "https://www.abwinetrader.com/en/" : "https://www.abwinetrader.com/";
 ---
 
 <script type="application/ld+json">
@@ -64,9 +66,9 @@ const alternateUrl = currentUrl.replace(`/${lang}/`, `/${lang === "it" ? "en" : 
 <meta property="og:locale" content={locale} />
 <meta property="og:locale:alternate" content={alternateLocale} />
 <link rel="canonical" href={currentUrl} />
-<link rel="alternate" hreflang="it" href={currentUrl.replace(`/${lang}/`, "/it/")} />
-<link rel="alternate" hreflang="en" href={currentUrl.replace(`/${lang}/`, "/en/")} />
-<link rel="alternate" hreflang="x-default" href="https://www.abwinetrader.com/it/" />
+<link rel="alternate" hreflang="it" href="https://www.abwinetrader.com/" />
+<link rel="alternate" hreflang="en" href="https://www.abwinetrader.com/en/" />
+<link rel="alternate" hreflang="x-default" href="https://www.abwinetrader.com/" />
 <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
 <link
   rel="stylesheet"

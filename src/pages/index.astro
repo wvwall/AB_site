@@ -1,19 +1,29 @@
 ---
-// Redirect alla lingua di default (italiano)
-// Questo file non viene indicizzato ed è solo un entry point di redirect
+import "@fontsource/lato/400.css";
+import "@fontsource/lato/700.css";
+import "@fontsource/playfair-display-sc/700.css";
+import "@fontsource/playfair-display-sc/900.css";
+import "../styles/global.css";
+import { t } from "../i18n";
+import SeoHead from "../components/SeoHead.astro";
+import Header from "../components/Header.astro";
+import Hero from "../components/Hero.astro";
+import Footer from "../components/Footer.astro";
+
+const lang = "it";
 ---
 
 <!doctype html>
-<html lang="it-IT">
+<html lang={lang === "it" ? "it-IT" : "en-US"}>
   <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="refresh" content="0;url=/it/" />
-    <link rel="canonical" href="https://www.abwinetrader.com/it/" />
-    <title>AB Winetrader</title>
+    <SeoHead {lang} />
   </head>
+
   <body>
-    <a href="/it/">Redirecting to Italian version...</a>
+    <Header {lang} />
+    <Hero {lang} />
+    <Footer {lang} />
+
+    <script is:inline src="/assets/js/language-toggle.js"></script>
   </body>
 </html>
