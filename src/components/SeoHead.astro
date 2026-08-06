@@ -1,8 +1,8 @@
 ---
-import { t } from "../i18n";
+import { t, type Language } from "../i18n";
 
 interface Props {
-  lang: "it" | "en";
+  lang: Language;
 }
 
 const { lang } = Astro.props;
@@ -16,59 +16,62 @@ const schemaDescription = t(lang, "seo.schemaDescription");
 
 const locale = lang === "it" ? "it_IT" : "en_US";
 const alternateLocale = lang === "it" ? "en_US" : "it_IT";
+const inLanguage = lang === "it" ? "it-IT" : "en-US";
 const currentUrl = Astro.url.href;
 
-// Calcola l'URL alternato: "/" per IT, "/en/" per EN
-const alternateUrl = lang === "it" ? "https://www.abwinetrader.com/en/" : "https://www.abwinetrader.com/";
+const SITE_URL = "https://www.abwinetrader.com";
+const itUrl = `${SITE_URL}/`;
+const enUrl = `${SITE_URL}/en/`;
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Winery",
+  areaServed: ["Torino", "Collegno", "Piemonte"],
+  name: "AB Winetrader",
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: 45.089031,
+    longitude: 7.571881,
+  },
+  image: `${SITE_URL}/assets/img/logo.webp`,
+  url: currentUrl,
+  inLanguage,
+  email: "info@abwinetrader.com",
+  telephone: "+39 335 534 3628",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Via Venaria 47",
+    addressLocality: "Collegno",
+    addressRegion: "TO",
+    postalCode: "10093",
+    addressCountry: "IT",
+  },
+  sameAs: [
+    "https://www.instagram.com/ab_luxury_wine/",
+    "https://www.tiktok.com/@ab_luxury_wine",
+    "https://www.threads.net/@ab_luxury_wine",
+  ],
+  description: schemaDescription,
+};
 ---
 
-<script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Winery",
-    "areaServed": ["Torino", "Collegno", "Piemonte"],
-    "name": "AB Winetrader",
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": 45.089031,
-      "longitude": 7.571881
-    },
-    "image": "https://www.abwinetrader.com/assets/img/logo.webp",
-    "url": "https://www.abwinetrader.com",
-    "email": "info@abwinetrader.com",
-    "telephone": "+39 335 534 3628",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Via Venaria 47",
-      "addressLocality": "Collegno",
-      "addressRegion": "TO",
-      "postalCode": "10093",
-      "addressCountry": "IT"
-    },
-    "sameAs": [
-      "https://www.instagram.com/ab_luxury_wine/",
-      "https://www.tiktok.com/@ab_luxury_wine",
-      "https://www.threads.net/@ab_luxury_wine"
-    ],
-    "description": schemaDescription
-  }
-</script>
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="keywords" content={keywords} />
 <meta name="description" content={description} />
 <meta property="og:title" content={ogTitle} />
-<meta property="og:image" content="https://www.abwinetrader.com/assets/img/anteprima.webp" />
+<meta property="og:image" content={`${SITE_URL}/assets/img/anteprima.webp`} />
 <meta property="og:type" content="website" />
 <meta property="og:description" content={ogDescription} />
 <meta property="og:url" content={currentUrl} />
 <meta property="og:locale" content={locale} />
 <meta property="og:locale:alternate" content={alternateLocale} />
 <link rel="canonical" href={currentUrl} />
-<link rel="alternate" hreflang="it" href="https://www.abwinetrader.com/" />
-<link rel="alternate" hreflang="en" href="https://www.abwinetrader.com/en/" />
-<link rel="alternate" hreflang="x-default" href="https://www.abwinetrader.com/" />
+<link rel="alternate" hreflang="it" href={itUrl} />
+<link rel="alternate" hreflang="en" href={enUrl} />
+<link rel="alternate" hreflang="x-default" href={itUrl} />
 <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
 <link
   rel="stylesheet"

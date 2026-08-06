@@ -1,9 +1,9 @@
 ---
-import { t } from "../i18n";
+import { t, type Language } from "../i18n";
 import SocialIcon from "./SocialIcon.astro";
 
 interface Props {
-  lang: "it" | "en";
+  lang: Language;
 }
 
 const { lang } = Astro.props;

@@ -1,7 +1,7 @@
 import itCommon from "../public/locales/it/common.json";
 import enCommon from "../public/locales/en/common.json";
 
-type Language = "it" | "en";
+export type Language = "it" | "en";
 
 const translations = {
   it: itCommon,

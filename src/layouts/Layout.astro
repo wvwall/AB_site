@@ -1,0 +1,33 @@
+---
+import "@fontsource/lato/400.css";
+import "@fontsource/lato/700.css";
+import "@fontsource/playfair-display-sc/700.css";
+import "@fontsource/playfair-display-sc/900.css";
+import "../styles/global.css";
+import SeoHead from "../components/SeoHead.astro";
+import Header from "../components/Header.astro";
+import Hero from "../components/Hero.astro";
+import Footer from "../components/Footer.astro";
+import type { Language } from "../i18n";
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+---
+
+<!doctype html>
+<html lang={lang === "it" ? "it-IT" : "en-US"}>
+  <head>
+    <SeoHead {lang} />
+  </head>
+
+  <body>
+    <Header {lang} />
+    <Hero {lang} />
+    <Footer {lang} />
+
+    <script is:inline src="/assets/js/language-toggle.js"></script>
+  </body>
+</html>
