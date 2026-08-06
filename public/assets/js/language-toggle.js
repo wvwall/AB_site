@@ -1,24 +1,16 @@
 document.addEventListener("DOMContentLoaded", () => {
   const checkbox = document.querySelector("#toggle");
-  const html = document.documentElement;
-  const currentYear = new Date().getFullYear();
 
-  document.querySelector("#yearIT").textContent = currentYear;
-  document.querySelector("#yearEN").textContent = currentYear;
+  // Detect current language from URL
+  const currentPath = window.location.pathname;
+  const isEnglish = currentPath.startsWith("/en");
+  checkbox.checked = isEnglish;
 
-  const itText = document.querySelectorAll(".it-text");
-  const enText = document.querySelectorAll(".en-text");
-
+  // Toggle language and navigate
   const toggleLang = () => {
-    const isEnglish = checkbox.checked;
-    html.classList.toggle("en", isEnglish);
-
-    enText.forEach((el) => el.classList.toggle("hidden", !isEnglish));
-    itText.forEach((el) => {
-      el.classList.toggle("hidden", isEnglish);
-      if (isEnglish)
-        el.classList.remove("reveal-down", "reveal-left", "reveal-pulse");
-    });
+    const newLang = checkbox.checked ? "en" : "it";
+    const newPath = currentPath.replace(/^\/(it|en)\//, `/${newLang}/`);
+    window.location.href = newPath;
   };
 
   checkbox.addEventListener("click", toggleLang);
