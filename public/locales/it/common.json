@@ -1,0 +1,37 @@
+{
+  "seo": {
+    "title": "AB Winetrader | Enoteca Vini Pregiati a Collegno, Torino",
+    "description": "AB Winetrader — enoteca a Collegno (Torino) specializzata in vini pregiati, champagne e etichette ricercate di Francia e Borgogna. Contattaci o scarica la nostra lista vini.",
+    "keywords": "enoteca Collegno, vini pregiati Torino, champagne, Borgogna, AB Winetrader",
+    "ogTitle": "AB Winetrader | Wine Merchant",
+    "ogDescription": "Commercializziamo bottiglie di pregio ed etichette ricercate.",
+    "schemaDescription": "Enoteca a Collegno (Torino) specializzata in vini pregiati, champagne e etichette ricercate. Scopri la selezione esclusiva di AB Winetrader."
+  },
+  "header": {
+    "logoAlt": "Logo AB Winetrader – Enoteca a Collegno",
+    "brandName": "ab winetrader",
+    "locationLink": "ab winehouse",
+    "languageToggle": "Cambia lingua"
+  },
+  "hero": {
+    "brandLetter": "AB",
+    "brandName": "Winetrader",
+    "description": "Commercializziamo bottiglie di pregio ed etichette ricercate. Mettiamo a disposizione del cliente grande esperienza nel settore unita alla forte passione nel mondo del vino.",
+    "wineListButton": "Lista dei Vini",
+    "whatsappButton": "Whatsapp",
+    "wineListUrl": "https://drive.google.com/uc?export=download&id=1hZYQNzIxBpTzQoeFT6Vs8_JgjaG7_RFA",
+    "wineListFileName": "WineList.pdf",
+    "whatsappUrl": "https://wa.me/393355343628",
+    "whatsappTitle": "Whatsapp"
+  },
+  "footer": {
+    "contactsTitle": "Contatti",
+    "email": "info@abwinetrader.com",
+    "phone": "+39 335 534 3628",
+    "instagramLabel": "Instagram",
+    "threadsLabel": "Threads",
+    "copyright": "© {year} AB Winetrader - Tutti i diritti riservati.",
+    "cookieButtonLabel": "Cookie Policy",
+    "cookieText": "Questo sito utilizza esclusivamente cookie tecnici necessari al funzionamento e non raccoglie dati personali degli utenti. <br />Non vengono utilizzati cookie di profilazione né strumenti di tracciamento di terze parti."
+  }
+}

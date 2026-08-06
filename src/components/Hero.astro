@@ -1,4 +1,11 @@
 ---
+import { t, type Language } from "../i18n";
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
 ---
 
 <main
@@ -8,52 +15,34 @@
     class="flex flex-col items-center justify-center h-[80vh] gap-8 px-4 md:px-8">
     <h1
       class="reveal-down playfair-display-sc-black text-white text-[45px] sm:text-[75px] lg:text-[150px] leading-[0.8] text-center tracking-[0.03em] drop-shadow-[0_4px_30px_rgba(87,14,39,0.25)]">
-      <span class="text-white playfair-display-sc-black">AB</span>
+      <span class="text-white playfair-display-sc-black">{t(lang, "hero.brandLetter")}</span>
       <br />
-      Winetrader
+      {t(lang, "hero.brandName")}
     </h1>
     <p
-      class="it-text reveal-pulse md:w-[600px] text-gray-300 text-center text-sm sm:text-md md:text-lg text-pretty">
-      Commercializziamo bottiglie di pregio ed etichette ricercate. Mettiamo
-      a disposizione del cliente grande esperienza nel settore unita alla
-      forte passione nel mondo del vino.
-    </p>
-
-    <p
-      class="en-text hidden md:w-[600px] text-gray-300 text-center text-sm sm:text-md md:text-lg text-pretty">
-      We market fine bottles and sophisticated labels. We provide to the
-      customer great experience in the sector combined with a strong passion
-      in the world of wine.
+      class="reveal-pulse md:w-[600px] text-gray-300 text-center text-sm sm:text-md md:text-lg text-pretty">
+      {t(lang, "hero.description")}
     </p>
     <div
       class="flex flex-col items-center justify-center gap-6 md:flex-row">
       <a
-        class="it-text reveal-left transition-all duration-[400ms] ease-in-out hover:shadow-[0_14px_30px_-8px_rgba(87,14,39,0.4)]"
-        href="https://drive.google.com/uc?export=download&id=1hZYQNzIxBpTzQoeFT6Vs8_JgjaG7_RFA"
-        download="WineList.pdf">
+        class="reveal-left transition-all duration-[400ms] ease-in-out hover:shadow-[0_14px_30px_-8px_rgba(87,14,39,0.4)]"
+        href={t(lang, "hero.wineListUrl")}
+        download={t(lang, "hero.wineListFileName")}>
         <span
           class="btn-shine transition-all uppercase duration-[400ms] ease-in-out font-semibold leading-[62px] md:leading-[46px] inline-block text-center w-[320px] md:w-[240px] bg-[#570E27] h-16 md:h-[50px] text-gray-300 cursor-pointer border border-[rgba(255,255,255,0.1)] hover:bg-[#7a1835] hover:text-black hover:border-[rgba(255,255,255,0.2)]">
-          Lista dei Vini
-        </span>
-      </a>
-      <a
-        href="https://drive.google.com/uc?export=download&id=1hZYQNzIxBpTzQoeFT6Vs8_JgjaG7_RFA"
-        download="WineList.pdf"
-        class="hidden en-text transition-all duration-[400ms] ease-in-out hover:shadow-[0_14px_30px_-8px_rgba(87,14,39,0.4)]">
-        <span
-          class="btn-shine transition-all uppercase duration-[400ms] ease-in-out font-semibold text-center leading-[62px] md:leading-[46px] inline-block w-[320px] md:w-[240px] bg-[#570E27] h-16 md:h-[50px] text-gray-300 cursor-pointer border border-[rgba(255,255,255,0.1)] hover:bg-[#7a1835] hover:text-black hover:border-[rgba(255,255,255,0.2)]">
-          Wine List
+          {t(lang, "hero.wineListButton")}
         </span>
       </a>
       <a
         class="reveal-right font-semibold transition-all duration-[400ms] ease-in-out hover:-translate-y-1.5 hover:scale-[1.03] hover:shadow-[0_14px_30px_-8px_rgba(0,158,145,0.4)]"
-        title="Whatsapp"
+        title={t(lang, "hero.whatsappTitle")}
         target="_blank"
         rel="noopener noreferrer"
-        href="https://wa.me/393355343628">
+        href={t(lang, "hero.whatsappUrl")}>
         <span
           class="btn-shine transition-all uppercase duration-[400ms] ease-in-out leading-[62px] md:leading-[46px] inline-block text-center w-[320px] md:w-[240px] bg-blackFooter h-16 md:h-[50px] text-gray-300 cursor-pointer border border-[rgba(255,255,255,0.1)] hover:bg-[#009E91] hover:text-black hover:border-[#009E91]">
-          Whatsapp
+          {t(lang, "hero.whatsappButton")}
         </span>
       </a>
     </div>

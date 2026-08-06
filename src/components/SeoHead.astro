@@ -1,74 +1,77 @@
 ---
+import { t, type Language } from "../i18n";
+
 interface Props {
-  title?: string;
-  description?: string;
+  lang: Language;
 }
 
-const {
-  title = "AB Winetrader | Enoteca Vini Pregiati a Collegno, Torino",
-  description = "AB Winetrader — enoteca a Collegno (Torino) specializzata in vini pregiati, champagne e etichette ricercate di Francia e Borgogna. Contattaci o scarica la nostra lista vini.",
-} = Astro.props;
+const { lang } = Astro.props;
+
+const title = t(lang, "seo.title");
+const description = t(lang, "seo.description");
+const keywords = t(lang, "seo.keywords");
+const ogTitle = t(lang, "seo.ogTitle");
+const ogDescription = t(lang, "seo.ogDescription");
+const schemaDescription = t(lang, "seo.schemaDescription");
+
+const locale = lang === "it" ? "it_IT" : "en_US";
+const alternateLocale = lang === "it" ? "en_US" : "it_IT";
+const inLanguage = lang === "it" ? "it-IT" : "en-US";
+const currentUrl = Astro.url.href;
+
+const SITE_URL = "https://www.abwinetrader.com";
+const itUrl = `${SITE_URL}/`;
+const enUrl = `${SITE_URL}/en/`;
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Winery",
+  areaServed: ["Torino", "Collegno", "Piemonte"],
+  name: "AB Winetrader",
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: 45.089031,
+    longitude: 7.571881,
+  },
+  image: `${SITE_URL}/assets/img/logo.webp`,
+  url: currentUrl,
+  inLanguage,
+  email: "info@abwinetrader.com",
+  telephone: "+39 335 534 3628",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Via Venaria 47",
+    addressLocality: "Collegno",
+    addressRegion: "TO",
+    postalCode: "10093",
+    addressCountry: "IT",
+  },
+  sameAs: [
+    "https://www.instagram.com/ab_luxury_wine/",
+    "https://www.tiktok.com/@ab_luxury_wine",
+    "https://www.threads.net/@ab_luxury_wine",
+  ],
+  description: schemaDescription,
+};
 ---
 
-<script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Winery",
-    "areaServed": ["Torino", "Collegno", "Piemonte"],
-    "name": "AB Winetrader",
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": 45.089031,
-      "longitude": 7.571881
-    },
-    "image": "https://www.abwinetrader.com/assets/img/logo.webp",
-    "url": "https://www.abwinetrader.com",
-    "email": "info@abwinetrader.com",
-    "telephone": "+39 335 534 3628",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Via Venaria 47",
-      "addressLocality": "Collegno",
-      "addressRegion": "TO",
-      "postalCode": "10093",
-      "addressCountry": "IT"
-    },
-    "sameAs": [
-      "https://www.instagram.com/ab_luxury_wine/",
-      "https://www.tiktok.com/@ab_luxury_wine",
-      "https://www.threads.net/@ab_luxury_wine"
-    ],
-    "description": "Enoteca a Collegno (Torino) specializzata in vini pregiati, champagne e etichette ricercate. Scopri la selezione esclusiva di AB Winetrader."
-  }
-</script>
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta
-  name="keywords"
-  content="enoteca Collegno, vini pregiati Torino, champagne, Borgogna, AB Winetrader" />
+<meta name="keywords" content={keywords} />
 <meta name="description" content={description} />
-<meta property="og:title" content="AB Winetrader | Wine Merchant" />
-<meta
-  property="og:image"
-  content="https://www.abwinetrader.com/assets/img/anteprima.webp" />
+<meta property="og:title" content={ogTitle} />
+<meta property="og:image" content={`${SITE_URL}/assets/img/anteprima.webp`} />
 <meta property="og:type" content="website" />
-<meta
-  property="og:description"
-  content="Commercializziamo bottiglie di pregio ed etichette ricercate." />
-<meta property="og:url" content="https://www.abwinetrader.com" />
-<meta property="og:locale" content="it_IT" />
-<meta property="og:locale:alternate" content="en_US" />
-<link rel="canonical" href="https://www.abwinetrader.com/" />
-<link rel="alternate" hreflang="it" href="https://www.abwinetrader.com/" />
-<link
-  rel="alternate"
-  hreflang="en"
-  href="https://www.abwinetrader.com/?lang=en" />
-<link
-  rel="alternate"
-  hreflang="x-default"
-  href="https://www.abwinetrader.com/" />
+<meta property="og:description" content={ogDescription} />
+<meta property="og:url" content={currentUrl} />
+<meta property="og:locale" content={locale} />
+<meta property="og:locale:alternate" content={alternateLocale} />
+<link rel="canonical" href={currentUrl} />
+<link rel="alternate" hreflang="it" href={itUrl} />
+<link rel="alternate" hreflang="en" href={enUrl} />
+<link rel="alternate" hreflang="x-default" href={itUrl} />
 <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
 <link
   rel="stylesheet"

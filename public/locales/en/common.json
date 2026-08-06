@@ -1,0 +1,37 @@
+{
+  "seo": {
+    "title": "AB Winetrader | Fine Wine Merchant in Collegno, Turin",
+    "description": "AB Winetrader — wine shop in Collegno (Turin) specializing in fine wines, champagne and exclusive labels from France and Burgundy. Contact us or download our wine list.",
+    "keywords": "wine shop Collegno, fine wines Turin, champagne, Burgundy, AB Winetrader",
+    "ogTitle": "AB Winetrader | Wine Merchant",
+    "ogDescription": "We market fine bottles and sophisticated labels.",
+    "schemaDescription": "Wine shop in Collegno (Turin) specializing in fine wines, champagne and exclusive labels. Discover the exclusive selection of AB Winetrader."
+  },
+  "header": {
+    "logoAlt": "Logo AB Winetrader – Wine shop in Collegno",
+    "brandName": "ab winetrader",
+    "locationLink": "ab winehouse",
+    "languageToggle": "Switch language"
+  },
+  "hero": {
+    "brandLetter": "AB",
+    "brandName": "Winetrader",
+    "description": "We market fine bottles and sophisticated labels. We provide to the customer great experience in the sector combined with a strong passion in the world of wine.",
+    "wineListButton": "Wine List",
+    "whatsappButton": "Whatsapp",
+    "wineListUrl": "https://drive.google.com/uc?export=download&id=1hZYQNzIxBpTzQoeFT6Vs8_JgjaG7_RFA",
+    "wineListFileName": "WineList.pdf",
+    "whatsappUrl": "https://wa.me/393355343628",
+    "whatsappTitle": "Whatsapp"
+  },
+  "footer": {
+    "contactsTitle": "Contacts",
+    "email": "info@abwinetrader.com",
+    "phone": "+39 335 534 3628",
+    "instagramLabel": "Instagram",
+    "threadsLabel": "Threads",
+    "copyright": "© {year} AB Winetrader - All rights reserved.",
+    "cookieButtonLabel": "Cookie Policy",
+    "cookieText": "This site uses only technical cookies necessary for its operation and does not collect users' personal data. No profiling cookies or third-party tracking tools are used."
+  }
+}
