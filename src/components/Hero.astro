@@ -40,9 +40,15 @@ const whatsappIconSvg = icon(faWhatsapp).html.join("");
         href={t(lang, "hero.wineListUrl")}
         download={t(lang, "hero.wineListFileName")}>
         <span
-          class="rounded-md btn-shine transition-all uppercase duration-[400ms] ease-in-out font-semibold inline-flex items-center justify-center gap-2 w-[320px] md:w-[240px] bg-[#570E27] h-16 md:h-[50px] text-gray-300 cursor-pointer border border-[rgba(255,255,255,0.1)] hover:bg-[#7a1835] hover:text-black hover:border-[rgba(255,255,255,0.2)]">
-          <span class="[&>svg]:h-4 [&>svg]:w-4" set:html={wineListIconSvg} />
-          {t(lang, "hero.wineListButton")}
+          class="group rounded-md btn-shine transition-all uppercase duration-[400ms] ease-in-out font-semibold inline-flex items-center gap-4 w-[320px] md:w-[280px] px-6 bg-[#570E27] h-20 md:h-[68px] text-gray-300 cursor-pointer border border-[rgba(255,255,255,0.1)] hover:bg-[#7a1835] hover:text-black hover:border-[rgba(255,255,255,0.2)]">
+          <span class="shrink-0 [&>svg]:h-8 [&>svg]:w-8" set:html={wineListIconSvg} />
+          <span class="flex flex-col items-start gap-0.5 leading-tight">
+            <span class="text-sm md:text-base">{t(lang, "hero.wineListButton")}</span>
+            <span
+              class="text-[10px] md:text-[11px] font-normal tracking-wide text-gray-400 group-hover:text-black/70">
+              {t(lang, "hero.wineListSubtitle")}
+            </span>
+          </span>
         </span>
       </a>
       <a
@@ -52,9 +58,15 @@ const whatsappIconSvg = icon(faWhatsapp).html.join("");
         rel="noopener noreferrer"
         href={t(lang, "hero.whatsappUrl")}>
         <span
-          class="rounded-md btn-shine transition-all uppercase duration-[400ms] ease-in-out inline-flex items-center justify-center gap-2 w-[320px] md:w-[240px] bg-blackFooter h-16 md:h-[50px] text-gray-300 cursor-pointer border border-[rgba(0,158,145,0.35)] hover:bg-[#009E91] hover:text-black hover:border-[#009E91]">
-          <span class="[&>svg]:h-5 [&>svg]:w-5" set:html={whatsappIconSvg} />
-          {t(lang, "hero.whatsappButton")}
+          class="group rounded-md btn-shine transition-all uppercase duration-[400ms] ease-in-out inline-flex items-center gap-4 w-[320px] md:w-[280px] px-6 bg-blackFooter h-20 md:h-[68px] text-gray-300 cursor-pointer border border-[rgba(0,158,145,0.35)] hover:bg-[#009E91] hover:text-black hover:border-[#009E91]">
+          <span class="shrink-0 [&>svg]:h-8 [&>svg]:w-8" set:html={whatsappIconSvg} />
+          <span class="flex flex-col items-start gap-0.5 leading-tight">
+            <span class="text-sm md:text-base">{t(lang, "hero.whatsappButton")}</span>
+            <span
+              class="text-[10px] md:text-[11px] font-normal tracking-wide text-gray-400 group-hover:text-black/70">
+              {t(lang, "hero.whatsappSubtitle")}
+            </span>
+          </span>
         </span>
       </a>
     </div>
