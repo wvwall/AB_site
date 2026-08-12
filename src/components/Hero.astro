@@ -1,7 +1,7 @@
 ---
 import { t, type Language } from "../i18n";
 import { icon } from "@fortawesome/fontawesome-svg-core";
-import { faFilePdf } from "@fortawesome/free-solid-svg-icons";
+import { faDownload } from "@fortawesome/free-solid-svg-icons";
 import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 
 interface Props {
@@ -10,39 +10,44 @@ interface Props {
 
 const { lang } = Astro.props;
 
-const wineListIconSvg = icon(faFilePdf).html.join("");
+const wineListIconSvg = icon(faDownload).html.join("");
 const whatsappIconSvg = icon(faWhatsapp).html.join("");
 ---
 
 <main
-  class="relative flex flex-col items-center min-h-screen overflow-hidden bg-blackMain md:min-h-screen">
+  class="relative flex flex-col items-center overflow-hidden bg-blackMain md:min-h-screen">
   <div class="hero-glow" aria-hidden="true"></div>
   <div
-    class="flex flex-col items-center justify-center min-h-[70vh] gap-6 py-12 px-4 md:h-[80vh] md:gap-8 md:py-0 md:px-8">
+    class="flex flex-col items-center justify-center min-h-[70vh] gap-3 py-12 px-4 md:h-[80vh] md:gap-4 md:py-0 md:px-8">
     <h1
       class="reveal-down playfair-display-sc-black text-white text-[45px] sm:text-[75px] lg:text-[150px] leading-[0.8] text-center tracking-[0.03em] drop-shadow-[0_4px_30px_rgba(87,14,39,0.25)]">
       <span class="text-white playfair-display-sc-black">{t(lang, "hero.brandLetter")}</span>
       <br />
       {t(lang, "hero.brandName")}
     </h1>
-    <div
-      class="reveal-pulse h-px w-16 bg-gradient-to-r from-transparent via-[#a83a5c] to-transparent"
-      aria-hidden="true">
-    </div>
     <p
       class="reveal-pulse md:w-[520px] text-gray-400 text-center text-sm sm:text-base md:text-lg font-light tracking-wide leading-relaxed text-pretty">
       {t(lang, "hero.description")}
     </p>
     <div
-      class="flex flex-col items-center justify-center gap-6 md:flex-row">
+      class="flex flex-col items-center justify-center gap-6 mt-5 md:mt-6 md:flex-row">
       <a
         class="reveal-left transition-all duration-[400ms] ease-in-out hover:shadow-[0_14px_30px_-8px_rgba(87,14,39,0.4)]"
         href={t(lang, "hero.wineListUrl")}
         download={t(lang, "hero.wineListFileName")}>
         <span
-          class="rounded-md btn-shine transition-all uppercase duration-[400ms] ease-in-out font-semibold inline-flex items-center justify-center gap-2 w-[320px] md:w-[240px] bg-[#570E27] h-16 md:h-[50px] text-gray-300 cursor-pointer border border-[rgba(255,255,255,0.1)] hover:bg-[#7a1835] hover:text-black hover:border-[rgba(255,255,255,0.2)]">
-          <span class="[&>svg]:h-4 [&>svg]:w-4" set:html={wineListIconSvg} />
-          {t(lang, "hero.wineListButton")}
+          class="group rounded-md btn-shine transition-all uppercase duration-[400ms] ease-in-out font-semibold inline-flex items-center gap-4 w-[320px] md:w-[280px] px-6 bg-[#570E27] h-16 md:h-14 text-gray-300 cursor-pointer border border-[rgba(255,255,255,0.1)] hover:bg-[#7a1835] hover:text-black hover:border-[rgba(255,255,255,0.2)]">
+          <span
+            class="shrink-0 inline-flex items-center justify-center h-9 w-9 md:h-10 md:w-10 rounded-full bg-white/10 border border-white/15 [&>svg]:h-4 [&>svg]:w-4 md:[&>svg]:h-5 md:[&>svg]:w-5"
+            set:html={wineListIconSvg}
+          />
+          <span class="flex flex-col items-start gap-0.5 leading-tight">
+            <span class="text-sm md:text-base">{t(lang, "hero.wineListButton")}</span>
+            <span
+              class="text-[10px] md:text-[11px] font-normal tracking-wide text-gray-400 group-hover:text-black/70">
+              {t(lang, "hero.wineListSubtitle")}
+            </span>
+          </span>
         </span>
       </a>
       <a
@@ -52,9 +57,18 @@ const whatsappIconSvg = icon(faWhatsapp).html.join("");
         rel="noopener noreferrer"
         href={t(lang, "hero.whatsappUrl")}>
         <span
-          class="rounded-md btn-shine transition-all uppercase duration-[400ms] ease-in-out inline-flex items-center justify-center gap-2 w-[320px] md:w-[240px] bg-blackFooter h-16 md:h-[50px] text-gray-300 cursor-pointer border border-[rgba(0,158,145,0.35)] hover:bg-[#009E91] hover:text-black hover:border-[#009E91]">
-          <span class="[&>svg]:h-5 [&>svg]:w-5" set:html={whatsappIconSvg} />
-          {t(lang, "hero.whatsappButton")}
+          class="group rounded-md btn-shine transition-all uppercase duration-[400ms] ease-in-out inline-flex items-center gap-4 w-[320px] md:w-[280px] px-6 bg-blackFooter h-16 md:h-14 text-gray-300 cursor-pointer border border-[rgba(0,158,145,0.35)] hover:bg-[#009E91] hover:text-black hover:border-[#009E91]">
+          <span
+            class="shrink-0 inline-flex items-center justify-center h-9 w-9 md:h-10 md:w-10 rounded-full bg-white/10 border border-white/15 [&>svg]:h-4 [&>svg]:w-4 md:[&>svg]:h-5 md:[&>svg]:w-5"
+            set:html={whatsappIconSvg}
+          />
+          <span class="flex flex-col items-start gap-0.5 leading-tight">
+            <span class="text-sm md:text-base">{t(lang, "hero.whatsappButton")}</span>
+            <span
+              class="text-[10px] md:text-[11px] font-normal tracking-wide text-gray-400 group-hover:text-black/70">
+              {t(lang, "hero.whatsappSubtitle")}
+            </span>
+          </span>
         </span>
       </a>
     </div>
