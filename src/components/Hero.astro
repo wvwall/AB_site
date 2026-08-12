@@ -1,11 +1,17 @@
 ---
 import { t, type Language } from "../i18n";
+import { icon } from "@fortawesome/fontawesome-svg-core";
+import { faFilePdf } from "@fortawesome/free-solid-svg-icons";
+import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 
 interface Props {
   lang: Language;
 }
 
 const { lang } = Astro.props;
+
+const wineListIconSvg = icon(faFilePdf).html.join("");
+const whatsappIconSvg = icon(faWhatsapp).html.join("");
 ---
 
 <main
@@ -31,7 +37,7 @@ const { lang } = Astro.props;
         download={t(lang, "hero.wineListFileName")}>
         <span
           class="btn-shine transition-all uppercase duration-[400ms] ease-in-out font-semibold inline-flex items-center justify-center gap-2 w-[320px] md:w-[240px] bg-[#570E27] h-16 md:h-[50px] text-gray-300 cursor-pointer border border-[rgba(255,255,255,0.1)] hover:bg-[#7a1835] hover:text-black hover:border-[rgba(255,255,255,0.2)]">
-          <i class="fa-solid fa-download" aria-hidden="true"></i>
+          <span class="[&>svg]:h-4 [&>svg]:w-4" set:html={wineListIconSvg} />
           {t(lang, "hero.wineListButton")}
         </span>
       </a>
@@ -43,7 +49,7 @@ const { lang } = Astro.props;
         href={t(lang, "hero.whatsappUrl")}>
         <span
           class="btn-shine transition-all uppercase duration-[400ms] ease-in-out inline-flex items-center justify-center gap-2 w-[320px] md:w-[240px] bg-blackFooter h-16 md:h-[50px] text-gray-300 cursor-pointer border border-[rgba(0,158,145,0.35)] hover:bg-[#009E91] hover:text-black hover:border-[#009E91]">
-          <i class="fa-brands fa-whatsapp text-lg" aria-hidden="true"></i>
+          <span class="[&>svg]:h-5 [&>svg]:w-5" set:html={whatsappIconSvg} />
           {t(lang, "hero.whatsappButton")}
         </span>
       </a>
