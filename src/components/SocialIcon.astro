@@ -1,11 +1,14 @@
 ---
+import { icon, type IconDefinition } from "@fortawesome/fontawesome-svg-core";
+
 interface Props {
   href: string;
   ariaLabel: string;
-  iconClass: string;
+  icon: IconDefinition;
 }
 
-const { href, ariaLabel, iconClass } = Astro.props;
+const { href, ariaLabel, icon: iconDef } = Astro.props;
+const iconSvg = icon(iconDef).html.join("");
 ---
 
 <a
@@ -14,5 +17,5 @@ const { href, ariaLabel, iconClass } = Astro.props;
   target="_blank"
   rel="noopener noreferrer"
   class="inline-flex items-center justify-center w-[42px] h-[42px] border border-[rgba(255,255,255,0.08)] text-gray-300 hover:text-white hover:bg-[rgba(255,255,255,0.07)] hover:-translate-y-[3px] hover:border-[rgba(255,255,255,0.2)] transition-all duration-300">
-  <i class={`text-2xl ${iconClass}`}></i>
+  <span class="[&>svg]:h-6 [&>svg]:w-6" set:html={iconSvg} />
 </a>
