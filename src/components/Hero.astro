@@ -12,7 +12,7 @@ const { lang } = Astro.props;
   class="relative flex flex-col items-center min-h-screen overflow-hidden bg-blackMain md:min-h-screen">
   <div class="hero-glow" aria-hidden="true"></div>
   <div
-    class="flex flex-col items-center justify-center h-[80vh] gap-8 px-4 md:px-8">
+    class="flex flex-col items-center justify-center min-h-[70vh] gap-6 py-12 px-4 md:h-[80vh] md:gap-8 md:py-0 md:px-8">
     <h1
       class="reveal-down playfair-display-sc-black text-white text-[45px] sm:text-[75px] lg:text-[150px] leading-[0.8] text-center tracking-[0.03em] drop-shadow-[0_4px_30px_rgba(87,14,39,0.25)]">
       <span class="text-white playfair-display-sc-black">{t(lang, "hero.brandLetter")}</span>
@@ -41,7 +41,7 @@ const { lang } = Astro.props;
         rel="noopener noreferrer"
         href={t(lang, "hero.whatsappUrl")}>
         <span
-          class="btn-shine transition-all uppercase duration-[400ms] ease-in-out leading-[62px] md:leading-[46px] inline-block text-center w-[320px] md:w-[240px] bg-blackFooter h-16 md:h-[50px] text-gray-300 cursor-pointer border border-[rgba(255,255,255,0.1)] hover:bg-[#009E91] hover:text-black hover:border-[#009E91]">
+          class="btn-shine transition-all uppercase duration-[400ms] ease-in-out leading-[62px] md:leading-[46px] inline-block text-center w-[320px] md:w-[240px] bg-blackFooter h-16 md:h-[50px] text-gray-300 cursor-pointer border border-[rgba(0,158,145,0.35)] hover:bg-[#009E91] hover:text-black hover:border-[#009E91]">
           {t(lang, "hero.whatsappButton")}
         </span>
       </a>
