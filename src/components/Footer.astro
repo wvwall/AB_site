@@ -1,6 +1,9 @@
 ---
 import { t, type Language } from "../i18n";
 import SocialIcon from "./SocialIcon.astro";
+import { icon } from "@fortawesome/fontawesome-svg-core";
+import { faInstagram, faThreads } from "@fortawesome/free-brands-svg-icons";
+import { faCookieBite, faChevronDown } from "@fortawesome/free-solid-svg-icons";
 
 interface Props {
   lang: Language;
@@ -8,11 +11,14 @@ interface Props {
 
 const { lang } = Astro.props;
 const currentYear = new Date().getFullYear();
+
+const cookieIconSvg = icon(faCookieBite).html.join("");
+const chevronIconSvg = icon(faChevronDown).html.join("");
 ---
 
 <footer
   id="contatti"
-  class="border border-[rgba(255,255,255,0.08)] m-4 shadow-[0_8px_32px_rgba(0,0,0,0.3)] overflow-hidden">
+  class="rounded-md border border-[rgba(255,255,255,0.08)] m-4 shadow-[0_8px_32px_rgba(0,0,0,0.3)] overflow-hidden">
   <div class="flex flex-col items-center bg-blackFooter">
     <h2
       class="my-6 text-2xl tracking-wider text-gray-300 playfair-display-sc-bold md:my-8">
@@ -32,7 +38,7 @@ const currentYear = new Date().getFullYear();
         <SocialIcon
           ariaLabel={t(lang, "footer.instagramLabel")}
           href="https://www.instagram.com/ab_luxury_wine/"
-          iconClass="fa-brands fa-instagram"
+          icon={faInstagram}
         />
 
         <!-- TikTok Icon
@@ -47,7 +53,7 @@ const currentYear = new Date().getFullYear();
         <SocialIcon
           ariaLabel={t(lang, "footer.threadsLabel")}
           href="https://www.threads.net/@ab_luxury_wine?igshid=NTc4MTIwNjQ2YQ=="
-          iconClass="fa-brands fa-threads"
+          icon={faThreads}
         />
       </div>
 
@@ -69,12 +75,14 @@ const currentYear = new Date().getFullYear();
       class="flex items-center justify-center gap-1 mx-auto cursor-pointer bg-transparent border-0 text-gray-400 hover:text-gray-300 text-[10px] leading-relaxed p-1 transition-colors duration-300"
       aria-expanded="false"
       aria-controls="cookieText">
-      <i class="fa-solid fa-cookie-bite"></i>
+      <span class="[&>svg]:h-3.5 [&>svg]:w-3.5" set:html={cookieIconSvg} />
       <span>{t(lang, "footer.cookieButtonLabel")}</span>
-      <i
+      <span
         id="cookieChevron"
-        class="transition-transform duration-300 ease-in-out fa-solid fa-chevron-down"
-        aria-hidden="true"></i>
+        class="transition-transform duration-300 ease-in-out [&>svg]:h-3 [&>svg]:w-3"
+        aria-hidden="true"
+        set:html={chevronIconSvg}
+      />
     </button>
     <div
       id="cookieText"

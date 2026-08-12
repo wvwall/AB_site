@@ -1,26 +1,36 @@
 ---
 import { t, type Language } from "../i18n";
+import { icon } from "@fortawesome/fontawesome-svg-core";
+import { faFilePdf } from "@fortawesome/free-solid-svg-icons";
+import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 
 interface Props {
   lang: Language;
 }
 
 const { lang } = Astro.props;
+
+const wineListIconSvg = icon(faFilePdf).html.join("");
+const whatsappIconSvg = icon(faWhatsapp).html.join("");
 ---
 
 <main
   class="relative flex flex-col items-center min-h-screen overflow-hidden bg-blackMain md:min-h-screen">
   <div class="hero-glow" aria-hidden="true"></div>
   <div
-    class="flex flex-col items-center justify-center h-[80vh] gap-8 px-4 md:px-8">
+    class="flex flex-col items-center justify-center min-h-[70vh] gap-6 py-12 px-4 md:h-[80vh] md:gap-8 md:py-0 md:px-8">
     <h1
       class="reveal-down playfair-display-sc-black text-white text-[45px] sm:text-[75px] lg:text-[150px] leading-[0.8] text-center tracking-[0.03em] drop-shadow-[0_4px_30px_rgba(87,14,39,0.25)]">
       <span class="text-white playfair-display-sc-black">{t(lang, "hero.brandLetter")}</span>
       <br />
       {t(lang, "hero.brandName")}
     </h1>
+    <div
+      class="reveal-pulse h-px w-16 bg-gradient-to-r from-transparent via-[#a83a5c] to-transparent"
+      aria-hidden="true">
+    </div>
     <p
-      class="reveal-pulse md:w-[600px] text-gray-300 text-center text-sm sm:text-md md:text-lg text-pretty">
+      class="reveal-pulse md:w-[520px] text-gray-400 text-center text-sm sm:text-base md:text-lg font-light tracking-wide leading-relaxed text-pretty">
       {t(lang, "hero.description")}
     </p>
     <div
@@ -30,7 +40,8 @@ const { lang } = Astro.props;
         href={t(lang, "hero.wineListUrl")}
         download={t(lang, "hero.wineListFileName")}>
         <span
-          class="btn-shine transition-all uppercase duration-[400ms] ease-in-out font-semibold leading-[62px] md:leading-[46px] inline-block text-center w-[320px] md:w-[240px] bg-[#570E27] h-16 md:h-[50px] text-gray-300 cursor-pointer border border-[rgba(255,255,255,0.1)] hover:bg-[#7a1835] hover:text-black hover:border-[rgba(255,255,255,0.2)]">
+          class="rounded-md btn-shine transition-all uppercase duration-[400ms] ease-in-out font-semibold inline-flex items-center justify-center gap-2 w-[320px] md:w-[240px] bg-[#570E27] h-16 md:h-[50px] text-gray-300 cursor-pointer border border-[rgba(255,255,255,0.1)] hover:bg-[#7a1835] hover:text-black hover:border-[rgba(255,255,255,0.2)]">
+          <span class="[&>svg]:h-4 [&>svg]:w-4" set:html={wineListIconSvg} />
           {t(lang, "hero.wineListButton")}
         </span>
       </a>
@@ -41,7 +52,8 @@ const { lang } = Astro.props;
         rel="noopener noreferrer"
         href={t(lang, "hero.whatsappUrl")}>
         <span
-          class="btn-shine transition-all uppercase duration-[400ms] ease-in-out leading-[62px] md:leading-[46px] inline-block text-center w-[320px] md:w-[240px] bg-blackFooter h-16 md:h-[50px] text-gray-300 cursor-pointer border border-[rgba(255,255,255,0.1)] hover:bg-[#009E91] hover:text-black hover:border-[#009E91]">
+          class="rounded-md btn-shine transition-all uppercase duration-[400ms] ease-in-out inline-flex items-center justify-center gap-2 w-[320px] md:w-[240px] bg-blackFooter h-16 md:h-[50px] text-gray-300 cursor-pointer border border-[rgba(0,158,145,0.35)] hover:bg-[#009E91] hover:text-black hover:border-[#009E91]">
+          <span class="[&>svg]:h-5 [&>svg]:w-5" set:html={whatsappIconSvg} />
           {t(lang, "hero.whatsappButton")}
         </span>
       </a>
