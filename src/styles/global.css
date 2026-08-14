@@ -66,6 +66,14 @@ body::after {
     radial-gradient(ellipse 50% 30% at 50% 95%, rgba(0, 158, 145, 0.07), transparent 70%);
 }
 
+@media (min-width: 768px) {
+  .hero-glow {
+    background:
+      radial-gradient(ellipse 55% 55% at 28% 40%, rgba(87, 14, 39, 0.38), transparent 70%),
+      radial-gradient(ellipse 40% 35% at 20% 95%, rgba(0, 158, 145, 0.08), transparent 70%);
+  }
+}
+
 /* Diagonal light sweep on CTA hover */
 .btn-shine {
   position: relative;

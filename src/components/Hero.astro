@@ -18,18 +18,18 @@ const whatsappIconSvg = icon(faWhatsapp).html.join("");
   class="relative flex flex-col items-center overflow-hidden bg-blackMain md:min-h-screen">
   <div class="hero-glow" aria-hidden="true"></div>
   <div
-    class="flex flex-col items-center justify-center min-h-[70vh] gap-3 py-12 px-4 md:h-[80vh] md:gap-4 md:py-0 md:px-8">
+    class="flex flex-col items-center justify-center min-h-[70vh] gap-3 py-12 px-4 md:h-[80vh] md:items-start md:justify-center md:gap-5 md:py-0 md:pl-16 md:pr-8 lg:pl-24">
     <h1
-      class="reveal-down playfair-display-sc-black text-white text-[45px] sm:text-[75px] lg:text-[150px] leading-[0.8] text-center tracking-[0.03em] drop-shadow-[0_4px_30px_rgba(87,14,39,0.25)]">
+      class="reveal-down playfair-display-sc-black text-white text-[45px] sm:text-[75px] lg:text-[140px] leading-[0.8] text-center md:text-left tracking-[0.03em] drop-shadow-[0_4px_30px_rgba(87,14,39,0.25)]">
       <span class="block text-white playfair-display-sc-black text-[1.6em] mb-[0.12em]">{t(lang, "hero.brandLetter")}</span>
       {t(lang, "hero.brandName")}
     </h1>
     <p
-      class="reveal-pulse md:w-[520px] text-gray-400 text-center text-sm sm:text-base md:text-lg font-light tracking-wide leading-relaxed text-pretty">
+      class="reveal-pulse w-full md:w-[440px] text-gray-400 text-center md:text-left text-sm sm:text-base md:text-lg font-light tracking-wide leading-relaxed text-pretty">
       {t(lang, "hero.description")}
     </p>
     <div
-      class="flex flex-col items-center justify-center gap-6 mt-5 md:mt-6 md:flex-row">
+      class="flex flex-col items-center md:items-start justify-center gap-4 mt-5 md:mt-6 sm:flex-row sm:gap-5">
       <a
         class="reveal-left transition-all duration-[400ms] ease-in-out hover:shadow-[0_14px_30px_-8px_rgba(87,14,39,0.4)]"
         href={t(lang, "hero.wineListUrl")}
@@ -50,21 +50,20 @@ const whatsappIconSvg = icon(faWhatsapp).html.join("");
         </span>
       </a>
       <a
-        class="reveal-right font-semibold transition-all duration-[400ms] ease-in-out hover:-translate-y-1.5 hover:scale-[1.03] hover:shadow-[0_14px_30px_-8px_rgba(0,158,145,0.4)]"
+        class="reveal-right transition-all duration-[400ms] ease-in-out"
         title={t(lang, "hero.whatsappTitle")}
         target="_blank"
         rel="noopener noreferrer"
         href={t(lang, "hero.whatsappUrl")}>
         <span
-          class="group rounded-md btn-shine transition-all uppercase duration-[400ms] ease-in-out inline-flex items-center gap-4 w-[320px] md:w-[280px] px-6 bg-blackFooter h-16 md:h-14 text-gray-300 cursor-pointer border border-[rgba(0,158,145,0.35)] hover:bg-[#009E91] hover:text-black hover:border-[#009E91]">
+          class="group transition-all duration-[400ms] ease-in-out inline-flex items-center gap-3 h-16 md:h-14 text-gray-400 cursor-pointer border-b border-transparent hover:border-[#009E91] hover:text-white">
           <span
-            class="shrink-0 inline-flex items-center justify-center h-9 w-9 md:h-10 md:w-10 rounded-full bg-white/10 border border-white/15 [&>svg]:h-4 [&>svg]:w-4 md:[&>svg]:h-5 md:[&>svg]:w-5"
+            class="shrink-0 inline-flex items-center justify-center h-9 w-9 rounded-full border border-white/15 [&>svg]:h-4 [&>svg]:w-4 group-hover:border-[#009E91] group-hover:text-[#009E91]"
             set:html={whatsappIconSvg}
           />
           <span class="flex flex-col items-start gap-0.5 leading-tight">
-            <span class="text-sm md:text-base">{t(lang, "hero.whatsappButton")}</span>
-            <span
-              class="text-[10px] md:text-[11px] font-normal tracking-wide text-gray-400 group-hover:text-black/70">
+            <span class="text-sm md:text-base uppercase tracking-wide">{t(lang, "hero.whatsappButton")}</span>
+            <span class="text-[10px] md:text-[11px] font-normal tracking-wide text-gray-500">
               {t(lang, "hero.whatsappSubtitle")}
             </span>
           </span>
