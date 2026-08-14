@@ -22,12 +22,12 @@
   "homepage": "https://github.com/wvwall/webportfolio#readme",
   "dependencies": {
     "@astrojs/tailwind": "^6.0.2",
-    "@fontsource/lato": "^5.2.7",
-    "@fontsource/playfair-display-sc": "^5.2.8",
+    "@fontsource/jost": "^5.3.0",
+    "@fontsource/playfair-display-sc": "^5.3.0",
     "@fortawesome/fontawesome-svg-core": "^7.3.1",
     "@fortawesome/free-brands-svg-icons": "^7.3.1",
-    "@fortawesome/free-solid-svg-icons": "^7.3.1",
     "astro": "^5.18.2",
+    "lucide-astro": "^0.556.0",
     "tailwindcss": "^3.0.7"
   }
 }
