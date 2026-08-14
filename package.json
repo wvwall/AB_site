@@ -22,7 +22,8 @@
   "homepage": "https://github.com/wvwall/webportfolio#readme",
   "dependencies": {
     "@astrojs/tailwind": "^6.0.2",
-    "@fontsource/inter": "^5.3.0",
+    "@fontsource/jost": "^5.3.0",
+    "@fontsource/playfair-display-sc": "^5.3.0",
     "@fortawesome/fontawesome-svg-core": "^7.3.1",
     "@fortawesome/free-brands-svg-icons": "^7.3.1",
     "@fortawesome/free-solid-svg-icons": "^7.3.1",
