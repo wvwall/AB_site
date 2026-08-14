@@ -1,8 +1,8 @@
 ---
 import { t, type Language } from "../i18n";
 import { icon } from "@fortawesome/fontawesome-svg-core";
-import { faDownload } from "@fortawesome/free-solid-svg-icons";
 import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
+import { Download } from "lucide-astro";
 
 interface Props {
   lang: Language;
@@ -10,7 +10,6 @@ interface Props {
 
 const { lang } = Astro.props;
 
-const wineListIconSvg = icon(faDownload).html.join("");
 const whatsappIconSvg = icon(faWhatsapp).html.join("");
 ---
 
@@ -37,9 +36,9 @@ const whatsappIconSvg = icon(faWhatsapp).html.join("");
         <span
           class="group rounded-md btn-shine transition-all uppercase duration-[400ms] ease-in-out font-semibold inline-flex items-center gap-4 w-[320px] md:w-[280px] px-6 bg-[#570E27] h-16 md:h-14 text-gray-300 cursor-pointer border border-[rgba(255,255,255,0.1)] hover:bg-[#7a1835] hover:text-black hover:border-[rgba(255,255,255,0.2)]">
           <span
-            class="shrink-0 inline-flex items-center justify-center h-9 w-9 md:h-10 md:w-10 rounded-md bg-white/10 border border-white/15 [&>svg]:h-4 [&>svg]:w-4 md:[&>svg]:h-5 md:[&>svg]:w-5"
-            set:html={wineListIconSvg}
-          />
+            class="shrink-0 inline-flex items-center justify-center h-9 w-9 md:h-10 md:w-10 rounded-md bg-white/10 border border-white/15">
+            <Download class="h-4 w-4 md:h-5 md:w-5" />
+          </span>
           <span class="flex flex-col items-start gap-0.5 leading-tight">
             <span class="text-sm md:text-base">{t(lang, "hero.wineListButton")}</span>
             <span

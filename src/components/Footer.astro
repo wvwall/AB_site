@@ -1,9 +1,8 @@
 ---
 import { t, type Language } from "../i18n";
 import SocialIcon from "./SocialIcon.astro";
-import { icon } from "@fortawesome/fontawesome-svg-core";
 import { faInstagram, faThreads } from "@fortawesome/free-brands-svg-icons";
-import { faCookieBite, faChevronDown } from "@fortawesome/free-solid-svg-icons";
+import { Cookie, ChevronDown } from "lucide-astro";
 
 interface Props {
   lang: Language;
@@ -11,9 +10,6 @@ interface Props {
 
 const { lang } = Astro.props;
 const currentYear = new Date().getFullYear();
-
-const cookieIconSvg = icon(faCookieBite).html.join("");
-const chevronIconSvg = icon(faChevronDown).html.join("");
 ---
 
 <footer
@@ -75,14 +71,14 @@ const chevronIconSvg = icon(faChevronDown).html.join("");
       class="flex items-center justify-center gap-1 mx-auto cursor-pointer bg-transparent border-0 text-gray-400 hover:text-gray-300 text-[10px] leading-relaxed p-1 transition-colors duration-300"
       aria-expanded="false"
       aria-controls="cookieText">
-      <span class="[&>svg]:h-3.5 [&>svg]:w-3.5" set:html={cookieIconSvg} />
+      <Cookie class="h-3.5 w-3.5" />
       <span>{t(lang, "footer.cookieButtonLabel")}</span>
       <span
         id="cookieChevron"
-        class="transition-transform duration-300 ease-in-out [&>svg]:h-3 [&>svg]:w-3"
-        aria-hidden="true"
-        set:html={chevronIconSvg}
-      />
+        class="transition-transform duration-300 ease-in-out"
+        aria-hidden="true">
+        <ChevronDown class="h-3 w-3" />
+      </span>
     </button>
     <div
       id="cookieText"

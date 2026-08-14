@@ -1,15 +1,12 @@
 ---
 import { t, type Language } from "../i18n";
-import { icon } from "@fortawesome/fontawesome-svg-core";
-import { faShop } from "@fortawesome/free-solid-svg-icons";
+import { Store } from "lucide-astro";
 
 interface Props {
   lang: Language;
 }
 
 const { lang } = Astro.props;
-
-const storeIconSvg = icon(faShop).html.join("");
 ---
 
 <header
@@ -37,10 +34,7 @@ const storeIconSvg = icon(faShop).html.join("");
           class="absolute -top-2.5 left-1/2 -translate-x-1/2 rounded-full bg-[#570E27] px-1.5 py-[1px] text-[8px] font-semibold uppercase tracking-wider text-white border border-white/10 shadow-sm pointer-events-none">
           {t(lang, "header.shopBadge")}
         </span>
-        <span
-          class="transition-transform duration-300 [&>svg]:h-[18px] [&>svg]:w-[18px]"
-          set:html={storeIconSvg}
-        />
+        <Store size={18} class="transition-transform duration-300" />
         <span class="hidden mb-1 playfair-display-sc-bold md:block"
           >{t(lang, "header.locationLink")}</span
         >
