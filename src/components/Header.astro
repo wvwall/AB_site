@@ -28,7 +28,11 @@ const { lang } = Astro.props;
         target="_blank"
         rel="noopener noreferrer"
         aria-label={t(lang, "header.locationLink")}
-        class="rounded-md px-3 h-8 border border-[rgba(255,255,255,0.08)] flex items-center gap-1 text-gray-300 hover:bg-[rgba(255,255,255,0.07)] transition-colors duration-300 group">
+        class="relative rounded-md px-3 h-8 border border-[rgba(255,255,255,0.08)] flex items-center gap-1 text-gray-300 hover:bg-[rgba(255,255,255,0.07)] transition-colors duration-300 group">
+        <span
+          class="absolute -top-2.5 left-1/2 -translate-x-1/2 rounded-full bg-[#570E27] px-1.5 py-[1px] text-[8px] font-semibold uppercase tracking-wider text-white border border-white/10 shadow-sm pointer-events-none">
+          {t(lang, "header.shopBadge")}
+        </span>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="20"
@@ -41,8 +45,9 @@ const { lang } = Astro.props;
           stroke-linejoin="round"
           class="transition-transform duration-300">
           <path
-            d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" />
-          <circle cx="12" cy="10" r="1" />
+            d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z" />
+          <path d="M3 6h18" />
+          <path d="M16 10a4 4 0 0 1-8 0" />
         </svg>
         <span class="hidden mb-1 playfair-display-sc-bold md:block"
           >{t(lang, "header.locationLink")}</span

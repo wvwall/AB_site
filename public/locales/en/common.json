@@ -11,7 +11,8 @@
     "logoAlt": "Logo AB Winetrader – Wine shop in Collegno",
     "brandName": "ab winetrader",
     "locationLink": "ab winehouse",
-    "languageToggle": "Switch language"
+    "languageToggle": "Switch language",
+    "shopBadge": "Shop"
   },
   "hero": {
     "brandLetter": "AB",
