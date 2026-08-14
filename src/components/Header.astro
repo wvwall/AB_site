@@ -1,7 +1,7 @@
 ---
 import { t, type Language } from "../i18n";
 import { icon } from "@fortawesome/fontawesome-svg-core";
-import { faStore } from "@fortawesome/free-solid-svg-icons";
+import { faShop } from "@fortawesome/free-solid-svg-icons";
 
 interface Props {
   lang: Language;
@@ -9,7 +9,7 @@ interface Props {
 
 const { lang } = Astro.props;
 
-const storeIconSvg = icon(faStore).html.join("");
+const storeIconSvg = icon(faShop).html.join("");
 ---
 
 <header
