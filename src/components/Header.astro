@@ -1,11 +1,15 @@
 ---
 import { t, type Language } from "../i18n";
+import { icon } from "@fortawesome/fontawesome-svg-core";
+import { faStore } from "@fortawesome/free-solid-svg-icons";
 
 interface Props {
   lang: Language;
 }
 
 const { lang } = Astro.props;
+
+const storeIconSvg = icon(faStore).html.join("");
 ---
 
 <header
@@ -33,22 +37,10 @@ const { lang } = Astro.props;
           class="absolute -top-2.5 left-1/2 -translate-x-1/2 rounded-full bg-[#570E27] px-1.5 py-[1px] text-[8px] font-semibold uppercase tracking-wider text-white border border-white/10 shadow-sm pointer-events-none">
           {t(lang, "header.shopBadge")}
         </span>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="20"
-          height="20"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          class="transition-transform duration-300">
-          <path
-            d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z" />
-          <path d="M3 6h18" />
-          <path d="M16 10a4 4 0 0 1-8 0" />
-        </svg>
+        <span
+          class="transition-transform duration-300 [&>svg]:h-[18px] [&>svg]:w-[18px]"
+          set:html={storeIconSvg}
+        />
         <span class="hidden mb-1 playfair-display-sc-bold md:block"
           >{t(lang, "header.locationLink")}</span
         >
