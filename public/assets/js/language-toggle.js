@@ -1,3 +1,11 @@
+document.addEventListener("click", (event) => {
+  document.querySelectorAll("details.lang-dropdown[open]").forEach((details) => {
+    if (!details.contains(event.target)) {
+      details.removeAttribute("open");
+    }
+  });
+});
+
 document.addEventListener("DOMContentLoaded", () => {
   const cookieToggle = document.querySelector("#cookieToggle");
   const cookieText = document.querySelector("#cookieText");

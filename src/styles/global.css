@@ -158,6 +158,16 @@ body::after {
   }
 }
 
+.lang-dropdown summary {
+  -webkit-tap-highlight-color: transparent;
+}
+.lang-dropdown summary::-webkit-details-marker {
+  display: none;
+}
+.lang-dropdown summary::marker {
+  content: "";
+}
+
 @layer base {
   * {
     margin: 0;

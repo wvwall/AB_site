@@ -1,6 +1,6 @@
 ---
 import { t, type Language } from "../i18n";
-import { Store } from "lucide-astro";
+import { Store, Globe } from "lucide-astro";
 
 interface Props {
   lang: Language;
@@ -23,7 +23,7 @@ const { lang } = Astro.props;
         >{t(lang, "header.brandName")}
       </span>
     </div>
-    <div class="flex items-center sm:gap-1">
+    <div class="flex items-center gap-2">
       <a
         href="https://g.co/kgs/V7LW5z2"
         target="_blank"
@@ -39,12 +39,29 @@ const { lang } = Astro.props;
           >{t(lang, "header.locationLink")}</span
         >
       </a>
-      <a
-        href={lang === "en" ? "/" : "/en/"}
-        aria-label={t(lang, "header.languageToggle")}
-        class="rounded-md px-3 h-8 border border-[rgba(255,255,255,0.08)] flex items-center justify-center text-sm text-gray-300 hover:bg-[rgba(255,255,255,0.07)] transition-colors duration-300 playfair-display-sc-bold">
-        {lang === "en" ? "IT" : "EN"}
-      </a>
+      <div class="relative">
+        <details class="lang-dropdown group">
+          <summary
+            aria-label={t(lang, "header.languageToggle")}
+            class="list-none rounded-md px-3 h-8 border border-[rgba(255,255,255,0.08)] flex items-center gap-1.5 text-gray-300 hover:bg-[rgba(255,255,255,0.07)] transition-colors duration-300 cursor-pointer select-none">
+            <Globe size={16} />
+            <span class="text-sm uppercase playfair-display-sc-bold">{lang}</span>
+          </summary>
+          <div
+            class="absolute right-0 top-[calc(100%+0.5rem)] w-32 rounded-md border border-[rgba(255,255,255,0.08)] bg-blackFooter shadow-[0_8px_24px_rgba(0,0,0,0.4)] overflow-hidden z-20">
+            <a
+              href="/"
+              class={`block px-3 py-2 text-sm playfair-display-sc-bold text-gray-300 hover:bg-[rgba(255,255,255,0.07)] transition-colors duration-300 ${lang === "it" ? "bg-[rgba(255,255,255,0.05)]" : ""}`}>
+              {t(lang, "header.languageIt")}
+            </a>
+            <a
+              href="/en/"
+              class={`block px-3 py-2 text-sm playfair-display-sc-bold text-gray-300 hover:bg-[rgba(255,255,255,0.07)] transition-colors duration-300 ${lang === "en" ? "bg-[rgba(255,255,255,0.05)]" : ""}`}>
+              {t(lang, "header.languageEn")}
+            </a>
+          </div>
+        </details>
+      </div>
     </div>
   </nav>
 </header>
