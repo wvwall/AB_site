@@ -39,21 +39,12 @@ const { lang } = Astro.props;
           >{t(lang, "header.locationLink")}</span
         >
       </a>
-      <div class="flex items-center justify-end space-x-2">
-        <input
-          type="checkbox"
-          name="toggle"
-          id="toggle"
-          aria-label={t(lang, "header.languageToggle")}
-          class="sr-only" />
-        <label for="toggle">
-          <span
-            class="rounded-md flex items-center h-8 p-1 cursor-pointer w-11 border border-[rgba(255,255,255,0.08)]">
-            <span
-              class="rounded-sm w-6 h-6 duration-300 ease-in-out transform bg-white shadow-xl toggle-dot"></span>
-          </span>
-        </label>
-      </div>
+      <a
+        href={lang === "en" ? "/" : "/en/"}
+        aria-label={t(lang, "header.languageToggle")}
+        class="rounded-md px-3 h-8 border border-[rgba(255,255,255,0.08)] flex items-center justify-center text-sm text-gray-300 hover:bg-[rgba(255,255,255,0.07)] transition-colors duration-300 playfair-display-sc-bold">
+        {lang === "en" ? "IT" : "EN"}
+      </a>
     </div>
   </nav>
 </header>

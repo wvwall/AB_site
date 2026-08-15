@@ -158,18 +158,6 @@ body::after {
   }
 }
 
-#toggle ~ label span.toggle-dot {
-  background-image: url("/assets/img/it.webp");
-  background-size: contain;
-}
-#toggle:checked ~ label span.toggle-dot {
-  @apply translate-x-3;
-  background-image: url("/assets/img/en.webp");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-}
-
 @layer base {
   * {
     margin: 0;

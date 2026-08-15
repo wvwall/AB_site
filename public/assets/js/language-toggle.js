@@ -1,26 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const checkbox = document.querySelector("#toggle");
-
-  // Detect current language from URL
-  const currentPath = window.location.pathname;
-  const isEnglish = currentPath.startsWith("/en");
-  checkbox.checked = isEnglish;
-
-  // Toggle language and navigate
-  const toggleLang = () => {
-    if (checkbox.checked) {
-      // Switch to English (/en/)
-      window.location.href = "/en/";
-    } else {
-      // Switch to Italian (/)
-      window.location.href = "/";
-    }
-  };
-
-  checkbox.addEventListener("click", toggleLang);
-});
-
-document.addEventListener("DOMContentLoaded", () => {
   const cookieToggle = document.querySelector("#cookieToggle");
   const cookieText = document.querySelector("#cookieText");
   const cookieChevron = document.querySelector("#cookieChevron");
