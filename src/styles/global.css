@@ -158,16 +158,14 @@ body::after {
   }
 }
 
-#toggle ~ label span.toggle-dot {
-  background-image: url("/assets/img/it.webp");
-  background-size: contain;
+.lang-dropdown summary {
+  -webkit-tap-highlight-color: transparent;
 }
-#toggle:checked ~ label span.toggle-dot {
-  @apply translate-x-3;
-  background-image: url("/assets/img/en.webp");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
+.lang-dropdown summary::-webkit-details-marker {
+  display: none;
+}
+.lang-dropdown summary::marker {
+  content: "";
 }
 
 @layer base {

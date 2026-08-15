@@ -1,23 +1,9 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const checkbox = document.querySelector("#toggle");
-
-  // Detect current language from URL
-  const currentPath = window.location.pathname;
-  const isEnglish = currentPath.startsWith("/en");
-  checkbox.checked = isEnglish;
-
-  // Toggle language and navigate
-  const toggleLang = () => {
-    if (checkbox.checked) {
-      // Switch to English (/en/)
-      window.location.href = "/en/";
-    } else {
-      // Switch to Italian (/)
-      window.location.href = "/";
+document.addEventListener("click", (event) => {
+  document.querySelectorAll("details.lang-dropdown[open]").forEach((details) => {
+    if (!details.contains(event.target)) {
+      details.removeAttribute("open");
     }
-  };
-
-  checkbox.addEventListener("click", toggleLang);
+  });
 });
 
 document.addEventListener("DOMContentLoaded", () => {
