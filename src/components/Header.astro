@@ -48,10 +48,10 @@ const { lang } = Astro.props;
             <span class="text-sm uppercase playfair-display-sc-bold">{lang}</span>
           </summary>
           <div
-            class="absolute right-0 top-[calc(100%+0.5rem)] w-32 rounded-md border border-[rgba(255,255,255,0.08)] bg-blackFooter shadow-[0_8px_24px_rgba(0,0,0,0.4)] overflow-hidden z-20">
+            class="absolute right-0 top-[calc(100%+0.5rem)] w-max rounded-md border border-[rgba(255,255,255,0.08)] bg-blackFooter shadow-[0_8px_24px_rgba(0,0,0,0.4)] overflow-hidden z-20">
             <a
               href="/"
-              class={`block px-3 py-2 text-sm playfair-display-sc-bold text-gray-300 hover:bg-[rgba(255,255,255,0.07)] transition-colors duration-300 ${lang === "it" ? "bg-[rgba(255,255,255,0.05)]" : ""}`}>
+              class={`block whitespace-nowrap px-3 py-2 text-sm playfair-display-sc-bold text-gray-300 hover:bg-[rgba(255,255,255,0.07)] transition-colors duration-300 ${lang === "it" ? "bg-[rgba(255,255,255,0.05)]" : ""}`}>
               {t(lang, "header.languageIt")}
             </a>
             <a
