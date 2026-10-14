@@ -1,5 +1,7 @@
 ---
 import { t, type Language } from "../i18n";
+import { Image } from "astro:assets";
+import logoNoTesto from "../assets/logo-no-testo.png";
 import { Store, Languages } from "lucide-astro";
 
 interface Props {
@@ -10,15 +12,16 @@ const { lang } = Astro.props;
 ---
 
 <header
-  class="rounded-md bg-blackFooter border border-[rgba(255,255,255,0.08)] m-4 shadow-[0_8px_32px_rgba(0,0,0,0.3)] transition-all duration-300">
+  class="site-header sticky top-0 z-50 rounded-md bg-blackFooter border border-[rgba(255,255,255,0.08)] m-4 shadow-[0_8px_32px_rgba(0,0,0,0.3)] transition-all duration-300">
   <nav class="flex items-center justify-between px-4 py-4 md:px-12">
     <div class="flex items-center">
-      <img
-        src="/assets/img/logo-no-testo.png"
+      <Image
+        src={logoNoTesto}
         alt={t(lang, "header.logoAlt")}
         class="h-[35px] w-[12px] mr-2"
-        width="278"
-        height="782" />
+        width={278}
+        height={782}
+        loading="eager" />
       <span class="text-xl text-gray-300 playfair-display-sc-bold"
         >{t(lang, "header.brandName")}
       </span>
@@ -28,7 +31,7 @@ const { lang } = Astro.props;
         href="https://g.co/kgs/V7LW5z2"
         target="_blank"
         rel="noopener noreferrer"
-        aria-label={t(lang, "header.locationLink")}
+        aria-label={`${t(lang, "header.shopBadge")} ${t(lang, "header.locationLink")}`}
         class="relative rounded-md px-3 h-8 border border-[rgba(255,255,255,0.08)] flex items-center gap-1 text-gray-300 hover:bg-[rgba(255,255,255,0.07)] transition-colors duration-300 group">
         <span
           class="absolute -top-2.5 left-1/2 -translate-x-1/2 rounded-full bg-[#570E27] px-1.5 py-[1px] text-[8px] font-semibold uppercase tracking-wider text-white border border-white/10 shadow-sm pointer-events-none">
@@ -42,20 +45,22 @@ const { lang } = Astro.props;
       <div class="relative">
         <details class="lang-dropdown group">
           <summary
-            aria-label={t(lang, "header.languageToggle")}
+            aria-label={`${t(lang, "header.languageToggle")} (${lang.toUpperCase()})`}
             class="list-none rounded-md px-3 h-8 border border-[rgba(255,255,255,0.08)] flex items-center gap-1.5 text-gray-300 hover:bg-[rgba(255,255,255,0.07)] transition-colors duration-300 cursor-pointer select-none">
             <Languages size={16} />
-            <span class="text-sm uppercase font-semibold tracking-wide">{lang}</span>
+            <span class="text-sm font-semibold tracking-wide uppercase">{lang}</span>
           </summary>
           <div
             class="absolute right-0 top-[calc(100%+0.5rem)] rounded-md border border-[rgba(255,255,255,0.08)] bg-blackFooter shadow-[0_8px_24px_rgba(0,0,0,0.4)] overflow-hidden z-20">
             <a
               href="/"
+              aria-label={t(lang, "header.languageIt")}
               class={`block whitespace-nowrap px-3 py-2 text-sm font-medium text-gray-300 hover:bg-[rgba(255,255,255,0.07)] transition-colors duration-300 ${lang === "it" ? "bg-[rgba(255,255,255,0.05)]" : ""}`}>
               {t(lang, "header.languageIt")}
             </a>
             <a
               href="/en/"
+              aria-label={t(lang, "header.languageEn")}
               class={`block whitespace-nowrap px-3 py-2 text-sm font-medium text-gray-300 hover:bg-[rgba(255,255,255,0.07)] transition-colors duration-300 ${lang === "en" ? "bg-[rgba(255,255,255,0.05)]" : ""}`}>
               {t(lang, "header.languageEn")}
             </a>
@@ -65,3 +70,19 @@ const { lang } = Astro.props;
     </div>
   </nav>
 </header>
+
+<script>
+  // Morph the header into a full-width translucent bar once it docks to the top.
+  // 16px matches the base `m-4` margin of the header.
+  const STICK_THRESHOLD = 16;
+  const header = document.querySelector(".site-header");
+
+  if (header) {
+    const updateHeader = () => {
+      header.classList.toggle("is-stuck", window.scrollY > STICK_THRESHOLD);
+    };
+
+    updateHeader();
+    window.addEventListener("scroll", updateHeader, { passive: true });
+  }
+</script>

@@ -11,6 +11,14 @@ interface Props {
 const { lang } = Astro.props;
 
 const whatsappIconSvg = icon(faWhatsapp).html.join("");
+
+// Fallback locale attivabile via variabile d'ambiente (Netlify / .env).
+// true  -> serve il PDF locale /WineList.pdf (public/WineList.pdf)
+// false -> usa il link Google Drive definito nelle traduzioni
+const wineListHref =
+  import.meta.env.PUBLIC_WINE_LIST_LOCAL === "true"
+    ? "/WineList.pdf"
+    : t(lang, "hero.wineListUrl");
 ---
 
 <main
@@ -24,22 +32,22 @@ const whatsappIconSvg = icon(faWhatsapp).html.join("");
       {t(lang, "hero.brandName")}
     </h1>
     <p
-      class="reveal-pulse md:w-[520px] text-gray-400 text-center text-sm sm:text-base md:text-lg font-light tracking-wide leading-relaxed text-pretty">
+      class="reveal-pulse md:w-[720px] text-gray-400 text-center text-sm sm:text-base md:text-xl font-light tracking-wide leading-relaxed text-pretty">
       {t(lang, "hero.description")}
     </p>
     <div
       class="flex flex-col items-center justify-center gap-6 mt-5 md:mt-6 md:flex-row">
       <a
         class="reveal-left transition-all duration-[400ms] ease-in-out hover:shadow-[0_14px_30px_-8px_rgba(87,14,39,0.4)]"
-        href={t(lang, "hero.wineListUrl")}
+        href={wineListHref}
         download={t(lang, "hero.wineListFileName")}>
         <span
           class="group rounded-md btn-shine transition-all uppercase duration-[400ms] ease-in-out font-semibold inline-flex items-center gap-4 w-[320px] md:w-[280px] px-6 bg-[#570E27] h-16 md:h-14 text-gray-300 cursor-pointer border border-[rgba(255,255,255,0.1)] hover:bg-[#7a1835] hover:text-black hover:border-[rgba(255,255,255,0.2)]">
           <span
-            class="shrink-0 inline-flex items-center justify-center h-9 w-9 md:h-10 md:w-10 rounded-md bg-white/10 border border-white/15">
-            <Download class="h-4 w-4 md:h-5 md:w-5" />
+            class="inline-flex items-center justify-center w-8 h-8 border rounded-md shrink-0 bg-white/10 border-white/15">
+            <Download class="w-4 h-4 md:h-5 md:w-5" />
           </span>
-          <span class="flex flex-col items-start gap-0.5 leading-tight">
+          <span class="flex flex-col items-start leading-tight">
             <span class="text-sm md:text-base">{t(lang, "hero.wineListButton")}</span>
             <span
               class="text-[10px] md:text-[11px] font-normal tracking-wide text-gray-400 group-hover:text-black/70">
@@ -57,10 +65,10 @@ const whatsappIconSvg = icon(faWhatsapp).html.join("");
         <span
           class="group rounded-md btn-shine transition-all uppercase duration-[400ms] ease-in-out inline-flex items-center gap-4 w-[320px] md:w-[280px] px-6 bg-blackFooter h-16 md:h-14 text-gray-300 cursor-pointer border border-[rgba(0,158,145,0.35)] hover:bg-[#009E91] hover:text-black hover:border-[#009E91]">
           <span
-            class="shrink-0 inline-flex items-center justify-center h-9 w-9 md:h-10 md:w-10 rounded-md bg-white/10 border border-white/15 [&>svg]:h-4 [&>svg]:w-4 md:[&>svg]:h-5 md:[&>svg]:w-5"
+            class="shrink-0 inline-flex items-center justify-center h-8 w-8 rounded-md bg-white/10 border border-white/15 [&>svg]:h-4 [&>svg]:w-4 md:[&>svg]:h-5 md:[&>svg]:w-5"
             set:html={whatsappIconSvg}
           />
-          <span class="flex flex-col items-start gap-0.5 leading-tight">
+          <span class="flex flex-col items-start leading-tight">
             <span class="text-sm md:text-base">{t(lang, "hero.whatsappButton")}</span>
             <span
               class="text-[10px] md:text-[11px] font-normal tracking-wide text-gray-400 group-hover:text-black/70">

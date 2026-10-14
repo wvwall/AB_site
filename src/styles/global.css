@@ -168,6 +168,29 @@ body::after {
   content: "";
 }
 
+/* Header morph: floating card (default) -> full-width translucent bar (scrolled).
+   margin-top is zeroed while stuck so the bar docks flush to the very top on every
+   engine (some account for the margin in the sticky inset, leaving a gap where the
+   page content shows through). margin-bottom compensates so nothing below shifts. */
+.site-header.is-stuck {
+  margin-top: 0;
+  margin-bottom: 2rem;
+  margin-left: 0;
+  margin-right: 0;
+  border-radius: 0;
+  background-color: rgba(18, 18, 18, 0.72);
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
+  backdrop-filter: blur(12px) saturate(140%);
+}
+
+/* Fallback for engines without backdrop-filter: without the blur, keep the bar
+   opaque enough that the content scrolling underneath does not show through. */
+@supports not ((-webkit-backdrop-filter: blur(4px)) or (backdrop-filter: blur(4px))) {
+  .site-header.is-stuck {
+    background-color: rgba(18, 18, 18, 0.95);
+  }
+}
+
 @layer base {
   * {
     margin: 0;
