@@ -2,3 +2,5 @@ node_modules
 /seo-analysis-report.html
 dist
 .astro
+.env
+.tokensave

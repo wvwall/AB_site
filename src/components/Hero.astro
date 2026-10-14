@@ -11,6 +11,14 @@ interface Props {
 const { lang } = Astro.props;
 
 const whatsappIconSvg = icon(faWhatsapp).html.join("");
+
+// Fallback locale attivabile via variabile d'ambiente (Netlify / .env).
+// true  -> serve il PDF locale /WineList.pdf (public/WineList.pdf)
+// false -> usa il link Google Drive definito nelle traduzioni
+const wineListHref =
+  import.meta.env.PUBLIC_WINE_LIST_LOCAL === "true"
+    ? "/WineList.pdf"
+    : t(lang, "hero.wineListUrl");
 ---
 
 <main
@@ -31,7 +39,7 @@ const whatsappIconSvg = icon(faWhatsapp).html.join("");
       class="flex flex-col items-center justify-center gap-6 mt-5 md:mt-6 md:flex-row">
       <a
         class="reveal-left transition-all duration-[400ms] ease-in-out hover:shadow-[0_14px_30px_-8px_rgba(87,14,39,0.4)]"
-        href={t(lang, "hero.wineListUrl")}
+        href={wineListHref}
         download={t(lang, "hero.wineListFileName")}>
         <span
           class="group rounded-md btn-shine transition-all uppercase duration-[400ms] ease-in-out font-semibold inline-flex items-center gap-4 w-[320px] md:w-[280px] px-6 bg-[#570E27] h-16 md:h-14 text-gray-300 cursor-pointer border border-[rgba(255,255,255,0.1)] hover:bg-[#7a1835] hover:text-black hover:border-[rgba(255,255,255,0.2)]">
