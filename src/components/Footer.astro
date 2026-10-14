@@ -17,7 +17,7 @@ const currentYear = new Date().getFullYear();
   class="rounded-md border border-[rgba(255,255,255,0.14)] m-4 shadow-[0_8px_32px_rgba(0,0,0,0.3)] overflow-hidden">
   <div class="flex flex-col items-center bg-blackFooter">
     <h2
-      class="my-6 text-2xl tracking-wider text-gray-300 playfair-display-sc-bold md:my-8">
+      class="my-6 text-3xl tracking-wider text-gray-300 playfair-display-sc-bold md:my-8">
       {t(lang, "footer.contactsTitle")}
     </h2>
     <hr
@@ -60,7 +60,7 @@ const currentYear = new Date().getFullYear();
     </div>
   </div>
 
-  <div class="px-4 pt-6 pb-4 text-center bg-blackFooter">
+  <div class="px-4 pt-6 pb-0 text-center bg-blackFooter">
     <small class="text-[10px] text-gray-300">
       {t(lang, "footer.copyright").replace("{year}", currentYear.toString())}
     </small>
@@ -77,7 +77,7 @@ const currentYear = new Date().getFullYear();
         id="cookieChevron"
         class="transition-transform duration-300 ease-in-out"
         aria-hidden="true">
-        <ChevronDown class="h-3 w-3" />
+        <ChevronDown class="w-3 h-3" />
       </span>
     </button>
     <div

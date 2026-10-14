@@ -168,6 +168,17 @@ body::after {
   content: "";
 }
 
+/* Header morph: floating card (default) -> full-width translucent bar (scrolled).
+   Sticky already docks the header flush to the top, so no transform is needed. */
+.site-header.is-stuck {
+  margin-left: 0;
+  margin-right: 0;
+  border-radius: 0;
+  background-color: rgba(18, 18, 18, 0.72);
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
+  backdrop-filter: blur(12px) saturate(140%);
+}
+
 @layer base {
   * {
     margin: 0;
