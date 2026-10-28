@@ -2,7 +2,7 @@
 import { t, type Language } from "../i18n";
 import { icon } from "@fortawesome/fontawesome-svg-core";
 import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
-import { Download } from "lucide-astro";
+import { ChevronRight, Download } from "lucide-astro";
 
 interface Props {
   lang: Language;
@@ -23,60 +23,51 @@ const wineListHref =
 
 <main
   class="relative flex flex-col items-center overflow-hidden bg-blackMain md:min-h-screen">
-  <div class="hero-glow" aria-hidden="true"></div>
-  <div
-    class="flex flex-col items-center justify-center min-h-[70vh] gap-3 py-12 px-4 md:h-[80vh] md:gap-4 md:py-0 md:px-8">
-    <h1
-      class="reveal-down playfair-display-sc-black text-white text-[45px] sm:text-[75px] lg:text-[150px] leading-[0.8] text-center tracking-[0.03em] drop-shadow-[0_4px_30px_rgba(87,14,39,0.25)]">
-      <span class="block text-white playfair-display-sc-black text-[1.5em] mb-[0.12em]">{t(lang, "hero.brandLetter")}</span>
-      {t(lang, "hero.brandName")}
-    </h1>
-    <p
-      class="reveal-pulse md:w-[720px] text-gray-400 text-center text-sm sm:text-base md:text-xl font-light tracking-wide leading-relaxed text-pretty">
-      {t(lang, "hero.description")}
-    </p>
-    <div
-      class="flex flex-col items-center justify-center gap-6 mt-5 md:mt-6 md:flex-row">
-      <a
-        class="reveal-left transition-all duration-[400ms] ease-in-out hover:shadow-[0_14px_30px_-8px_rgba(87,14,39,0.4)]"
-        href={wineListHref}
-        download={t(lang, "hero.wineListFileName")}>
-        <span
-          class="group rounded-md btn-shine transition-all uppercase duration-[400ms] ease-in-out font-semibold inline-flex items-center gap-4 w-[320px] md:w-[280px] px-6 bg-[#570E27] h-16 md:h-14 text-gray-300 cursor-pointer border border-[rgba(255,255,255,0.1)] hover:bg-[#7a1835] hover:text-black hover:border-[rgba(255,255,255,0.2)]">
-          <span
-            class="inline-flex items-center justify-center w-8 h-8 border rounded-md shrink-0 bg-white/10 border-white/15">
-            <Download class="w-4 h-4 md:h-5 md:w-5" />
+  <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_50%_30%_at_50%_95%,rgba(0,158,145,0.07),transparent_70%)] [animation:hero-glow-drift_16s_ease-in-out_infinite]" aria-hidden="true"></div>
+  <div class="relative grid items-center w-[calc(100%-40px)] max-w-[1536px] pt-16 pb-20 gap-10 md:max-[1023px]:w-[min(640px,calc(100%-64px))] md:max-[1023px]:py-20 md:max-[1023px]:gap-12 min-[1024px]:grid-cols-[60%_40%] min-[1024px]:w-[82%] min-[1024px]:min-h-[80svh] min-[1024px]:py-16 min-[1024px]:gap-0">
+    <div class="min-w-0 text-left min-[1024px]:relative min-[1024px]:-top-10 min-[1024px]:pr-[clamp(32px,4.6vw,84px)]">
+      <div class="relative">
+        <div class="pointer-events-none absolute left-[calc(50%-50vw)] top-[calc(50%-30svh)] w-screen h-[100svh]" aria-hidden="true">
+          <div class="absolute inset-0 bg-[radial-gradient(ellipse_60%_45%_at_50%_30%,rgba(87,14,39,0.35),transparent_70%)] [animation:hero-glow-drift_16s_ease-in-out_infinite]"></div>
+        </div>
+        <h1 class="relative reveal-down playfair-display-sc-black text-white text-[clamp(32px,12vw,75px)] leading-[0.8] tracking-[0.01em] whitespace-nowrap min-[1024px]:text-[clamp(60px,6.15vw,118px)]">
+          <span class="block mb-[0.12em] text-[1.5em] playfair-display-sc-black">{t(lang, "hero.brandLetter")}</span>
+          {t(lang, "hero.brandName")}
+        </h1>
+      </div>
+    </div>
+    <div class="min-w-0 pt-8 border-t border-[#570e2880] min-[1024px]:flex min-[1024px]:flex-col min-[1024px]:justify-center min-[1024px]:min-h-[clamp(360px,53svh,520px)] min-[1024px]:pt-0 min-[1024px]:pl-[clamp(32px,4.6vw,84px)] min-[1024px]:border-t-0 min-[1024px]:border-l ">
+      <p class="reveal-pulse m-0 text-gray-400 text-[14px] font-light tracking-wide leading-relaxed text-pretty min-[640px]:text-[18px] ">
+        {t(lang, "hero.description")}
+      </p>
+      <div class="grid gap-4 mt-7">
+        <a
+          class="group btn-shine reveal-left flex items-center gap-5 w-full min-h-20 py-4 px-5 rounded-[7px] border border-[#8b1943] bg-[#570e27] text-gray-300 no-underline uppercase transition-[background-color,border-color] duration-200 ease-[ease] hover:bg-[#7a1835] hover:border-[#a82855] min-[1024px]:gap-6 min-[1024px]:px-[clamp(20px,1.8vw,32px)] motion-reduce:transition-none"
+          href={wineListHref}
+          download={t(lang, "hero.wineListFileName")}>
+          <span class="inline-flex shrink-0 items-center justify-center w-11 h-11 border border-white/10 rounded-lg [&>svg]:w-[26px] [&>svg]:h-[26px]">
+            <Download size={26} aria-hidden="true" />
           </span>
-          <span class="flex flex-col items-start leading-tight">
-            <span class="text-sm md:text-base">{t(lang, "hero.wineListButton")}</span>
-            <span
-              class="text-[10px] md:text-[11px] font-normal tracking-wide text-gray-400 group-hover:text-black/70">
-              {t(lang, "hero.wineListSubtitle")}
-            </span>
+          <span class="flex flex-col gap-0 min-w-0 leading-[1.25]">
+            <span class="text-[14px] md:text-[16px] font-semibold">{t(lang, "hero.wineListButton")}</span>
+            <span class="text-gray-400 text-[10px] md:text-[11px] font-normal tracking-wide">{t(lang, "hero.wineListSubtitle")}</span>
           </span>
-        </span>
-      </a>
-      <a
-        class="reveal-right font-semibold transition-all duration-[400ms] ease-in-out hover:-translate-y-1.5 hover:scale-[1.03] hover:shadow-[0_14px_30px_-8px_rgba(0,158,145,0.4)]"
-        title={t(lang, "hero.whatsappTitle")}
-        target="_blank"
-        rel="noopener noreferrer"
-        href={t(lang, "hero.whatsappUrl")}>
-        <span
-          class="group rounded-md btn-shine transition-all uppercase duration-[400ms] ease-in-out inline-flex items-center gap-4 w-[320px] md:w-[280px] px-6 bg-blackFooter h-16 md:h-14 text-gray-300 cursor-pointer border border-[rgba(0,158,145,0.35)] hover:bg-[#009E91] hover:text-black hover:border-[#009E91]">
-          <span
-            class="shrink-0 inline-flex items-center justify-center h-8 w-8 rounded-md bg-white/10 border border-white/15 [&>svg]:h-4 [&>svg]:w-4 md:[&>svg]:h-5 md:[&>svg]:w-5"
-            set:html={whatsappIconSvg}
-          />
-          <span class="flex flex-col items-start leading-tight">
-            <span class="text-sm md:text-base">{t(lang, "hero.whatsappButton")}</span>
-            <span
-              class="text-[10px] md:text-[11px] font-normal tracking-wide text-gray-400 group-hover:text-black/70">
-              {t(lang, "hero.whatsappSubtitle")}
-            </span>
+          <ChevronRight class="shrink-0 ml-auto transition-transform duration-200 ease-[ease] group-hover:translate-x-[3px] motion-reduce:transition-none" size={22} aria-hidden="true" />
+        </a>
+        <a
+          class="group btn-shine reveal-right flex items-center gap-5 w-full min-h-20 py-4 px-5 rounded-[7px] border border-[#353535] bg-blackFooter text-gray-300 no-underline uppercase transition-[background-color,border-color] duration-200 ease-[ease] hover:bg-[#1d1d1d] hover:border-[#686868] min-[1024px]:gap-6 min-[1024px]:px-[clamp(20px,1.8vw,32px)] motion-reduce:transition-none"
+          title={t(lang, "hero.whatsappTitle")}
+          target="_blank"
+          rel="noopener noreferrer"
+          href={t(lang, "hero.whatsappUrl")}>
+          <span class="inline-flex shrink-0 items-center justify-center w-11 h-11 border border-white/10 rounded-lg [&>svg]:w-[26px] [&>svg]:h-[26px]" aria-hidden="true" set:html={whatsappIconSvg} />
+          <span class="flex flex-col gap-0 min-w-0 leading-[1.25]">
+            <span class="text-[14px] md:text-[16px] font-semibold">{t(lang, "hero.whatsappButton")}</span>
+            <span class="text-gray-400 text-[10px] md:text-[11px] font-normal tracking-wide">{t(lang, "hero.whatsappSubtitle")}</span>
           </span>
-        </span>
-      </a>
+          <ChevronRight class="shrink-0 ml-auto transition-transform duration-200 ease-[ease] group-hover:translate-x-[3px] motion-reduce:transition-none" size={22} aria-hidden="true" />
+        </a>
+      </div>
     </div>
   </div>
 </main>
