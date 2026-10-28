@@ -1,11 +1,14 @@
 import { defineConfig } from "astro/config";
-import tailwind from "@astrojs/tailwind";
+import tailwind from "tailwindcss";
+import autoprefixer from "autoprefixer";
 
 export default defineConfig({
   site: "https://www.abwinetrader.com",
-  integrations: [
-    tailwind({
-      applyBaseStyles: false,
-    }),
-  ],
+  vite: {
+    css: {
+      postcss: {
+        plugins: [tailwind(), autoprefixer()],
+      },
+    },
+  },
 });
