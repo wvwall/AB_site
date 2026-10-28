@@ -19,9 +19,12 @@ const { lang } = Astro.props;
         src={logoNoTesto}
         alt={t(lang, "header.logoAlt")}
         class="h-[35px] w-[12px] mr-2"
-        width={278}
-        height={782}
-        loading="eager" />
+        width={12}
+        height={35}
+        densities={[1, 2, 3]}
+        format="webp"
+        quality="high"
+        priority />
       <span class="text-xl text-gray-300 playfair-display-sc-bold"
         >{t(lang, "header.brandName")}
       </span>
