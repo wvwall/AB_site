@@ -2,7 +2,7 @@
 import { t, type Language } from "../i18n";
 import SocialIcon from "./SocialIcon.astro";
 import { faInstagram, faThreads } from "@fortawesome/free-brands-svg-icons";
-import { Cookie, ChevronDown } from "lucide-astro";
+import { Cookie, ChevronDown, Mail, Phone } from "lucide-astro";
 
 interface Props {
   lang: Language;
@@ -14,79 +14,92 @@ const currentYear = new Date().getFullYear();
 
 <footer
   id="contatti"
-  class="rounded-md border border-[rgba(255,255,255,0.14)] m-4 shadow-[0_8px_32px_rgba(0,0,0,0.3)] overflow-hidden">
-  <div class="flex flex-col items-center bg-blackFooter">
-    <h2
-      class="my-6 text-3xl tracking-wider text-gray-300 playfair-display-sc-bold md:my-8">
-      {t(lang, "footer.contactsTitle")}
-    </h2>
-    <hr
-      class="h-px border-0 w-[90%] bg-gradient-to-r from-transparent via-zinc-700 to-transparent" />
-    <div
-      class="flex flex-col md:flex-row my-5 md:my-8 md:mr-[25px] justify-center items-center gap-6 md:gap-12 text-sm">
-      <a
-        href="mailto:info@abwinetrader.com"
-        class="relative text-gray-300 hover:text-white transition-colors duration-300 after:content-[''] after:absolute after:bottom-[-2px] after:left-0 after:w-0 after:h-px after:bg-white after:transition-[width] after:duration-300 hover:after:w-full"
-        >{t(lang, "footer.email")}</a
-      >
+  class="rounded-md border border-[rgba(255,255,255,0.14)] m-4 shadow-[0_8px_32px_rgba(0,0,0,0.3)] overflow-hidden bg-blackFooter">
+  <div class="grid gap-10 w-[calc(100%-48px)] max-w-[1280px] mx-auto py-12 md:py-16 min-[1024px]:w-[82%] min-[1280px]:w-[84%] min-[1024px]:grid-cols-[58%_42%] min-[1024px]:gap-0 min-[1024px]:py-20">
+    <div class="min-w-0 min-[1024px]:pr-[clamp(48px,5vw,100px)]">
+      <p class="text-3xl leading-none text-gray-300 playfair-display-sc-black">
+        <span class="block text-[1.5em] mb-[0.12em] playfair-display-sc-black">{t(lang, "hero.brandLetter")}</span>
+        {t(lang, "hero.brandName")}
+      </p>
+      <p class="mt-6 text-xs font-light leading-relaxed tracking-wide text-gray-400 sm:text-base text-pretty">
+        {t(lang, "hero.description")}
+      </p>
+    </div>
 
-      <div class="flex gap-3">
-        <SocialIcon
-          ariaLabel={t(lang, "footer.instagramLabel")}
-          href="https://www.instagram.com/ab_luxury_wine/"
-          icon={faInstagram}
-        />
-
-        <!-- TikTok Icon
+    <div class="min-w-0 border-t border-zinc-700 pt-8 min-[1024px]:border-t-0 min-[1024px]:border-l min-[1024px]:pt-0 min-[1024px]:pl-[clamp(48px,7.4vw,152px)]">
+      <h2 class="mb-6 text-3xl tracking-wider text-gray-300 playfair-display-sc-bold">
+        {t(lang, "footer.contactsTitle")}
+      </h2>
+      <div class="flex flex-col items-start gap-5 text-sm">
         <a
-          aria-label="TikTok"
-          href="https://www.tiktok.com/@ab_luxury_wine?_t=ZN-8uNMCOOkPAs&_r=1"
-          target="_blank"
-          class="inline-flex items-center justify-center w-[42px] h-[42px] rounded-full border border-[rgba(255,255,255,0.08)] text-gray-300 hover:text-white hover:bg-[rgba(255,255,255,0.07)] hover:-translate-y-[3px] hover:border-[rgba(255,255,255,0.2)] transition-all duration-300">
-          <i class="text-2xl fa-brands fa-tiktok"></i>
-        </a> -->
-
-        <SocialIcon
-          ariaLabel={t(lang, "footer.threadsLabel")}
-          href="https://www.threads.net/@ab_luxury_wine?igshid=NTc4MTIwNjQ2YQ=="
-          icon={faThreads}
-        />
+          href="mailto:info@abwinetrader.com"
+          class="inline-flex items-center gap-4 text-gray-300 transition-colors duration-300 hover:text-white">
+          <Mail class="w-5 h-5 shrink-0" aria-hidden="true" />
+          <span class="break-all">{t(lang, "footer.email")}</span>
+        </a>
+        <span class="inline-flex items-center gap-4 text-gray-300 transition-colors duration-300 hover:text-white">
+          <Phone class="w-5 h-5 shrink-0" aria-hidden="true" />
+          <span>{t(lang, "footer.phone")}</span>
+        </span>
+        <div class="flex gap-3 mt-1">
+          <SocialIcon
+            ariaLabel={t(lang, "footer.instagramLabel")}
+            href="https://www.instagram.com/ab_luxury_wine/"
+            icon={faInstagram}
+          />
+          <SocialIcon
+            ariaLabel={t(lang, "footer.threadsLabel")}
+            href="https://www.threads.net/@ab_luxury_wine?igshid=NTc4MTIwNjQ2YQ=="
+            icon={faThreads}
+          />
+        </div>
       </div>
-
-      <span
-        class="relative text-gray-300 hover:text-white transition-colors duration-300 after:content-[''] after:absolute after:bottom-[-2px] after:left-0 after:w-0 after:h-px after:bg-white after:transition-[width] after:duration-300 hover:after:w-full"
-        >{t(lang, "footer.phone")}</span
-      >
     </div>
   </div>
 
-  <div class="px-4 pt-6 pb-0 text-center bg-blackFooter">
+  <hr class="h-px border-0 w-[90%] mx-auto bg-gradient-to-r from-transparent via-zinc-700 to-transparent" />
+
+  <div class="w-[90%] mx-auto flex flex-col items-start gap-5 py-6 md:flex-row md:items-center md:justify-between">
     <small class="text-[10px] text-gray-300">
       {t(lang, "footer.copyright").replace("{year}", currentYear.toString())}
     </small>
-  </div>
-  <div class="px-6 pt-2 pb-4 text-center bg-blackFooter">
-    <button
-      id="cookieToggle"
-      class="flex items-center justify-center gap-1 mx-auto cursor-pointer bg-transparent border-0 text-gray-400 hover:text-gray-300 text-[10px] leading-relaxed p-1 transition-colors duration-300"
-      aria-expanded="false"
-      aria-controls="cookieText">
-      <Cookie class="h-3.5 w-3.5" />
-      <span>{t(lang, "footer.cookieButtonLabel")}</span>
-      <span
-        id="cookieChevron"
-        class="transition-transform duration-300 ease-in-out"
-        aria-hidden="true">
-        <ChevronDown class="w-3 h-3" />
-      </span>
-    </button>
-    <div
-      id="cookieText"
-      class="overflow-hidden transition-all duration-300 ease-in-out max-h-0">
-      <p
-        class="text-[10px] leading-relaxed text-gray-400 max-w-5xl mx-auto"
-        set:html={t(lang, "footer.cookieText")}>
-      </p>
+    <div class="flex items-center gap-6">
+      <button
+        id="cookieToggle"
+        class="flex items-center justify-center gap-1 cursor-pointer bg-transparent border-0 text-gray-400 hover:text-gray-300 text-[10px] leading-relaxed p-1 transition-colors duration-300"
+        aria-expanded="false"
+        aria-controls="cookieText">
+        <Cookie class="h-3.5 w-3.5" />
+        <span>{t(lang, "footer.cookieButtonLabel")}</span>
+        <span id="cookieChevron" class="transition-transform duration-300 ease-in-out" aria-hidden="true">
+          <ChevronDown class="w-3 h-3" />
+        </span>
+      </button>
+      <details class="relative pl-6 border-l lang-dropdown group border-white/10">
+        <summary
+          aria-label={`${t(lang, "header.languageToggle")} (${lang.toUpperCase()})`}
+          class="flex items-center gap-2 text-sm text-gray-300 uppercase list-none transition-colors duration-300 cursor-pointer select-none hover:text-white">
+          <span>{lang}</span>
+          <ChevronDown class="w-3 h-3 transition-transform duration-300 group-open:rotate-180" aria-hidden="true" />
+        </summary>
+        <div class="absolute right-0 bottom-[calc(100%+0.5rem)] rounded-md border border-white/10 bg-blackFooter overflow-hidden z-20">
+          <a
+            href="/"
+            aria-label={t(lang, "header.languageIt")}
+            class={`block whitespace-nowrap px-3 py-2 text-sm text-gray-300 hover:bg-white/10 transition-colors duration-300 ${lang === "it" ? "bg-white/5" : ""}`}>
+            {t(lang, "header.languageIt")}
+          </a>
+          <a
+            href="/en/"
+            aria-label={t(lang, "header.languageEn")}
+            class={`block whitespace-nowrap px-3 py-2 text-sm text-gray-300 hover:bg-white/10 transition-colors duration-300 ${lang === "en" ? "bg-white/5" : ""}`}>
+            {t(lang, "header.languageEn")}
+          </a>
+        </div>
+      </details>
     </div>
+  </div>
+  <div id="cookieText" class="overflow-hidden transition-all duration-300 ease-in-out max-h-0 w-[90%] mx-auto">
+    <p class="text-[10px] leading-relaxed text-gray-400 max-w-5xl mx-auto pb-6 text-center" set:html={t(lang, "footer.cookieText")} />
   </div>
 </footer>
