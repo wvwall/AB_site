@@ -2,7 +2,7 @@
 import { t, type Language } from "../i18n";
 import SocialIcon from "./SocialIcon.astro";
 import { faInstagram, faThreads } from "@fortawesome/free-brands-svg-icons";
-import { Cookie, ChevronDown, Mail, Phone } from "lucide-astro";
+import { ArrowUpRight, Cookie, ChevronDown, Mail, Phone } from "lucide-astro";
 
 interface Props {
   lang: Language;
@@ -15,45 +15,53 @@ const currentYear = new Date().getFullYear();
 <footer
   id="contatti"
   class="rounded-md border border-[rgba(255,255,255,0.14)] m-4 shadow-[0_8px_32px_rgba(0,0,0,0.3)] overflow-hidden bg-blackFooter">
-  <div class="grid gap-10 w-[calc(100%-48px)] max-w-[1280px] mx-auto py-12 md:py-16 min-[1024px]:w-[82%] min-[1280px]:w-[84%] min-[1024px]:grid-cols-[58%_42%] min-[1024px]:gap-0 min-[1024px]:py-20">
+  <div class="grid gap-10 w-[calc(100%-48px)] max-w-[1280px] mx-auto py-12 md:py-16 min-[1024px]:w-[82%] min-[1280px]:w-[84%] min-[1024px]:grid-cols-[45%_55%] min-[1024px]:gap-0 min-[1024px]:py-20">
     <div class="min-w-0 min-[1024px]:pr-[clamp(48px,5vw,100px)]">
-      <p class="text-xl min-[1024px]:text-3xl leading-none text-gray-300 playfair-display-sc-black">
-        <span class="block text-[1.5em] mb-[0.12em] playfair-display-sc-black">{t(lang, "hero.brandLetter")}</span>
-        {t(lang, "hero.brandName")}
+      <h2 class="text-xl min-[1024px]:text-3xl text-gray-300 playfair-display-sc-bold">
+        {t(lang, "footer.visitTitle")}
+      </h2>
+      <p class="mt-2 text-xs font-light leading-relaxed tracking-wide text-gray-400 sm:text-base text-pretty">
+        {t(lang, "footer.visitDescription")}
       </p>
-      <p class="mt-6 text-xs font-light leading-relaxed tracking-wide text-gray-400 sm:text-base text-pretty">
-        {t(lang, "hero.description")}
-      </p>
+      <a
+        href="https://g.co/kgs/V7LW5z2"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="group mt-3 inline-flex min-h-11 items-center gap-2 text-sm text-gray-300 underline decoration-[#8b1943] underline-offset-[6px] transition-colors duration-300 hover:text-white hover:decoration-[#b62553]">
+        {t(lang, "footer.visitDirections")}
+        <ArrowUpRight class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 motion-reduce:transition-none" aria-hidden="true" />
+      </a>
     </div>
 
     <div class="min-w-0 border-t border-zinc-700 pt-8 min-[1024px]:border-t-0 min-[1024px]:border-l min-[1024px]:pt-0 min-[1024px]:pl-[clamp(48px,7.4vw,152px)]">
       <h2 class="mb-6 text-3xl tracking-wider text-gray-300 playfair-display-sc-bold">
         {t(lang, "footer.contactsTitle")}
       </h2>
-      <div class="flex flex-col items-start gap-5 text-sm">
+      <div class="flex flex-col gap-5 min-[1024px]:flex-row min-[1024px]:items-center min-[1024px]:justify-between">
+          <div class="flex flex-col items-start gap-5 text-sm">
         <a
           href="mailto:info@abwinetrader.com"
           class="inline-flex items-center gap-4 text-gray-300 transition-colors duration-300 hover:text-white">
-          <Mail class="w-5 h-5 shrink-0" aria-hidden="true" />
           <span class="break-all">{t(lang, "footer.email")}</span>
         </a>
         <span class="inline-flex items-center gap-4 text-gray-300 transition-colors duration-300 hover:text-white">
-          <Phone class="w-5 h-5 shrink-0" aria-hidden="true" />
           <span>{t(lang, "footer.phone")}</span>
         </span>
-        <div class="flex gap-3 mt-1">
-          <SocialIcon
-            ariaLabel={t(lang, "footer.instagramLabel")}
-            href="https://www.instagram.com/ab_luxury_wine/"
-            icon={faInstagram}
-          />
-          <SocialIcon
-            ariaLabel={t(lang, "footer.threadsLabel")}
-            href="https://www.threads.net/@ab_luxury_wine?igshid=NTc4MTIwNjQ2YQ=="
-            icon={faThreads}
-          />
-        </div>
       </div>
+      <div class="flex gap-3 mt-1">
+        <SocialIcon
+          ariaLabel={t(lang, "footer.instagramLabel")}
+          href="https://www.instagram.com/ab_luxury_wine/"
+          icon={faInstagram}
+        />
+        <SocialIcon
+          ariaLabel={t(lang, "footer.threadsLabel")}
+          href="https://www.threads.net/@ab_luxury_wine?igshid=NTc4MTIwNjQ2YQ=="
+          icon={faThreads}
+        />
+      </div>
+      </div>
+    
     </div>
   </div>
 
