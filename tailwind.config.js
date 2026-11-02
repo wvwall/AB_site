@@ -11,6 +11,10 @@ module.exports = {
       xxl: "1440px",
     },
     extend: {
+      // Shared content width for header, hero and footer on large screens
+      maxWidth: {
+        site: "1200px",
+      },
       colors: {
         black: "#000000",
         blackFooter: "#121212",
