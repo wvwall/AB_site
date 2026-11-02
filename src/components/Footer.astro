@@ -15,7 +15,7 @@ const currentYear = new Date().getFullYear();
 <footer
   id="contatti"
   class="rounded-md border border-[rgba(255,255,255,0.14)] m-4 shadow-[0_8px_32px_rgba(0,0,0,0.3)] overflow-hidden bg-blackFooter">
-  <div class="grid gap-10 w-[calc(100%-48px)] max-w-[1280px] mx-auto py-12 md:py-16 min-[1024px]:w-[82%] min-[1280px]:w-[84%] min-[1024px]:grid-cols-[45%_55%] min-[1024px]:gap-0 min-[1024px]:py-20">
+  <div class="grid gap-10 w-[calc(100%-48px)] max-w-site mx-auto py-12 md:py-16 min-[1024px]:w-[calc(82%+1.75rem)] min-[1024px]:grid-cols-[45%_55%] min-[1024px]:gap-0 min-[1024px]:py-20">
     <div class="min-w-0 min-[1024px]:pr-[clamp(48px,5vw,100px)]">
       <h2 class="text-xl min-[1024px]:text-3xl text-gray-300 playfair-display-sc-bold">
         {t(lang, "footer.visitTitle")}
@@ -65,9 +65,9 @@ const currentYear = new Date().getFullYear();
     </div>
   </div>
 
-  <hr class="h-px border-0 w-[90%] mx-auto bg-gradient-to-r from-transparent via-zinc-700 to-transparent" />
+  <hr class="h-px border-0 w-[90%] min-[1024px]:w-[calc(82%+1.75rem)] max-w-site mx-auto bg-gradient-to-r from-transparent via-zinc-700 to-transparent" />
 
-  <div class="w-[90%] mx-auto flex flex-col items-start gap-5 py-6 md:flex-row md:items-center md:justify-between">
+  <div class="w-[90%] min-[1024px]:w-[calc(82%+1.75rem)] max-w-site mx-auto flex flex-col items-start gap-5 py-6 md:flex-row md:items-center md:justify-between">
     <small class="text-[10px] text-gray-300">
       {t(lang, "footer.copyright").replace("{year}", currentYear.toString())}
     </small>

@@ -13,7 +13,8 @@ const { lang } = Astro.props;
 
 <header
   class="site-header sticky top-0 z-50 rounded-md bg-blackFooter border border-[rgba(255,255,255,0.08)] m-4 shadow-[0_8px_32px_rgba(0,0,0,0.3)] transition-all duration-300">
-  <nav class="flex items-center justify-between px-4 py-4 md:px-12">
+  <!-- Desktop: same width as the hero/footer. The header is inset by m-4 (+ 1px border), hence the +1.75rem offset. -->
+  <nav class="mx-auto flex items-center justify-between px-4 py-4 md:px-12 min-[1024px]:px-0 min-[1024px]:w-[calc(82%+1.75rem)] min-[1024px]:max-w-site">
     <div class="flex items-center">
       <Image
         src={logoNoTesto}
