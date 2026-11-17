@@ -1,0 +1,388 @@
+---
+/**
+ * Pagina interna per aggiornare la lista vini.
+ * Carica un PDF -> salvato su Netlify Blobs -> servito su /lista-vini.pdf.
+ * Protetta dalla password WINE_LIST_ADMIN_PASSWORD (verificata lato function).
+ */
+import "@fontsource/jost/400.css";
+import "@fontsource/jost/500.css";
+import "@fontsource/jost/700.css";
+import "@fontsource/playfair-display-sc/700.css";
+import "../../styles/global.css";
+import { Image } from "astro:assets";
+import logoNoTesto from "../../assets/logo-no-testo.png";
+import {
+  FileText,
+  UploadCloud,
+  CheckCircle2,
+  AlertCircle,
+  ExternalLink,
+  RotateCcw,
+  LogOut,
+  Lock,
+} from "lucide-astro";
+---
+
+<!doctype html>
+<html lang="it-IT">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <title>Aggiorna lista vini · AB Winetrader</title>
+    <style is:global>
+      /* Utility classes like `flex` would otherwise override the hidden attribute. */
+      [hidden] {
+        display: none !important;
+      }
+    </style>
+  </head>
+
+  <body class="min-h-screen text-gray-300 bg-blackMain">
+    <div class="mx-auto w-[calc(100%-32px)] max-w-[560px] py-10 md:py-16">
+      <header class="flex items-center justify-between mb-10">
+        <a href="/" class="flex items-center text-gray-300 no-underline">
+          <Image src={logoNoTesto} alt="" class="h-[35px] w-[12px] mr-2" width={12} height={35} densities={[1, 2, 3]} format="webp" />
+          <span class="text-xl playfair-display-sc-bold">ab winetrader</span>
+        </a>
+        <button
+          id="logout"
+          type="button"
+          hidden
+          class="inline-flex items-center gap-2 px-3 py-2 text-sm text-gray-400 rounded-md hover:text-white hover:bg-white/5">
+          <LogOut size={16} aria-hidden="true" /> Esci
+        </button>
+      </header>
+
+      <h1 class="mb-2 text-3xl text-white playfair-display-sc-bold">Lista vini</h1>
+      <p class="mb-8 text-gray-400">
+        Carica il nuovo PDF: sostituisce subito quello scaricabile dal sito.
+      </p>
+
+      <!-- ── Login ─────────────────────────────────────────── -->
+      <form id="login" class="p-6 border rounded-lg bg-blackFooter border-white/10" hidden>
+        <label for="password" class="flex items-center gap-2 mb-2 text-sm font-medium">
+          <Lock size={16} aria-hidden="true" /> Password
+        </label>
+        <input
+          id="password"
+          name="password"
+          type="password"
+          autocomplete="current-password"
+          required
+          class="w-full px-4 py-3 text-white bg-black border rounded-md border-white/15 focus:border-[#a82855] focus:outline-none" />
+        <p id="login-error" class="mt-3 text-sm text-red-400" role="alert" hidden></p>
+        <button
+          type="submit"
+          class="w-full mt-5 min-h-12 px-5 rounded-[7px] border border-[#8b1943] bg-[#570e27] font-semibold uppercase tracking-wide hover:bg-[#7a1835] hover:border-[#a82855] disabled:opacity-60">
+          Accedi
+        </button>
+      </form>
+
+      <!-- ── Dashboard ─────────────────────────────────────── -->
+      <section id="dashboard" hidden>
+        <!-- Current version -->
+        <div class="p-5 mb-6 border rounded-lg bg-blackFooter border-white/10">
+          <p class="mb-3 text-xs tracking-widest text-gray-500 uppercase">Online adesso</p>
+          <div id="current-empty" class="text-sm text-gray-400" hidden>
+            Nessun file caricato: il sito usa ancora il PDF incluso nel deploy.
+          </div>
+          <div id="current" class="flex items-start gap-4" hidden>
+            <span class="inline-flex items-center justify-center w-11 h-11 shrink-0 rounded-lg border border-white/10 bg-[#570e27]/40">
+              <FileText size={22} aria-hidden="true" />
+            </span>
+            <div class="min-w-0 grow">
+              <p id="current-name" class="font-medium text-white truncate"></p>
+              <p id="current-info" class="text-sm text-gray-400"></p>
+            </div>
+            <a
+              id="current-open"
+              href="/lista-vini.pdf"
+              target="_blank"
+              rel="noopener"
+              class="inline-flex items-center gap-1 px-3 py-2 text-sm rounded-md shrink-0 hover:bg-white/5">
+              Apri <ExternalLink size={14} aria-hidden="true" />
+            </a>
+          </div>
+        </div>
+
+        <!-- Dropzone -->
+        <label
+          id="dropzone"
+          for="file"
+          class="flex flex-col items-center justify-center gap-3 px-6 text-center transition-colors border-2 border-dashed rounded-lg cursor-pointer py-14 border-white/15 hover:border-[#a82855] hover:bg-[#570e27]/10">
+          <UploadCloud size={40} class="text-gray-400" aria-hidden="true" />
+          <span class="text-lg font-medium text-white">
+            <span class="hidden md:inline">Trascina qui il PDF oppure <span class="underline underline-offset-4 decoration-[#a82855]">scegli il file</span></span>
+            <span class="md:hidden underline underline-offset-4 decoration-[#a82855]">Scegli il PDF</span>
+          </span>
+          <span id="dropzone-hint" class="text-sm text-gray-500">Solo PDF</span>
+        </label>
+        <input id="file" type="file" accept="application/pdf,.pdf" class="sr-only" />
+
+        <!-- Progress -->
+        <div id="progress" class="mt-6" hidden aria-live="polite">
+          <div class="flex justify-between mb-2 text-sm">
+            <span id="progress-label" class="truncate">Caricamento…</span>
+            <span id="progress-pct" class="text-gray-400 tabular-nums">0%</span>
+          </div>
+          <div class="h-2 overflow-hidden rounded-full bg-white/10">
+            <div id="progress-bar" class="h-full w-0 bg-[#a82855] transition-[width] duration-150"></div>
+          </div>
+        </div>
+
+        <!-- Feedback -->
+        <div id="success" class="flex items-start gap-3 p-4 mt-6 border rounded-lg border-emerald-500/30 bg-emerald-500/10" role="status" hidden>
+          <CheckCircle2 size={22} class="text-emerald-400 shrink-0" aria-hidden="true" />
+          <div class="grow">
+            <p class="font-medium text-white">Lista vini aggiornata</p>
+            <p class="text-sm text-gray-400">È già online: chi la scarica ora riceve il nuovo file.</p>
+          </div>
+        </div>
+        <div id="error" class="flex items-start gap-3 p-4 mt-6 border rounded-lg border-red-500/30 bg-red-500/10" role="alert" hidden>
+          <AlertCircle size={22} class="text-red-400 shrink-0" aria-hidden="true" />
+          <p id="error-text" class="text-sm text-white"></p>
+        </div>
+
+        <!-- Previous version / undo -->
+        <div id="previous" class="flex items-center justify-between gap-4 pt-6 mt-8 border-t border-white/10" hidden>
+          <div class="min-w-0">
+            <p class="text-xs tracking-widest text-gray-500 uppercase">Versione precedente</p>
+            <p id="previous-info" class="text-sm text-gray-400 truncate"></p>
+          </div>
+          <button
+            id="restore"
+            type="button"
+            class="inline-flex items-center gap-2 px-4 py-2 text-sm border rounded-md shrink-0 border-white/15 hover:bg-white/5 disabled:opacity-60">
+            <RotateCcw size={16} aria-hidden="true" /> Ripristina
+          </button>
+        </div>
+      </section>
+    </div>
+
+    <script>
+      type Meta = { originalName: string; size: number; uploadedAt: string; etag: string };
+      type Status = { current: Meta | null; previous: Meta | null; maxBytes: number };
+
+      const API = "/api/wine-list";
+      const KEY = "ab-wine-admin";
+      const $ = <T extends HTMLElement = HTMLElement>(id: string) => document.getElementById(id) as T;
+
+      const loginForm = $<HTMLFormElement>("login");
+      const passwordInput = $<HTMLInputElement>("password");
+      const loginError = $("login-error");
+      const dashboard = $("dashboard");
+      const logoutBtn = $<HTMLButtonElement>("logout");
+      const dropzone = $("dropzone");
+      const fileInput = $<HTMLInputElement>("file");
+      const progress = $("progress");
+      const progressBar = $("progress-bar");
+      const progressPct = $("progress-pct");
+      const progressLabel = $("progress-label");
+      const success = $("success");
+      const errorBox = $("error");
+      const errorText = $("error-text");
+      const restoreBtn = $<HTMLButtonElement>("restore");
+
+      let password = "";
+      let maxBytes = 4 * 1024 * 1024;
+      let busy = false;
+
+      // sessionStorage can throw (private mode, blocked storage): never rely on it.
+      const remember = (v: string | null) => {
+        try {
+          v === null ? sessionStorage.removeItem(KEY) : sessionStorage.setItem(KEY, v);
+        } catch {}
+      };
+      const recall = () => {
+        try {
+          return sessionStorage.getItem(KEY) ?? "";
+        } catch {
+          return "";
+        }
+      };
+
+      const fmtSize = (b: number) =>
+        b < 1024 * 1024 ? `${Math.round(b / 1024)} KB` : `${(b / 1024 / 1024).toFixed(1)} MB`;
+      const fmtDate = (iso: string) =>
+        new Date(iso).toLocaleString("it-IT", { dateStyle: "long", timeStyle: "short" });
+
+      const ERRORS: Record<string, string> = {
+        not_pdf: "Il file non è un PDF valido. Esporta la lista in PDF e riprova.",
+        too_large: "Il file è troppo pesante.",
+        empty: "Il file è vuoto.",
+        no_previous: "Non c'è una versione precedente da ripristinare.",
+        unconfigured: "Upload non configurato: manca la password su Netlify.",
+        network: "Connessione non riuscita. Controlla la rete e riprova.",
+      };
+      const showError = (code: string) => {
+        errorText.textContent =
+          code === "too_large"
+            ? `Il file è troppo pesante (massimo ${fmtSize(maxBytes)}).`
+            : ERRORS[code] ?? "Qualcosa è andato storto. Riprova tra poco.";
+        errorBox.hidden = false;
+        success.hidden = true;
+      };
+      const clearFeedback = () => {
+        errorBox.hidden = true;
+        success.hidden = true;
+      };
+
+      function render(s: Pick<Status, "current" | "previous">) {
+        $("current-empty").hidden = !!s.current;
+        $("current").hidden = !s.current;
+        if (s.current) {
+          $("current-name").textContent = s.current.originalName;
+          $("current-info").textContent =
+            `Caricata il ${fmtDate(s.current.uploadedAt)} · ${fmtSize(s.current.size)}`;
+          $<HTMLAnchorElement>("current-open").href = `/lista-vini.pdf?v=${s.current.etag}`;
+        }
+        $("previous").hidden = !s.previous;
+        if (s.previous) {
+          $("previous-info").textContent =
+            `${s.previous.originalName} · ${fmtDate(s.previous.uploadedAt)}`;
+        }
+      }
+
+      function showLogin(message?: string) {
+        password = "";
+        remember(null);
+        dashboard.hidden = true;
+        logoutBtn.hidden = true;
+        loginForm.hidden = false;
+        loginError.hidden = !message;
+        loginError.textContent = message ?? "";
+        passwordInput.focus();
+      }
+
+      async function api(path: string, init: RequestInit = {}) {
+        const res = await fetch(path, {
+          ...init,
+          headers: { ...(init.headers ?? {}), authorization: `Bearer ${password}` },
+        });
+        const body = await res.json().catch(() => ({}));
+        return { res, body };
+      }
+
+      async function login(pw: string) {
+        password = pw;
+        const submit = loginForm.querySelector("button")!;
+        submit.disabled = true;
+        try {
+          const { res, body } = await api(API);
+          if (res.status === 401) return showLogin("Password non corretta.");
+          if (!res.ok) return showLogin(ERRORS[body.error] ?? "Servizio non disponibile, riprova.");
+          remember(pw);
+          maxBytes = body.maxBytes ?? maxBytes;
+          $("dropzone-hint").textContent = `Solo PDF · massimo ${fmtSize(maxBytes)}`;
+          render(body);
+          loginForm.hidden = true;
+          dashboard.hidden = false;
+          logoutBtn.hidden = false;
+        } catch {
+          showLogin(ERRORS.network);
+        } finally {
+          submit.disabled = false;
+        }
+      }
+
+      // XHR instead of fetch: we want real upload progress.
+      function upload(file: File) {
+        if (busy) return;
+        clearFeedback();
+        const isPdf = file.type === "application/pdf" || /\.pdf$/i.test(file.name);
+        if (!isPdf) return showError("not_pdf");
+        if (file.size > maxBytes) return showError("too_large");
+
+        busy = true;
+        dropzone.setAttribute("aria-disabled", "true");
+        progress.hidden = false;
+        progressLabel.textContent = file.name;
+        const setPct = (p: number) => {
+          progressBar.style.width = `${p}%`;
+          progressPct.textContent = `${p}%`;
+        };
+        setPct(0);
+
+        const xhr = new XMLHttpRequest();
+        xhr.open("PUT", API);
+        xhr.setRequestHeader("authorization", `Bearer ${password}`);
+        xhr.setRequestHeader("content-type", "application/pdf");
+        xhr.setRequestHeader("x-file-name", encodeURIComponent(file.name));
+        xhr.upload.onprogress = (e) => e.lengthComputable && setPct(Math.round((e.loaded / e.total) * 100));
+        xhr.onload = () => {
+          let body: any = {};
+          try {
+            body = JSON.parse(xhr.responseText);
+          } catch {}
+          if (xhr.status === 401) return showLogin("Sessione scaduta, accedi di nuovo.");
+          if (xhr.status === 201) {
+            setPct(100);
+            render(body);
+            success.hidden = false;
+          } else {
+            showError(body.error);
+          }
+        };
+        xhr.onerror = () => showError("network");
+        xhr.onloadend = () => {
+          busy = false;
+          dropzone.removeAttribute("aria-disabled");
+          fileInput.value = "";
+          setTimeout(() => (progress.hidden = true), 600);
+        };
+        xhr.send(file);
+      }
+
+      // ── Events ────────────────────────────────────────────
+      loginForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        login(passwordInput.value);
+      });
+      logoutBtn.addEventListener("click", () => showLogin());
+      fileInput.addEventListener("change", () => fileInput.files?.[0] && upload(fileInput.files[0]));
+
+      const setDragging = (on: boolean) => {
+        dropzone.classList.toggle("border-[#a82855]", on);
+        dropzone.classList.toggle("bg-[#570e27]/10", on);
+      };
+      ["dragenter", "dragover"].forEach((t) =>
+        dropzone.addEventListener(t, (e) => {
+          e.preventDefault();
+          setDragging(true);
+        }),
+      );
+      ["dragleave", "drop"].forEach((t) => dropzone.addEventListener(t, () => setDragging(false)));
+      dropzone.addEventListener("drop", (e) => {
+        e.preventDefault();
+        const file = (e as DragEvent).dataTransfer?.files?.[0];
+        if (file) upload(file);
+      });
+      // Dropping a file outside the zone must not navigate away from the page.
+      window.addEventListener("dragover", (e) => e.preventDefault());
+      window.addEventListener("drop", (e) => e.preventDefault());
+
+      restoreBtn.addEventListener("click", async () => {
+        if (!confirm("Rimettere online la versione precedente?")) return;
+        clearFeedback();
+        restoreBtn.disabled = true;
+        try {
+          const { res, body } = await api(`${API}/restore`, { method: "POST" });
+          if (res.status === 401) return showLogin("Sessione scaduta, accedi di nuovo.");
+          if (!res.ok) return showError(body.error);
+          render(body);
+          success.hidden = false;
+        } catch {
+          showError("network");
+        } finally {
+          restoreBtn.disabled = false;
+        }
+      });
+
+      // ── Boot ──────────────────────────────────────────────
+      const saved = recall();
+      saved ? login(saved) : showLogin();
+    </script>
+  </body>
+</html>
