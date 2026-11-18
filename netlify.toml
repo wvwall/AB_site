@@ -19,3 +19,9 @@
   for = "/assets/*"
   [headers.values]
     cache-control = "public, max-age=86400"
+
+[[headers]]
+  for = "/admin/*"
+  [headers.values]
+    x-robots-tag = "noindex, nofollow"
+    cache-control = "no-store"

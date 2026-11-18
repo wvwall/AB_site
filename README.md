@@ -27,6 +27,25 @@ This project serves as the online presence for AB Winetrader, an enoteca special
 - [Laravel Mix](https://laravel-mix.com/)
 - [SASS](https://sass-lang.com/)
 
+### Wine List upload
+
+The "Wine List" button points to `/lista-vini.pdf`, served by the Netlify Function
+`netlify/functions/wine-list.mts` from Netlify Blobs. To update the file, open
+`/admin/lista-vini`, log in and drop the new PDF: it is online immediately, no deploy needed.
+The previous version is kept and can be restored with one click. Until a file is uploaded,
+the function redirects to the static `public/WineList.pdf`.
+
+Access is by Google sign-in, restricted to an allow-list of emails. Set these in Netlify
+(Site configuration -> Environment variables, scope "Functions") and redeploy:
+
+| Variable           | Value                                                          |
+| ------------------ | -------------------------------------------------------------- |
+| `GOOGLE_CLIENT_ID` | OAuth client ID (Google Cloud Console, type "Web application") |
+| `ALLOWED_EMAILS`   | Comma-separated Google emails allowed to upload                |
+| `SESSION_SECRET`   | Random string, 32+ chars (`openssl rand -base64 32`)           |
+
+For local development use `netlify dev` (functions and Blobs do not run under `astro dev`).
+
 ### Language Toggle
 
 The website includes a language toggle feature to switch between Italian and English content.

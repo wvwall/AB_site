@@ -12,13 +12,10 @@ const { lang } = Astro.props;
 
 const whatsappIconSvg = icon(faWhatsapp).html.join("");
 
-// Fallback locale attivabile via variabile d'ambiente (Netlify / .env).
-// true  -> serve il PDF locale /WineList.pdf (public/WineList.pdf)
-// false -> usa il link Google Drive definito nelle traduzioni
-const wineListHref =
-  import.meta.env.PUBLIC_WINE_LIST_LOCAL === "true"
-    ? "/WineList.pdf"
-    : t(lang, "hero.wineListUrl");
+// URL stabile servito dalla Netlify Function netlify/functions/wine-list.mts:
+// restituisce l'ultimo PDF caricato da /admin/lista-vini, oppure, se non e'
+// ancora stato caricato nulla, fa redirect a public/WineList.pdf.
+const wineListHref = "/lista-vini.pdf";
 ---
 
 <main
