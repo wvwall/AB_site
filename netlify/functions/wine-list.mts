@@ -15,7 +15,7 @@ import {
 const DOWNLOAD_NAME = "WineList.pdf";
 const STATIC_FALLBACK = "/WineList.pdf";
 
-export default async (req: Request, _context: Context) => {
+export default async (req: Request, context: Context) => {
   if (req.method !== "GET" && req.method !== "HEAD") {
     return new Response("Method Not Allowed", {
       status: 405,
@@ -23,7 +23,7 @@ export default async (req: Request, _context: Context) => {
     });
   }
 
-  const store = wineListStore();
+  const store = wineListStore(context);
   const found = await store.getMetadata(CURRENT_KEY);
 
   if (!found) {

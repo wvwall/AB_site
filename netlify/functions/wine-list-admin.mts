@@ -37,20 +37,22 @@ import {
 const sha256Hex = (value: Uint8Array) =>
   createHash("sha256").update(value).digest("hex");
 
-const readMeta = async (key: string) => {
-  const found = await wineListStore().getMetadata(key);
+type Store = ReturnType<typeof wineListStore>;
+
+const readMeta = async (store: Store, key: string) => {
+  const found = await store.getMetadata(key);
   return found ? (found.metadata as unknown as WineListMeta) : null;
 };
 
-async function handleStatus(email: string) {
+async function handleStatus(store: Store, email: string) {
   const [current, previous] = await Promise.all([
-    readMeta(CURRENT_KEY),
-    readMeta(PREVIOUS_KEY),
+    readMeta(store, CURRENT_KEY),
+    readMeta(store, PREVIOUS_KEY),
   ]);
   return json({ current, previous, maxBytes: MAX_UPLOAD_BYTES, email });
 }
 
-async function handleUpload(req: Request, email: string) {
+async function handleUpload(store: Store, req: Request, email: string) {
   // Anything other than application/pdf may be decoded as text by the
   // platform and silently corrupt the binary, so refuse it up front.
   if (!(req.headers.get("content-type") ?? "").startsWith("application/pdf")) {
@@ -89,7 +91,6 @@ async function handleUpload(req: Request, email: string) {
     etag: sha256Hex(bytes).slice(0, 32),
   };
 
-  const store = wineListStore();
   const existing = await store.getWithMetadata(CURRENT_KEY, {
     type: "arrayBuffer",
   });
@@ -105,8 +106,7 @@ async function handleUpload(req: Request, email: string) {
   return json({ current: meta, previous: existing?.metadata ?? null }, 201);
 }
 
-async function handleRestore() {
-  const store = wineListStore();
+async function handleRestore(store: Store) {
   const [current, previous] = await Promise.all([
     store.getWithMetadata(CURRENT_KEY, { type: "arrayBuffer" }),
     store.getWithMetadata(PREVIOUS_KEY, { type: "arrayBuffer" }),
@@ -153,7 +153,8 @@ async function handleLogin(req: Request, cfg: AuthConfig, secure: boolean) {
   }
 }
 
-export default async (req: Request, _context: Context) => {
+export default async (req: Request, context: Context) => {
+  const store = wineListStore(context);
   const { pathname } = new URL(req.url);
   const route = pathname.replace(/\/+$/, "");
   const secure = isSecureRequest(req);
@@ -195,13 +196,13 @@ export default async (req: Request, _context: Context) => {
     }
 
     if (route === "/api/wine-list/restore" && req.method === "POST") {
-      return await handleRestore();
+      return await handleRestore(store);
     }
     if (route === "/api/wine-list" && req.method === "GET") {
-      return await handleStatus(email);
+      return await handleStatus(store, email);
     }
     if (route === "/api/wine-list" && req.method === "PUT") {
-      return await handleUpload(req, email);
+      return await handleUpload(store, req, email);
     }
   } catch (err) {
     console.error("wine-list-admin error", err);
