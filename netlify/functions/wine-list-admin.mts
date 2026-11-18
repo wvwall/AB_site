@@ -1,5 +1,18 @@
-import { createHash, timingSafeEqual } from "node:crypto";
+import { createHash } from "node:crypto";
 import type { Config, Context } from "@netlify/functions";
+import {
+  AuthError,
+  clearCookie,
+  createSession,
+  isAllowed,
+  isSameOrigin,
+  isSecureRequest,
+  readAuthConfig,
+  readSession,
+  sessionCookie,
+  verifyGoogleIdToken,
+  type AuthConfig,
+} from "./_shared/auth.mts";
 import {
   CURRENT_KEY,
   MAX_UPLOAD_BYTES,
@@ -10,46 +23,40 @@ import {
 } from "./_shared/wine-list-store.mts";
 
 /**
- * Private API behind /admin/lista-vini.
+ * Private API behind /admin/lista-vini. Auth: Google sign-in + ALLOWED_EMAILS
+ * (see _shared/auth.mts).
  *
- *   GET  /api/wine-list          -> metadata of current + previous version
- *   PUT  /api/wine-list          -> upload a new PDF (raw body, application/pdf)
- *   POST /api/wine-list/restore  -> swap current and previous version (undo)
- *
- * Every call requires `Authorization: Bearer <WINE_LIST_ADMIN_PASSWORD>`.
+ *   GET  /api/wine-list/config   public: { clientId } for the Google button
+ *   POST /api/wine-list/login    { credential } Google ID token -> session cookie
+ *   POST /api/wine-list/logout   clears the session cookie
+ *   GET  /api/wine-list          session: metadata of current + previous version
+ *   PUT  /api/wine-list          session: upload a new PDF (raw body)
+ *   POST /api/wine-list/restore  session: swap current and previous (undo)
  */
 
-const sha256 = (value: string | Uint8Array) =>
-  createHash("sha256").update(value).digest();
-
-const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
-
-async function isAuthorized(req: Request): Promise<boolean | "unconfigured"> {
-  const expected = process.env.WINE_LIST_ADMIN_PASSWORD;
-  if (!expected) return "unconfigured";
-
-  const header = req.headers.get("authorization") ?? "";
-  const provided = header.startsWith("Bearer ") ? header.slice(7) : "";
-  // Hash both sides so lengths always match and the comparison is constant-time.
-  const ok = timingSafeEqual(sha256(provided), sha256(expected));
-  if (!ok) await sleep(800); // slow down brute-force attempts
-  return ok;
-}
+const sha256Hex = (value: Uint8Array) =>
+  createHash("sha256").update(value).digest("hex");
 
 const readMeta = async (key: string) => {
   const found = await wineListStore().getMetadata(key);
   return found ? (found.metadata as unknown as WineListMeta) : null;
 };
 
-async function handleStatus() {
+async function handleStatus(email: string) {
   const [current, previous] = await Promise.all([
     readMeta(CURRENT_KEY),
     readMeta(PREVIOUS_KEY),
   ]);
-  return json({ current, previous, maxBytes: MAX_UPLOAD_BYTES });
+  return json({ current, previous, maxBytes: MAX_UPLOAD_BYTES, email });
 }
 
-async function handleUpload(req: Request) {
+async function handleUpload(req: Request, email: string) {
+  // Anything other than application/pdf may be decoded as text by the
+  // platform and silently corrupt the binary, so refuse it up front.
+  if (!(req.headers.get("content-type") ?? "").startsWith("application/pdf")) {
+    return json({ error: "not_pdf" }, 415);
+  }
+
   const declared = Number(req.headers.get("content-length") ?? 0);
   if (declared > MAX_UPLOAD_BYTES) {
     return json({ error: "too_large", maxBytes: MAX_UPLOAD_BYTES }, 413);
@@ -78,7 +85,8 @@ async function handleUpload(req: Request) {
     originalName,
     size: bytes.byteLength,
     uploadedAt: new Date().toISOString(),
-    etag: sha256(bytes).toString("hex").slice(0, 32),
+    uploadedBy: email,
+    etag: sha256Hex(bytes).slice(0, 32),
   };
 
   const store = wineListStore();
@@ -118,18 +126,83 @@ async function handleRestore() {
   });
 }
 
-export default async (req: Request, _context: Context) => {
-  const auth = await isAuthorized(req);
-  if (auth === "unconfigured") return json({ error: "unconfigured" }, 503);
-  if (!auth) return json({ error: "unauthorized" }, 401);
-
-  const { pathname } = new URL(req.url);
-  const isRestore = pathname.endsWith("/restore");
+async function handleLogin(req: Request, cfg: AuthConfig, secure: boolean) {
+  let credential: unknown;
+  try {
+    credential = (await req.json())?.credential;
+  } catch {
+    return json({ error: "bad_request" }, 400);
+  }
+  if (typeof credential !== "string" || credential.length > 4096) {
+    return json({ error: "bad_request" }, 400);
+  }
 
   try {
-    if (isRestore && req.method === "POST") return await handleRestore();
-    if (!isRestore && req.method === "GET") return await handleStatus();
-    if (!isRestore && req.method === "PUT") return await handleUpload(req);
+    const email = await verifyGoogleIdToken(credential, cfg);
+    const res = json({ email });
+    res.headers.append(
+      "set-cookie",
+      sessionCookie(createSession(email, cfg.secret), secure),
+    );
+    return res;
+  } catch (err) {
+    if (err instanceof AuthError) {
+      return json({ error: err.code }, err.code === "forbidden" ? 403 : 401);
+    }
+    throw err;
+  }
+}
+
+export default async (req: Request, _context: Context) => {
+  const { pathname } = new URL(req.url);
+  const route = pathname.replace(/\/+$/, "");
+  const secure = isSecureRequest(req);
+
+  const cfg = readAuthConfig();
+  if (!cfg) return json({ error: "unconfigured" }, 503);
+
+  try {
+    // Public: the page needs the client ID to render the Google button.
+    if (route === "/api/wine-list/config" && req.method === "GET") {
+      return json({ clientId: cfg.clientId });
+    }
+
+    // Everything except reading the config is same-origin only when it mutates state.
+    if (req.method !== "GET" && !isSameOrigin(req)) {
+      return json({ error: "forbidden_origin" }, 403);
+    }
+
+    if (route === "/api/wine-list/login" && req.method === "POST") {
+      return await handleLogin(req, cfg, secure);
+    }
+
+    if (route === "/api/wine-list/logout" && req.method === "POST") {
+      const res = json({ ok: true });
+      res.headers.append("set-cookie", clearCookie(secure));
+      return res;
+    }
+
+    // Authenticated routes. The allow-list is re-checked on every request,
+    // so removing an email (and redeploying) revokes open sessions at once.
+    const email = readSession(
+      req.headers.get("cookie"),
+      cfg.secret,
+      Date.now(),
+      secure,
+    );
+    if (!email || !isAllowed(cfg, email)) {
+      return json({ error: "unauthorized" }, 401);
+    }
+
+    if (route === "/api/wine-list/restore" && req.method === "POST") {
+      return await handleRestore();
+    }
+    if (route === "/api/wine-list" && req.method === "GET") {
+      return await handleStatus(email);
+    }
+    if (route === "/api/wine-list" && req.method === "PUT") {
+      return await handleUpload(req, email);
+    }
   } catch (err) {
     console.error("wine-list-admin error", err);
     return json({ error: "server_error" }, 500);
@@ -139,5 +212,17 @@ export default async (req: Request, _context: Context) => {
 };
 
 export const config: Config = {
-  path: ["/api/wine-list", "/api/wine-list/restore"],
+  path: [
+    "/api/wine-list",
+    "/api/wine-list/config",
+    "/api/wine-list/login",
+    "/api/wine-list/logout",
+    "/api/wine-list/restore",
+  ],
+  // Safety net on top of Google sign-in: at most 60 requests/minute per IP.
+  rateLimit: {
+    windowLimit: 60,
+    windowSize: 60,
+    aggregateBy: ["ip"],
+  },
 };

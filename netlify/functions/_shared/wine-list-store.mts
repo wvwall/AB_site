@@ -12,6 +12,8 @@ export interface WineListMeta {
   originalName: string;
   size: number;
   uploadedAt: string;
+  /** Google email of whoever uploaded it. */
+  uploadedBy?: string;
   etag: string;
 }
 
