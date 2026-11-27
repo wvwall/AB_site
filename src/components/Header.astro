@@ -26,8 +26,9 @@ const { lang } = Astro.props;
         format="webp"
         quality="high"
         priority />
-      <span class="text-xl text-gray-300 playfair-display-sc-bold"
-        >{t(lang, "header.brandName")}
+      <!-- Il nome completo e' gia' nell'alt del logo: la sigla visibile e' decorativa per gli screen reader -->
+      <span class="text-xl text-gray-300 playfair-display-sc-bold" aria-hidden="true"
+        >{t(lang, "header.brandShort")}
       </span>
     </div>
     <div class="flex items-center gap-2">
